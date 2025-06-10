@@ -43,6 +43,11 @@ if (empty($_SESSION["nome"])){
             }else{
                 clone.childNodes[3].childNodes[3].innerText = msg
             }
+
+            if (numImg == null || numImg == undefined){
+                numImg = 0
+            }
+            
             clone.childNodes[1].src = "Imagens/"+fotos[numImg]
             clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+nome+"</u></strong> "+data
             clone.childNodes[3].childNodes[1].style.color = corNome
