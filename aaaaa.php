@@ -47,7 +47,7 @@ if (empty($_SESSION["nome"])){
             if (numImg == null || numImg == undefined){
                 numImg = 0
             }
-            
+
             clone.childNodes[1].src = "Imagens/"+fotos[numImg]
             clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+nome+"</u></strong> "+data
             clone.childNodes[3].childNodes[1].style.color = corNome
@@ -73,8 +73,9 @@ if (empty($_SESSION["nome"])){
                 xhttp.onload = function(){
                     mostrarMensagens()
                 }
-                xhttp.open("post", "mudarcordenome.php?cor="+cor, true);
-                xhttp.send();
+                xhttp.open("POST", "mudarcordenome.php", true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("cor="+cor);
         }
 
         function teste2(){

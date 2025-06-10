@@ -6,7 +6,7 @@ session_start();
 include "config.php";
 $id = $_SESSION["id"];
 
-$conteudo = $_GET['cor'];
+$conteudo = $_POST['cor'];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
