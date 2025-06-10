@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.prod.website-files.com/5efc0159f9a97ba05a8b2902/5f33815d2ffe39d6b39f848d_rpg-maker-web-icon.png" rel="shortcut icon" type="image/x-icon">
+    <meta property="og:title" content="Chalkin">
+    <meta property="og:description" content="Um site aleatório feito por Enzo">
+    <meta property="og:image" content="https://imgs.search.brave.com/VaeZ2TIkg-R8VI5fl9LLxWx6Zn0HBwb1eGgzfy7khOE/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pbWcu/a2FsdW5nYS5jb20u/YnIvZm90b3NkZXBy/b2R1dG9zLzM5NDg5/MGQuanBn">
+    <meta property="og:url" content="https://chalkin.ct.ws">
+    <title>A lenda do pão 2</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #0a0a0a;
+        }
+        img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+            border: 5px solid black;
+            box-sizing: border-box;
+        }
+        .tweenclass {
+            background-color: black;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            z-index: 10;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="tweenclass" id="tween-div">coisa</div>
+    <img src="https://media.discordapp.net/attachments/1098738586611884092/1330353210669400178/a_lenda_do_pao_2.gif?ex=67a60f3a&is=67a4bdba&hm=8f011626fbf65b336518fde210cc03cdd6117061b759cfe08af302bcc3a26976&=&width=392&height=300">
+    <audio id="background-music" src="Musicas/tlob_menu.ogg" loop></audio>
+    <script>
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            const tweenDiv = document.getElementById('tween-div');
+            document.body.addEventListener('click', function() {
+                audio.play().catch(function(error) {
+                    console.log('Error playing audio:', error);
+                });
+                tweenDiv.style.animation = 'fadeOut 2s forwards';
+            }, { once: true });
+        };
+    </script>
+</body>
+</html>

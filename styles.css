@@ -1,0 +1,210 @@
+@font-face {
+    font-family: "ComicSans";
+    src: url("ComicSansMS3.ttf"); 
+}
+
+*{
+    font-family: 'ComicSans', Arial;
+}
+
+#mainContainer{
+height: 100%;
+padding-left: 0;
+padding-right: 0;
+display: flex;
+flex-direction: column;
+max-height: 100vh
+}
+
+body{
+    font-size: 17px;
+    text-align: center;
+    background-color: darkgray;
+    margin-bottom: 90px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 90px
+}
+
+#menu_pfp{
+    background-color: #90ee90;
+    border: 0.2rem solid #008000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 999
+}
+#pfp_menu{
+    width: 50%;
+    height: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    border: 8px solid black;
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    background-color: #7c7b7b
+}
+#menusetas{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center
+}
+#changepfpbutton{
+    margin-left: 10px;
+    margin-right: 10px;
+    height: 20px
+}
+.barrafundo{
+    background-color: #90ee90;
+    overflow: hidden;
+    border-top: 0.2rem solid #008000;
+    width: 100%;
+    height: 90px;
+    min-height: 30px;
+    justify-content: center;
+    position:fixed;
+    z-index: 10;
+    bottom: 0%
+}
+
+#form>*{
+    border: 0.2rem solid black;
+    position: fixed;
+    font-size: 20px;
+}
+
+#escrevermsg{
+    margin-left: 1%;
+    height: 5%;
+    min-height: 10px;
+    margin-top: 7px;
+    width: 93%;
+    left: 0;
+    background-color: #4e4e4e;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: white;
+}
+
+#enviarmsg{
+    border: 0;
+    right: 0;
+    width: 60px;
+    height: auto;
+    margin-right: 0.8%;
+    border-radius: 10px;
+    min-height: 20px
+}
+
+marquee{
+    font-size: 50px;
+}
+
+main{
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 20px;
+    flex: 1;
+    margin-top: 100px;
+    overflow-x: hidden
+}
+
+#msgarea{
+    justify-content: center;
+    width: 100%;
+    margin-top: 7px;
+}
+
+.mensagem{
+    text-align: left;
+    display: none;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    margin-left: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+::placeholder{
+    color: #ffffff;
+    opacity: 1;
+}
+
+#pfp{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border:2px solid black;
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    background-color: #7c7b7b;
+}
+#nomenamensagem{
+    color: white;
+    padding: 0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,-1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+#conteudomensagem{
+    max-width: 600px;
+    margin-top: 10px;
+    /*line-break:anywhere;*/
+    word-wrap:break-word;
+    text-align: justify;
+}
+
+#conteudomensagem>p{
+    line-break:auto;
+}
+
+::-webkit-scrollbar {
+    width: 20px;
+}
+  
+::-webkit-scrollbar-track {
+    border: 2px solid #363636;
+    border-left: 2px solid #363636;
+    background-color: #7c7b7b;
+}
+  
+::-webkit-scrollbar-thumb {
+    background: lightgrey;
+    border-radius: 0px;
+    border: 2px solid black;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8d8c8c;
+}
+
+@media (max-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+
+    #pfp {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+button{
+    transition: 0.1s;
+}
+button:hover{
+    scale: 1.05;
+    cursor: pointer
+}
