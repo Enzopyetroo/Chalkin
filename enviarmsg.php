@@ -11,7 +11,7 @@ $id = $_SESSION["id"];
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+  die("Connection fssdfsdgsdg: " . $conn->connect_error);
 }
 
 $sql = "INSERT INTO tb_mensagens (conteudo, datamensagem, idusuario)
