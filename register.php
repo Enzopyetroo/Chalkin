@@ -1,119 +1,15 @@
-<!DOCTYPE php>
-<html lang="pt-br">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chalkin - Register</title>
-    <link rel="stylesheet" href="CSSlegal.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
-    <style>
-        h1{
-            font-size: 60px;
-            margin-top: 50px;
-        }
-        .Coisa{
-            position:fixed;
-            background-color: #90ee90;
-            border: 5px solid black;
-            border-radius: 20px;
-            width: 30%;
-            height: 70%;
-            top: 75%;
-            right: 50%;
-            font-size: 30px;
-            transform: translate(50%, -75%);
-            justify-content: center;
-            line-break: strict;
-        }
-        #formulario>*{
-            border: none;
-        }
-        .border{
-            border: 2px solid black !important
-        }
-        ::placeholder{
-            color:rgb(172, 172, 172);
-            opacity: 1;
-        }
-        input[type="text"],input[type="password"],input[type="email"]{
-            width: 40%;
-            height: 25px;
-            margin-top: 10px;
-            font-size: 15px !important;
-        }
-        input[type="submit"]{
-            width: 15%;
-            height: 30px;
-            font-size: 20px;
-        }
-        input[type="submit"]:hover{
-            scale: 1.05;
-        }
-        #chalkin{
-            position: absolute;
-            top: 50%;
-            right: 50%;
-            transform: translate(50%, -50%);
-            z-index: 0;
-            width: 100%;
-            opacity: 0.1;
-            filter: blur(10px);
-            font-size: 400px;
-        }
-        span{
-            color: red;
-        }
-        @media only screen and (max-width: 1500px) {
-            .coisa{
-                width: 50%;
-            }
-        }
-        @media only screen and (max-width: 1000px) {
-            .coisa{
-                width: 70%;
-            }
-        }
-        @media only screen and (max-width: 600px) {
-            .coisa{
-                width: 100%;
-                height: 100%;
-                transform: translate(50%, -50%);
-            }
-            #titulo {
-                font-size:45px;
-            }
-            #submit{
-                width: 30%;
-                height: 5%
-            }
-            input[type="text"],input[type="password"],input[type="email"]{
-                width: 70%;
-            }
-        }
-        @media only screen and (max-height: 800px) {
-            #submit{
-                height: 5%
-            }
-            input[type="text"],input[type="password"],input[type="email"]{
-                height: 25px;
-            }
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="CSSlegal.css">
+  <link rel="stylesheet" href="reset.css">
+  <link rel="stylesheet" href="styles.css">
+  <title>Tela de Login</title>
 
-        @media only screen and (max-width: 300px) {
-            label{
-                font-size: 20px
-            }
-            #titulo {
-                font-size:30px;
-            }
-            #submit{
-                width: 50%;
-            }
-        }
-    </style>
-    <script>
+  <script>
+
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
@@ -198,38 +94,97 @@
         }
     }
     </script>
-<body id="body">
 
-<?php include 'header.php'?>
+  
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+    }
 
-<br><br><br><br><br>
-<marquee id="chalkin">Chalkin</marquee>
-<h1 id="Titulo">CRIAR CONTA</h1>
-    <div class="Coisa">
-        <br>
-            <form action="criarconta.php" method="post">
-                <label for="fnome">Nome<span>*</span>:</label><br>
-                <input class="border" minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="checarnome(this)">
-                <p style="font-size:20px" id="jatem"> </p>
-                <br>
+    .login-container {
+      background-color: #90ee90;
+      padding: 40px;
+      border: 4px solid #102e10;
+      width: 500px;
+      border-radius: 8px;
+    }
 
-                <label for="nomexib">Apelido:</label><br>
-                <input class="border" type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)"><br><br>
+    form {
+      display: flex;
+      flex-direction: column;
+    }
 
-                <label for="email">Email:</label><br>
-                <input class="border" type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)">
-                <p style="font-size:20px" id="jatememail"> </p><br>
+    label {
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
 
-                <label for="senha" minlength="6">Senha<span>*</span>:</label><br>
-                <input class="border" type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa2(this)"><br><br>
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid black;
+      border-radius: 2px;
+    }
 
-                <label for="senha" minlength="6">Confirmar Senha<span>*</span>:</label><br>
-                <input class="border" type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa(this)">
-                <p style="font-size:20px" id="senhas"> </p>
-                <br>
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px;
+      background-color:#3e943e;
+      color: white;
+      border: 2px solid black;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 25px;
+      transition: 0.1s;
+    }
 
-                <input class="border" type="submit" value="Enviar" id="submit">
-            </form>
-    </div>
+    input[type="submit"]:hover {
+      filter: brightness(110%);
+      scale: 1.025;
+    }
+
+    span {
+      color: red;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body>
+    <?php include 'header.php';?>
+  <div class="login-container">
+        <form action="criarconta.php" method="post">
+            <label for="fnome">Nome<span>*</span>:</label>
+            <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="checarnome(this)">
+            <p id="jatem"> </p>
+
+            <label for="nomexib">Apelido:</label>
+            <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)">
+            <p id="jatememail"> </p>
+
+            <label for="senha">Senha<span>*</span>:</label>
+            <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa2(this)">
+
+            <label for="confirmsenha">Confirmar Senha<span>*</span>:</label>
+            <input type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa(this)">
+            <p id="senhas"> </p>
+
+            <input type="submit" value="Enviar" id="submit">
+        </form>
+  </div>
+
 </body>
 </html>
