@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="CSSlegal.css">
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
   <title>Tela de Login</title>
 
   <script>
@@ -158,6 +159,10 @@
       margin: 5px 0;
       font-size: 20px;
     }
+
+    .erro{
+        color: red;
+    }
   </style>
 </head>
 <body>
@@ -166,21 +171,21 @@
         <form action="criarconta.php" method="post">
             <label for="fnome">Nome<span>*</span>:</label>
             <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="checarnome(this)">
-            <p id="jatem"> </p>
+            <p class="erro" id="jatem"> </p>
 
             <label for="nomexib">Apelido:</label>
             <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)">
 
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)">
-            <p id="jatememail"> </p>
+            <p class="erro" id="jatememail"> </p>
 
             <label for="senha">Senha<span>*</span>:</label>
             <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa2(this)">
 
             <label for="confirmsenha">Confirmar Senha<span>*</span>:</label>
             <input type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa(this)">
-            <p id="senhas"> </p>
+            <p class="erro" id="senhas"> </p>
 
             <input type="submit" value="Enviar" id="submit">
         </form>
