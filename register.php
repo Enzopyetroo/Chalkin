@@ -137,7 +137,7 @@
     input[type="submit"] {
       margin-top: 20px;
       padding: 10px;
-      background-color:#3e943e;
+      background-color: #3e943e;
       color: white;
       border: 2px solid black;
       border-radius: 4px;
@@ -163,9 +163,41 @@
     .erro{
         color: red;
     }
+
+    .container {
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0.1;
+    }
+
+    .sliding-background {
+        background: url("Imagens/checkers.png");
+        height: 100vh;
+        width: 300%;
+        animation: slide 60s linear infinite;
+    }
+
+    @keyframes slide{
+        0% {
+            transform: translate3d(0, 0, 0);
+        }
+        100% {
+            transform: translate3d(-100vw, 0, 0);
+        }
+    }
+
   </style>
 </head>
 <body>
+
+<div class="container">
+  <div class="sliding-background"></div>
+</div>
+
     <?php include 'header.php';?>
   <div class="login-container">
         <form action="criarconta.php" method="post">

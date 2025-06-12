@@ -9,114 +9,101 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
     <style>
-        h1{
-            font-size: 60px;
-            margin-top: 50px;
-        }
-        .Coisa{
-            position:fixed;
-            background-color: #90ee90;
-            border: 5px solid black;
-            border-radius: 20px;
-            width: 30%;
-            height: 70%;
-            top: 75%;
-            right: 50%;
-            font-size: 30px;
-            transform: translate(50%, -75%);
-            justify-content: center;
-            line-break: strict;
-        }
-        form{
-            margin-top: 25%;
-        }
-        .border{
-            border: 2px solid black !important
-        }
-        ::placeholder{
-            color:rgb(172, 172, 172);
-            opacity: 1;
-        }
-        input[type="text"],input[type="password"]{
-            width: 40%;
-            height: 25px;
-            margin-top: 10px;
-            font-size: 15px !important;
-        }
-        input[type="button"]{
-            width: 15%;
-            height: 30px;
-            font-size: 20px;
-            font-size: 15px !important;
-            transition: 0.1s;
-        }
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 25px;
+    }
 
-        #chalkin{
-            position: absolute;
-            top: 50%;
-            right: 50%;
-            transform: translate(50%, -50%);
-            z-index: 0;
-            width: 100%;
-            opacity: 0.1;
-            filter: blur(10px);
-            font-size: 400px;
+    .login-container {
+      background-color: #90ee90;
+      padding: 40px;
+      border: 4px solid #102e10;
+      width: 500px;
+      border-radius: 8px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    input {
+      padding: 10px;
+      font-size: 18px;
+      border: 2px solid black;
+      border-radius: 2px;
+    }
+
+    #submit {
+      margin-top: 20px;
+      padding: 10px;
+      background-color:#3e943e;
+      color: white;
+      border: 2px solid black;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 25px;
+      transition: 0.1s;
+    }
+
+    #submit:hover {
+      filter: brightness(110%);
+      scale: 1.025;
+    }
+
+    span {
+      color: red;
+    }
+
+    p {
+      margin: 5px 0;
+      font-size: 20px;
+    }
+
+    .erro{
+        color: red;
+    }
+
+    .container {
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        opacity: 0.1;
+    }
+
+    .sliding-background {
+        background: url("Imagens/checkers.png");
+        height: 100vh;
+        width: 300%;
+        animation: slide 60s linear infinite;
+    }
+
+    @keyframes slide{
+        0% {
+            transform: translate3d(0, 0, 0);
         }
-        span{
-            color: red;
-            font-size: 20px;
-            display: none;
+        100% {
+            transform: translate3d(-100vw, 0, 0);
         }
-        #submit:active{
-            scale: 0.98;
-        }
-                @media only screen and (max-width: 1500px) {
-            .coisa{
-                width: 50%;
-            }
-        }
-        @media only screen and (max-width: 1000px) {
-            .coisa{
-                width: 70%;
-            }
-        }
-        @media only screen and (max-width: 600px) {
-            .coisa{
-                width: 100%;
-                height: 100%;
-                transform: translate(50%, -50%);
-            }
-            #titulo {
-                font-size:45px;
-            }
-            #submit{
-                width: 30%;
-                height: 5%
-            }
-            input[type="text"],input[type="password"],input[type="email"]{
-                width: 70%;
-            }
-        }
-        @media only screen and (max-height: 800px) {
-            #submit{
-                height: 5%
-            }
-            input[type="text"],input[type="password"],input[type="email"]{
-                height: 25px;
-            }
-        }
-        @media only screen and (max-width: 300px) {
-            label{
-                font-size: 20px
-            }
-            #titulo {
-                font-size:30px;
-            }
-            #submit{
-                width: 50%;
-            }
-        }
-    </style>
+    }
+
+  </style>
+</head>
+<body>
+
+
     <script>
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
@@ -153,27 +140,27 @@
     }
     </script>
 <body id="body">
-
+<div class="container">
+  <div class="sliding-background"></div>
+</div>
 <?php include 'header.php'?>
 
-<br><br><br><br><br>
-<marquee id="chalkin">Chalkin</marquee>
-<h1 id="titulo">LOGIN</h1>
+<div class="login-container">
     <div class="Coisa">
         <br>
             <form action="" method="post">
-                <label for="fnome">Nome/Email:</label><br>
-                <input class="border" minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="trimfunc(this)">
-                <p style="font-size:20px" id="jatem"> </p>
+                <label for="fnome">Nome/Email:</label>
+                <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="trimfunc(this)">
                 <br>
 
-                <label for="senha" minlength="6">Senha:</label><br>
-                <input class="border" type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="trimfunc(this)"><br><br>
+                <label for="senha" minlength="6">Senha:</label>
+                <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="trimfunc(this)"><br>
 
                 <!--<input type="checkbox"><label style="font-size: 20px;"> Me manter logado</label><br><br>-->
-                <input class="border botoes" type="button" value="Logar" id="submit" onclick="submitform()"><br><br>
-                <span id="falhou">Email ou senha incorreta</span>
+                <input class="botoes" type="button" value="Logar" id="submit" onclick="submitform()"><br>
+                <span style="display: none;" id="falhou">Email ou senha incorreta</span>
             </form>
     </div>
+</div>
 </body>
 </html>
