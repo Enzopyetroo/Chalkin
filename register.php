@@ -209,7 +209,7 @@
             <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)">
+            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)" >
             <p class="erro" id="jatememail"> </p>
 
             <label for="senha">Senha<span>*</span>:</label>
