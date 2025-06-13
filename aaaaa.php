@@ -57,7 +57,7 @@ if (empty($_SESSION["nome"])){
             clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+nome+"</u></strong> "+data
             clone.childNodes[3].childNodes[1].style.color = corNome
             document.getElementById("mensagens").appendChild(clone)
-            window.scrollTo(0, 99999);
+            window.scrollTo(0, document.body.scrollHeight);
         }
 
         function teste(){
@@ -167,6 +167,7 @@ if (empty($_SESSION["nome"])){
             document.getElementById("form").reset();
             xhttp.open("post", "enviarmsg.php?msg="+inputValue, true);
             xhttp.send();
+            setTimeout(mostrarMensagens, 1000);
         }
     }
 
@@ -191,12 +192,14 @@ if (empty($_SESSION["nome"])){
                 }
                 document.getElementById('logado').innerHTML = "Atualmente logado como: <br>"+'<?php echo $_SESSION["nome"];?>'
                 document.getElementById('logado').style.display = "block"
-                window.scrollTo(0, 99999);
+                window.scrollTo(0, document.body.scrollHeight);
             }
         };
-        httpc.send('lorem=ipsum&foo=bar');
+        httpc.send();
     }
     mostrarMensagens()
+
+    //setInterval(mostrarMensagens, 5000);
 </script>
 </body>
 </html>
