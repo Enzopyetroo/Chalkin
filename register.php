@@ -164,17 +164,17 @@
         color: red;
     }
 
-    .container {
+    .containerCheckers {
         overflow: hidden;
         position: absolute;
         z-index: -1;
         width: 100%;
         height: 100%;
         margin: 0;
-        opacity: 0.1;
+        opacity: 0.05;
     }
 
-    .sliding-background {
+    .slidingBgCheckers {
         background: url("Imagens/checkers.png");
         height: 100vh;
         width: 300%;
@@ -194,8 +194,8 @@
 </head>
 <body>
 
-<div class="container">
-  <div class="sliding-background"></div>
+<div class="containerCheckers">
+  <div class="slidingBgCheckers"></div>
 </div>
 
     <?php include 'header.php';?>
