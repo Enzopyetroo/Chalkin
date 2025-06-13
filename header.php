@@ -9,6 +9,11 @@
     position: fixed;
     top: 0;
 }
+
+.barratopo a{
+    font-size: 25px
+}
+
 #coisosdelogin{
     position: fixed;
     right: 0;
@@ -41,6 +46,7 @@
 }
 .navbar-brand:hover #mocoIcon{
    content: url("Imagens/moçonarizfeliz.png");
+   scale: 1.1;
 }
 
 </style>

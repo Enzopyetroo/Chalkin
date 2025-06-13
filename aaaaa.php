@@ -9,8 +9,13 @@ if (empty($_SESSION["nome"])){
 <!DOCTYPE php>
 <html lang="pt-br">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The place for talkin'">
+    <meta name="keywords" content="Chat, Text, Talk, Chalkin">
+    <meta name="author" content="Enzo">
+
     <title>Chalkin</title>
     <link rel="stylesheet" href="CSSlegal.css">
     <link rel="stylesheet" href="reset.css">
@@ -105,7 +110,7 @@ if (empty($_SESSION["nome"])){
     <?php include 'header.php' ?>
     <main id="main">
         <div class="mensagem" id="msgplaceholder">
-            <img src="Imagens/moço.png" id="pfp"> 
+            <img alt="Pfp" src="Imagens/moço.png" id="pfp"> 
             <div id="usuario">       
                 <p id="nomenamensagem">Moço</p>      
                 <p id="conteudomensagem">teste teste teste teste teste teste teste teste teste </p>
@@ -116,7 +121,7 @@ if (empty($_SESSION["nome"])){
         <div style="width: 100%; position:fixed; z-index: 20">
         <br>
         <br><button onclick="teste()">botão de teste pra definir nome</button> <br><br>
-        <p>Definir cor do nome</p>
+        <label for="Cor">Definir cor do nome</label><br>
         <input id="color" type="color" name="Cor"><button onclick="corDoNome()">enviar</button><br>
         
         <!--<br><br><label>Definir foto</label>
