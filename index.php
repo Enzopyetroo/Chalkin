@@ -10,8 +10,13 @@ error_reporting(E_ALL);
 <!DOCTYPE php>
 <html lang="pt-br">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The place for talkin'">
+    <meta name="keywords" content="Chat, Text, Talk, Chalkin">
+    <meta name="author" content="Enzo">
+
     <title>Chalkin</title>
     <link rel="stylesheet" href="CSSlegal.css">
     <link rel="stylesheet" href="reset.css">
