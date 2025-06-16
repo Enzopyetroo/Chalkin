@@ -70,7 +70,7 @@
                 window.scrollTo(0, 99999);
             }
         };
-        httpc.send('lorem=ipsum&foo=bar');
+        httpc.send();
     }
     function senhaa(form){
         form.value = form.value.trim()

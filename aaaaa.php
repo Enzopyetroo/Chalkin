@@ -172,13 +172,14 @@ if (empty($_SESSION["nome"])){
     }
 
     function mostrarMensagens(){
+        console.log("mostrando mensagens novas")
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados.php", true);
 
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
                 var datarray = JSON.parse(httpc.responseText)
-                console.log(datarray)
+                //console.log(datarray)
                 document.getElementById('mensagens').innerHTML = ""
                 for (var i = 0; i < datarray.length; i++){
                     var date = new Date(datarray[i].datamensagem.toString())
@@ -197,9 +198,28 @@ if (empty($_SESSION["nome"])){
         };
         httpc.send();
     }
-    mostrarMensagens()
 
-    //setInterval(mostrarMensagens, 5000);
+    var qtdMensagens = 0
+    function ChecarMensagens(){
+        var httpc = new XMLHttpRequest();
+        var url = "checarMensagens.php";
+        httpc.open("POST", url, true);
+
+        httpc.onreadystatechange = function() {
+            if(httpc.readyState == 4 && httpc.status == 200) {
+                console.log("check")
+                if (httpc.responseText > qtdMensagens){
+                    mostrarMensagens()
+                }
+                qtdMensagens = httpc.responseText
+            }
+        };
+        httpc.send();
+    }
+
+    ChecarMensagens()
+
+    setInterval(ChecarMensagens, 1000);
 </script>
 </body>
 </html>
