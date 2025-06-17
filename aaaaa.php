@@ -174,7 +174,6 @@ if (empty($_SESSION["nome"])){
 
     var ultimaData = null;
     function mostrarMensagens(){
-        console.log("mostrando mensagens novas")
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados.php", true);
 
@@ -184,7 +183,7 @@ if (empty($_SESSION["nome"])){
             if(httpc.readyState == 4 && httpc.status == 200) {
 
                 var datarray = JSON.parse(httpc.responseText)
-                //console.log(datarray)
+                console.log(datarray)
                 document.getElementById('mensagens').innerHTML = ""
 
                 for (var i = 0; i < datarray.length; i++){
@@ -214,7 +213,7 @@ if (empty($_SESSION["nome"])){
         }
         ultimaData = data.getTime()
     }
-
+    
     var qtdMensagens = 0
     function ChecarMensagens(){
         var httpc = new XMLHttpRequest();
@@ -236,6 +235,8 @@ if (empty($_SESSION["nome"])){
     ChecarMensagens()
 
     setInterval(ChecarMensagens, 1000);
+
+    //setInterval(mostrarMensagens, 5000);
 </script>
 </body>
 </html>
