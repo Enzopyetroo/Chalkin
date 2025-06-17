@@ -142,6 +142,7 @@ if (empty($_SESSION["nome"])){
     </footer>
 
 <script>
+   
     const month = ["01","02","03","04","05","06","07","08","09","10","11","12"];
     const hours = ["00", "01","02","03","04","05","06","07","08","09","10","11","12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var nome = '<?php echo $_SESSION["nome"];?>'
@@ -171,17 +172,23 @@ if (empty($_SESSION["nome"])){
         }
     }
 
+    var ultimaData = null;
     function mostrarMensagens(){
         console.log("mostrando mensagens novas")
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados.php", true);
 
+        var data = new Date();
+
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
+
                 var datarray = JSON.parse(httpc.responseText)
                 //console.log(datarray)
                 document.getElementById('mensagens').innerHTML = ""
+
                 for (var i = 0; i < datarray.length; i++){
+
                     var date = new Date(datarray[i].datamensagem.toString())
                     var minutes = date.getMinutes()
                     if (minutes <= 9){
@@ -191,12 +198,21 @@ if (empty($_SESSION["nome"])){
                     hours[date.getHours()]+":"+minutes
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg)
                 }
+
                 document.getElementById('logado').innerHTML = "Atualmente logado como: <br>"+'<?php echo $_SESSION["nome"];?>'
                 document.getElementById('logado').style.display = "block"
                 window.scrollTo(0, document.body.scrollHeight);
             }
+            
         };
-        httpc.send();
+        httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if (ultimaData != null){
+            httpc.send("data="+ultimaData);
+        }else{
+            httpc.send();
+            console.log("Enviando sem data")
+        }
+        ultimaData = data.getTime()
     }
 
     var qtdMensagens = 0
@@ -223,3 +239,4 @@ if (empty($_SESSION["nome"])){
 </script>
 </body>
 </html>
+
