@@ -148,6 +148,8 @@ if (empty($_SESSION["nome"])){
     var nome = '<?php echo $_SESSION["nome"];?>'
 
     function EnviouMsg(form){
+
+        document.documentElement.style.scrollBehavior = "smooth"
         var inputValue = form.escrevermsg.value;
         for (var i = 0; i < inputValue.length; i++) {
          if (inputValue.charAt(i) != " "){
@@ -174,6 +176,9 @@ if (empty($_SESSION["nome"])){
 
     var ultimaData = null;
     function mostrarMensagens(){
+
+        document.documentElement.style.scrollBehavior = "auto"
+        console.log("mostrando mensagens")
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados.php", true);
 
@@ -213,7 +218,7 @@ if (empty($_SESSION["nome"])){
         }
         ultimaData = data.getTime()
     }
-    
+
     var qtdMensagens = 0
     function ChecarMensagens(){
         var httpc = new XMLHttpRequest();
@@ -240,4 +245,3 @@ if (empty($_SESSION["nome"])){
 </script>
 </body>
 </html>
-
