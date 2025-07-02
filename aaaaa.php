@@ -17,10 +17,13 @@ if (empty($_SESSION["nome"])){
     <meta name="author" content="Enzo">
 
     <title>Chalkin</title>
+
     <link rel="stylesheet" href="CSSlegal.css">
+    <script src="jsManeiro.js" type="text/javascript"></script>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
+    
     <script>
           
         var fotos = [
@@ -37,12 +40,13 @@ if (empty($_SESSION["nome"])){
             "oçom.png",
             "pikmin.gif",
         ]
-        function mensagem(msg, data, nome, id, corNome, admin, numImg){
+
+        function mensagem(msg, data, nome, id, corNome, admin, numImg, userId){
             const node = document.getElementById("msgplaceholder")
             const clone = node.cloneNode(true)
             clone.style.display = "flex"
             clone.id = "mensagem"+id
-
+            clone.setAttribute("data-userid", userId); 
             if (admin == 1){
                 clone.childNodes[3].childNodes[3].innerHTML = msg
             }else{
@@ -109,7 +113,7 @@ if (empty($_SESSION["nome"])){
 <body id="body">
     <?php include 'header.php' ?>
     <main id="main">
-        <div class="mensagem" id="msgplaceholder">
+        <div class="mensagem" id="msgplaceholder" data-userid="0">
             <img alt="Pfp" src="Imagens/moço.png" id="pfp"> 
             <div id="usuario">       
                 <p id="nomenamensagem">Moço</p>      
@@ -118,17 +122,13 @@ if (empty($_SESSION["nome"])){
             
         </div>
         <br>
-        <div style="width: 100%; position:fixed; z-index: 20">
-        <br>
-        <br><button onclick="teste()">botão de teste pra definir nome</button> <br><br>
-        <label for="Cor">Definir cor do nome</label><br>
-        <input id="color" type="color" name="Cor"><button onclick="corDoNome()">enviar</button><br>
         
         <!--<br><br><label>Definir foto</label>
         <br><input type="file" id="myfile" name="myfile" onchange="inputToURL(this)">
         <button onclick="document.getElementById('pfp').src = 'Imagens/moço.png'">Remover foto</button>-->
         </div>
      
+        
         <div id="mensagens"></div>
     </main>
 
@@ -188,6 +188,7 @@ if (empty($_SESSION["nome"])){
             if(httpc.readyState == 4 && httpc.status == 200) {
 
                 var datarray = JSON.parse(httpc.responseText)
+        console.log(datarray)
                 console.log(datarray)
                 document.getElementById('mensagens').innerHTML = ""
 
@@ -200,7 +201,7 @@ if (empty($_SESSION["nome"])){
                     }
                     var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
                     hours[date.getHours()]+":"+minutes
-                    mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg)
+                    mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
                 }
 
                 document.getElementById('logado').innerHTML = "Atualmente logado como: <br>"+'<?php echo $_SESSION["nome"];?>'
