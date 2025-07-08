@@ -8,12 +8,12 @@
 }
 
 #mainContainer{
-height: 100%;
-padding-left: 0;
-padding-right: 0;
-display: flex;
-flex-direction: column;
-max-height: 100vh
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    flex-direction: column;
+    max-height: 100vh
 }
 
 body{
@@ -21,6 +21,7 @@ body{
     text-align: center;
     background-color: darkgray;
     margin-bottom: 90px;
+    overflow-x: hidden;
 }
 
 .container{

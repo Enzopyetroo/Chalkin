@@ -93,6 +93,16 @@ input[type="color"]{
 input[type="color"]:hover{
     scale: 1.05;
 }
+.buttonPfpModal{
+    width: 50px;
+    height: 50px;
+    font-size: 35px;
+}
+.divPfpModal{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
 </style>
 
 <nav class="navbar fixed-top navbar-light barratopo" id="header">
@@ -126,8 +136,6 @@ input[type="color"]:hover{
   <hr>
 
   <div class="offcanvas-body">
-    <div>
-      <div>
         <br>
 
         <br><button onclick="teste()">Mudar nome de exibição</button> <br><br>
@@ -139,7 +147,6 @@ input[type="color"]:hover{
             Launch demo modal
         </button>
 
-    </div>
   </div>
 </div>
 
@@ -185,7 +192,14 @@ input[type="color"]:hover{
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+    
+        
+        <div class="divPfpModal">
+            <button class="buttonPfpModal" onclick="leftPfp()"><</button>
+            <img style="width: 200px;" src="Imagens/moço.png" id="pfpModal" alt="Pfp">
+            <button class="buttonPfpModal" onclick="rightPfp()">></button>
+        </div>
+        <p id="numeroPfps">0 / 0</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -194,3 +208,26 @@ input[type="color"]:hover{
     </div>
   </div>
 </div>
+
+<script>
+document.getElementById("numeroPfps").innerText = "0 / " + (fotos.length -1);
+var fotoAtual = 0
+    function leftPfp(){
+        if(fotoAtual == 0){
+            fotoAtual = fotos.length -1
+        }else{
+            fotoAtual -= 1
+        }
+        document.getElementById("pfpModal").src = "Imagens/"+fotos[fotoAtual];
+        document.getElementById("numeroPfps").innerText = fotoAtual + " / " + (fotos.length -1) ;
+    }
+    function rightPfp(){
+        if(fotoAtual == fotos.length-1){
+            fotoAtual = 0
+        }else{
+            fotoAtual += 1
+        }
+        document.getElementById("pfpModal").src = "Imagens/"+fotos[fotoAtual];
+        document.getElementById("numeroPfps").innerText = fotoAtual + " / " + (fotos.length -1);
+    }
+</script>
