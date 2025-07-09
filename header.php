@@ -143,8 +143,8 @@ input[type="color"]:hover{
         <label for="Cor">Mudar cor do nome</label><br>
         <input id="color" type="color" name="Cor" style="margin-right: 10px;"><button onclick="corDoNome()">enviar</button> <br><br>
 
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#PfpModal">
-            Launch demo modal
+        <button type="button" data-bs-toggle="modal" data-bs-target="#PfpModal">
+            Mudar foto de perfil
         </button>
 
   </div>
@@ -203,7 +203,8 @@ input[type="color"]:hover{
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Salvar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        onclick="salvarPfp()">Salvar</button>
       </div>
     </div>
   </div>
@@ -229,5 +230,15 @@ var fotoAtual = 0
         }
         document.getElementById("pfpModal").src = "Imagens/"+fotos[fotoAtual];
         document.getElementById("numeroPfps").innerText = fotoAtual + " / " + (fotos.length -1);
+    }
+
+    function salvarPfp(){
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function(){
+                mostrarMensagens()
+            }
+            xhttp.open("POST", "escolherfoto.php", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("foto="+fotoAtual);
     }
 </script>
