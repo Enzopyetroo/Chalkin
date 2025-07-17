@@ -26,8 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $result = $conn->query($sql);
             $array = $result->fetch_array(MYSQLI_ASSOC);
             $id = $array["id"];
+            
+            $adm = $array["admin"];
+            
             $nome = $array["nome"];
             $_SESSION["id"] = "$id";
+            $_SESSION["admin"] = "$adm";
             $_SESSION["nome"] = "$nome";
             echo "Login successful";
         }else{
@@ -38,7 +42,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result = $conn->query($sql);
                 $array = $result->fetch_array(MYSQLI_ASSOC);
                 $id = $array["id"];
+                
+                $adm = $array["admin"];
+                
                 $_SESSION["id"] = "$id";
+                $_SESSION["admin"] = "$adm";
                 echo "Login successful";
             }else{
                 echo "Login failed";
@@ -50,12 +58,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
-            $sql = "SELECT id, nome FROM tb_usuarios_tb_config WHERE nome = '$nome' AND senha = '$senha'";
+            $sql = "SELECT * FROM tb_usuarios_tb_config WHERE nome = '$nome' AND senha = '$senha'";
             $result = $conn->query($sql);
             $array = $result->fetch_array(MYSQLI_ASSOC);
             $id = $array["id"];
+            
+            $adm = $array["admin"];
+            
             $nome = $array["nome"];
             $_SESSION["id"] = "$id";
+            $_SESSION["admin"] = "$adm";
             $_SESSION["nome"] = "$nome";
             echo "Login successful";
         }else{
@@ -66,7 +78,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $result = $conn->query($sql);
                 $array = $result->fetch_array(MYSQLI_ASSOC);
                 $id = $array["id"];
+                
+                $adm = $array["admin"];
+                
                 $_SESSION["id"] = "$id";
+                $_SESSION["admin"] = "$adm";
                 echo "Login successful";
             }else{
                 echo "Login failed";

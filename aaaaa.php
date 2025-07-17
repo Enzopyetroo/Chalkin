@@ -39,6 +39,7 @@ if (empty($_SESSION["nome"])){
             "moçosurpreso.png",
             "oçom.png",
             "pikmin.gif",
+            "moco_way.png",
         ]
 
         function mensagem(msg, data, nome, id, corNome, admin, numImg, userId){
@@ -147,30 +148,44 @@ if (empty($_SESSION["nome"])){
     const hours = ["00", "01","02","03","04","05","06","07","08","09","10","11","12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var nome = '<?php echo $_SESSION["nome"];?>'
 
-    function EnviouMsg(form){
-
+    function EnviouMsg(form, figurinhaConteudo){
         document.documentElement.style.scrollBehavior = "smooth"
-        var inputValue = form.escrevermsg.value;
-        for (var i = 0; i < inputValue.length; i++) {
-         if (inputValue.charAt(i) != " "){
-            podeEnviar = true
-         } 
-        }
-        if (podeEnviar == true){
-            var date = new Date()
-            var minutes = date.getMinutes()
-            if (minutes <= 9){
-                minutes = "0"+minutes
+        if (!figurinhaConteudo){
+            
+            var inputValue = form.escrevermsg.value;
+            for (var i = 0; i < inputValue.length; i++) {
+            if (inputValue.charAt(i) != " "){
+                podeEnviar = true
+            } 
             }
-            var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
-            hours[date.getHours()]+":"+minutes
-            const xhttp = new XMLHttpRequest();
-            var podeEnviar = false
-            mensagem(inputValue, datanamensagem, nome)
-            document.getElementById("form").reset();
-            xhttp.open("post", "enviarmsg.php?msg="+inputValue, true);
-            xhttp.send();
-            setTimeout(mostrarMensagens, 1000);
+            if (podeEnviar == true){
+                var date = new Date()
+                var minutes = date.getMinutes()
+                if (minutes <= 9){
+                    minutes = "0"+minutes
+                }
+                var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
+                hours[date.getHours()]+":"+minutes
+                const xhttp = new XMLHttpRequest();
+                var podeEnviar = false
+                mensagem(inputValue, datanamensagem, nome)
+                document.getElementById("form").reset();
+                xhttp.open("post", "enviarmsg.php?msg="+inputValue, true);
+                xhttp.send();
+                setTimeout(mostrarMensagens, 1000);
+            }
+        }else{
+                var date = new Date()
+                var minutes = date.getMinutes()
+                if (minutes <= 9){
+                    minutes = "0"+minutes
+                }
+                var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
+                hours[date.getHours()]+":"+minutes
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("post", "enviarmsg.php?msg="+figurinhaConteudo, true);
+                xhttp.send();
+                mostrarMensagens()
         }
     }
 

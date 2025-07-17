@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="reset.css">
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
-  <title>Tela de Login</title>
+  <title>Chalkin - Cadastro</title>
 
   <script>
 

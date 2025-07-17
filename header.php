@@ -15,19 +15,20 @@
     font-size: 25px
 }
 
-.botaoConfig{
+#botaoConfig{
     text-align: left;
     margin-left: 10px;
+    opacity: 0;
 }
-.botaoConfig>img{
+#imgConfig{
     flex: 1;
     text-align: left;
     width: 40px;
     height: 40px;
-    cursor: pointer;
+    cursor:initial;
     transition: 0.1s;
 }
-.botaoConfig>img:hover{
+#imgConfig:hover{
     scale: 1.1;
     filter: brightness(200%);
 }
@@ -58,12 +59,12 @@
     margin-left: 10px;
 }
 
-.navbar-brand:hover{
+.Chalkin:hover{
     transition:0.2s;
     scale: 1.05
 }
-.navbar-brand:hover #mocoIcon{
-   content: url("Imagens/moçonarizfeliz.png");
+.Chalkin:hover #mocoIcon{
+   content: url("Imagens/moçofeliz.png");
    scale: 1.1;
 }
 
@@ -103,16 +104,71 @@ input[type="color"]:hover{
     justify-content: space-evenly;
     align-items: center;
 }
+.pikmin{
+    bottom: 0;
+    display: none;
+    position: absolute;
+}
+.btnLogout{
+    background-color: #ff4d4d;
+    color: white;
+    border: 1px solid #ff0000;
+}
+.buttonHeader{
+    padding: 5px;
+}
+@media (max-width: 720px) {
+    #register{
+        width: 100px;
+        font-size: 16px;
+    }
+    #login{
+        width: 80px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 590px) {
+    #register{
+        width: 80px;
+        font-size: 12px;
+    }
+    #login{
+        width: 60px;
+        font-size: 12px;
+    }
+    #logado{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 466px) {
+    #register{
+        width: 60px;
+        font-size: 8px;
+    }
+    #login{
+        width: 40px;
+        font-size: 8px;
+    }
+    #logado{
+        font-size: 8px;
+    }
+}
 </style>
 
 <nav class="navbar fixed-top navbar-light barratopo" id="header">
 
-    <div class="flexCoisa botaoConfig">
-        <img src="Imagens/settings.svg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">
+    <div class="flexCoisa" id="botaoConfig">
+        <img src="Imagens/settings.svg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" disabled id="imgConfig">
     </div>
 
-    <div class="flexCoisa">
-        <a class="navbar-brand" href="aaaaa.php">
+    <div class="pikmin" id="sticker">
+        <img onclick="EnviouMsg(null, '<img src=Imagens/pikmin.gif width=`300` height=`300`>' )" src="Imagens/pikmin.gif" width="30" height="30">
+    </div>
+
+    <div class="flexCoisa Chalkin">
+        <a class="navbar-brand" href="index.php">
             <img src="Imagens/moço.png" width="30" height="30" class="d-inline-block align-top" id="mocoIcon" alt="">
                 Chalkin
         </a>
@@ -121,9 +177,21 @@ input[type="color"]:hover{
     <div id="coisosdelogin" class="flexCoisa">
         <a href="register.php"><button id="register" class="botoes">Criar conta</button></a>
         <a href="login.php"><button id="login" class="botoes">Login</button></a>
-        <p id="logado">Atualmente logado como: <br>(SEU NOME)</p>
+        <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
     </div>
 </nav>
+
+
+        
+
+
+<script>
+
+    var adm = '<?php echo $_SESSION["admin"];?>';
+    if (adm && adm == 1){
+        document.getElementById("sticker").style.display = "block"
+    }
+    </script>
 
 <!--Sidebar-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -138,15 +206,43 @@ input[type="color"]:hover{
   <div class="offcanvas-body">
         <br>
 
-        <br><button onclick="teste()">Mudar nome de exibição</button> <br><br>
+        <br>
+        <button onclick="teste()" class="buttonHeader">
+            Mudar nome de exibição
+        </button> 
+        
+        <br><br>
 
         <label for="Cor">Mudar cor do nome</label><br>
-        <input id="color" type="color" name="Cor" style="margin-right: 10px;"><button onclick="corDoNome()">enviar</button> <br><br>
+        <input id="color" type="color" name="Cor" style="margin-right: 10px;">
+            <button onclick="corDoNome()">
+                enviar
+            </button> 
+            
+        <br><br>
 
-        <button type="button" data-bs-toggle="modal" data-bs-target="#PfpModal">
+        <button type="button" data-bs-toggle="modal" data-bs-target="#PfpModal" class="buttonHeader">
             Mudar foto de perfil
         </button>
 
+        <br><br>
+
+        <button class="btnLogout buttonHeader" onclick="Logoff()">
+            Deslogar da conta
+        </button>
+
+        <script>
+            function Logoff() {
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        window.location.replace("index.php")
+                    }
+                };
+                xmlhttp.open("GET", "functions.php?action=logoff", true);
+                xmlhttp.send();
+            }
+        </script>
   </div>
 </div>
 
@@ -241,4 +337,14 @@ var fotoAtual = 0
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             xhttp.send("foto="+fotoAtual);
     }
+
+
+var path = window.location.pathname;
+var page = path.split("/").pop();
+if (page == "aaaaa.php"){
+    document.getElementById("botaoConfig").style.opacity = "1";
+    document.getElementById("imgConfig").disabled = false;
+    document.getElementById("imgConfig").style.cursor = "pointer";
+}
+
 </script>
