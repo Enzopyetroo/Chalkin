@@ -51,7 +51,7 @@
     right: 0;
     height: 45%;
 }
-.botoes:hover{
+.botoesLogineRegister:hover{
     scale: 1.05;
     filter: brightness(105%);
 }
@@ -116,7 +116,9 @@ input[type="color"]:hover{
 }
 .buttonHeader{
     padding: 5px;
+    border-radius: 5px;
 }
+
 @media (max-width: 720px) {
     #register{
         width: 100px;
@@ -175,8 +177,8 @@ input[type="color"]:hover{
     </div>
 
     <div id="coisosdelogin" class="flexCoisa">
-        <a href="register.php"><button id="register" class="botoes">Criar conta</button></a>
-        <a href="login.php"><button id="login" class="botoes">Login</button></a>
+        <a href="register.php"><button id="register" class="botoesLogineRegister">Criar conta</button></a>
+        <a href="login.php"><button id="login" class="botoesLogineRegister">Login</button></a>
         <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
     </div>
 </nav>
@@ -214,8 +216,8 @@ input[type="color"]:hover{
         <br><br>
 
         <label for="Cor">Mudar cor do nome</label><br>
-        <input id="color" type="color" name="Cor" style="margin-right: 10px;">
-            <button onclick="corDoNome()">
+        <input id="color" type="color" name="Cor" style="margin-right: 10px; padding: 5px;">
+            <button onclick="corDoNome()" class="buttonHeader">
                 enviar
             </button> 
             

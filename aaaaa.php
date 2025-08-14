@@ -67,7 +67,7 @@ if (empty($_SESSION["nome"])){
 
         function teste(){
             nomepessoa = window.prompt('Escolha um nome')
-            if (nomepessoa != ""){
+            if (nomepessoa != "" && nomepessoa != null){
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function(){
                     mostrarMensagens()
