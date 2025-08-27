@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["nome"] = "$nome";
             echo "Login successful";
         }else{
-            $sql = "SELECT * FROM tb_usuarios_tb_config WHERE email = '$email' AND senha = '$senha'";
+            $sql = "SELECT * FROM tb_usuarios_tb_config WHERE email = '$nome' AND senha = '$senha'";
             $result2 = $conn->query($sql);
             if ($result2->num_rows > 0) {
                 $sql = "SELECT id FROM tb_usuarios_tb_config WHERE nome = '$nome' AND senha = '$senha'";
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["nome"] = "$nome";
             echo "Login successful";
         }else{
-            $sql = "SELECT * FROM tb_usuarios_tb_config WHERE email = '$email' AND senha = '$senha'";
+            $sql = "SELECT * FROM tb_usuarios_tb_config WHERE email = '$nome' AND senha = '$senha'";
             $result2 = $conn->query($sql);
             if ($result2->num_rows > 0) {
                 $sql = "SELECT id FROM tb_usuarios_tb_config WHERE nome = '$nome' AND senha = '$senha'";

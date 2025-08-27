@@ -6,18 +6,67 @@ function Logoff() {
     echo "Logoff";
 }
 
+function mudarNome($nome) {
+    include "config.php";
+    $id = $_SESSION["id"];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE tb_usuarios_tb_config
+        SET nome_exib = '$nome'
+        WHERE id = $id";
+
+    if ($conn->query($sql) === TRUE) {
+    echo "$nome";
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+}
+
+function mudarCorNome($cor) {
+    include "config.php";
+    $cor = '#' . $cor;
+    $id = $_SESSION["id"];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE tb_usuarios_tb_config
+        SET cor_nome = '$cor'
+        WHERE id = $id";
+
+    if ($conn->query($sql) === TRUE) {
+    echo "$cor";
+    } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+$conn->close();
+}
+
 $action = $_GET['action'] ?? 'default';
+$param = $_GET['param'] ?? 'default';
 
 switch ($action) {
     case 'default':
-    case 'logoff':
+        case 'logoff':
             Logoff();
         break;
 
-    // case 'getCursoDetalhes':
-    //     $crsCodigo = $_GET['curso'] ?? '';
-    //     echo getCursoDetalhes($crsCodigo);
-    //     break;
+        case 'mudarNome':
+            mudarNome($param);
+        break;
+
+        case 'mudarCorNome':
+            mudarCorNome($param);
+        break;
+
+        
 
     default:
         http_response_code(400);

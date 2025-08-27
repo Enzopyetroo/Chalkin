@@ -72,20 +72,22 @@ if (empty($_SESSION["nome"])){
                 xhttp.onload = function(){
                     mostrarMensagens()
                 }
-                xhttp.open("post", "mudarnome.php?nomepessoa="+nomepessoa, true);
+                xhttp.open("GET", `functions.php?action=mudarNome&param=${nomepessoa}`, true);
                 xhttp.send();
             }
+
         }
 
         function corDoNome(){
-                cor = document.getElementById("color").value
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function(){
-                    mostrarMensagens()
-                }
-                xhttp.open("POST", "mudarcordenome.php", true);
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send("cor="+cor);
+            cor = (document.getElementById("color").value).slice(1)
+            
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function(){
+                mostrarMensagens()
+            }
+
+            xmlhttp.open("GET", `functions.php?action=mudarCorNome&param=${cor}`, true);
+            xmlhttp.send();
         }
 
         function teste2(){
