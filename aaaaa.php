@@ -18,10 +18,10 @@ if (empty($_SESSION["nome"])){
 
     <title>Chalkin</title>
 
-    <link rel="stylesheet" href="CSSlegal.css">
+    <link rel="stylesheet" href="css/CSSlegal.css">
     <script src="jsManeiro.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
     
     <script>
@@ -65,7 +65,7 @@ if (empty($_SESSION["nome"])){
             window.scrollTo(0, document.body.scrollHeight);
         }
 
-        function teste(){
+        function mudarNome(){
             nomepessoa = window.prompt('Escolha um nome')
             if (nomepessoa != "" && nomepessoa != null){
                 const xhttp = new XMLHttpRequest();
@@ -89,15 +89,10 @@ if (empty($_SESSION["nome"])){
             xmlhttp.open("GET", `functions.php?action=mudarCorNome&param=${cor}`, true);
             xmlhttp.send();
         }
-
-        function teste2(){
-            nomepessoa = window.prompt('Escolha um nome')
-        }
         
-        function inputToURL(inputElement){
+        /* function inputToURL(inputElement){
             var file = document.querySelector('input[type=file]')['files'][0];
             let reader = new FileReader();
-            console.log("next");
 
             reader.onload = function () {
                 base64String = reader.result.replace("data:", "")
@@ -106,11 +101,10 @@ if (empty($_SESSION["nome"])){
                 imageBase64Stringsep = base64String;
 
                 // alert(imageBase64Stringsep);
-                console.log(base64String);
                 document.getElementById("pfp").src = 'data:image/png;base64,'+base64String//window.URL.createObjectURL(file)
-        }
-        reader.readAsDataURL(file);
-    }
+            }
+            reader.readAsDataURL(file);
+        } */
     </script>
 </head>
 <body id="body">

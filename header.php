@@ -184,7 +184,6 @@ input[type="color"]:hover{
 </nav>
 
 
-        
 
 
 <script>
@@ -209,7 +208,7 @@ input[type="color"]:hover{
         <br>
 
         <br>
-        <button onclick="teste()" class="buttonHeader">
+        <button onclick="mudarNome()" class="buttonHeader">
             Mudar nome de exibição
         </button> 
         
@@ -331,13 +330,12 @@ var fotoAtual = 0
     }
 
     function salvarPfp(){
-            const xhttp = new XMLHttpRequest();
-            xhttp.onload = function(){
-                mostrarMensagens()
-            }
-            xhttp.open("POST", "escolherfoto.php", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("foto="+fotoAtual);
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            mostrarMensagens()
+        }
+        xhttp.open("GET", `functions.php?action=mudarFoto&param=${fotoAtual}`, true);
+        xhttp.send();
     }
 
 

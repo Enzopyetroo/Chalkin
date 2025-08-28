@@ -18,9 +18,9 @@ if (empty($_SESSION["nome"])==false){
     <meta name="author" content="Enzo">
 
     <title>Chalkin</title>
-    <link rel="stylesheet" href="CSSlegal.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/CSSlegal.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
     <meta property="og:title" content="Chalkin">
     <meta property="og:description" content="Um site aleatório feito por Enzo">

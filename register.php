@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="CSSlegal.css">
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="css/CSSlegal.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
   <title>Chalkin - Cadastro</title>
 
