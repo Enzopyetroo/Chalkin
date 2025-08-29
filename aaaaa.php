@@ -162,13 +162,16 @@ if (empty($_SESSION["nome"])){
                 }
                 var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
                 hours[date.getHours()]+":"+minutes
-                const xhttp = new XMLHttpRequest();
                 var podeEnviar = false
                 mensagem(inputValue, datanamensagem, nome)
-                document.getElementById("form").reset();
-                xhttp.open("post", "enviarmsg.php?msg="+inputValue, true);
+                document.getElementById("form").reset(); 
+
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    setTimeout(mostrarMensagens, 1000);
+                }
+                xhttp.open("GET", `functions.php?action=enviarMsg&param=${inputValue}`, true);
                 xhttp.send();
-                setTimeout(mostrarMensagens, 1000);
             }
         }else{
                 var date = new Date()
@@ -178,10 +181,13 @@ if (empty($_SESSION["nome"])){
                 }
                 var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
                 hours[date.getHours()]+":"+minutes
+
                 const xhttp = new XMLHttpRequest();
-                xhttp.open("post", "enviarmsg.php?msg="+figurinhaConteudo, true);
+                xhttp.onload = function(){
+                    mostrarMensagens()
+                }
+                xhttp.open("GET", `functions.php?action=enviarMsg&param=${figurinhaConteudo}`, true);
                 xhttp.send();
-                mostrarMensagens()
         }
     }
 
@@ -199,8 +205,7 @@ if (empty($_SESSION["nome"])){
             if(httpc.readyState == 4 && httpc.status == 200) {
 
                 var datarray = JSON.parse(httpc.responseText)
-        console.log(datarray)
-                console.log(datarray)
+                //console.log(datarray)
                 document.getElementById('mensagens').innerHTML = ""
 
                 for (var i = 0; i < datarray.length; i++){

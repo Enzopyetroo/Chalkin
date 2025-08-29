@@ -1,6 +1,24 @@
 <?php
 session_start();
 
+function enviarMsg($msg) {
+    include "config.php";
+    $id = $_SESSION["id"];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "INSERT INTO tb_mensagens (conteudo, datamensagem, idusuario)
+    VALUES ('$msg', CURRENT_TIMESTAMP(), $id)";
+
+    if ($conn->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+}
+
 function Logoff() {
     session_unset();
     echo "Logoff";
@@ -22,6 +40,7 @@ function mudarNome($nome) {
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    $conn->close();
 }
 
 function mudarCorNome($cor) {
@@ -59,6 +78,7 @@ function mudarFoto($foto) {
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    $conn->close();
 }
 
 $action = $_GET['action'] ?? 'default';
@@ -66,6 +86,10 @@ $param = $_GET['param'] ?? 'default';
 
 switch ($action) {
     case 'default':
+        case 'enviarMsg':
+            enviarMsg($param);
+        break;
+
         case 'logoff':
             Logoff();
         break;

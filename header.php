@@ -1,7 +1,7 @@
 <style>
 .barratopo{
-    background-color: #90ee90;
-    border-bottom: 0.2rem solid #008000;
+    background-color: var(--corPrincipal);
+    border-bottom: 0.2rem solid var(--corPrincipalBorda);
     width: 100%;
     height: 100px;
     min-height: 35px;
@@ -59,6 +59,10 @@
     margin-left: 10px;
 }
 
+.Chalkin>a>span{
+    color: var(--corTexto)
+}
+
 .Chalkin:hover{
     transition:0.2s;
     scale: 1.05
@@ -70,7 +74,8 @@
 
 .offcanvas{
     z-index: 21;
-    background-color: rgb(180, 255, 180);
+    background-color: var(--corPrincipal);
+    color: var(--corTexto)
     box-shadow: black -3px -1px 10px 1px;
 }
 
@@ -172,7 +177,7 @@ input[type="color"]:hover{
     <div class="flexCoisa Chalkin">
         <a class="navbar-brand" href="index.php">
             <img src="Imagens/moço.png" width="30" height="30" class="d-inline-block align-top" id="mocoIcon" alt="">
-                Chalkin
+                <span>Chalkin</span>
         </a>
     </div>
 
@@ -251,22 +256,23 @@ input[type="color"]:hover{
 
 <style>
     .modal-header{
-        border-bottom: 1px solid #008000
+        border-bottom: 1px solid var(--corPrincipalBorda)
     }
 
     .modal-content{
-        background-color: #b4ffb4;
+        background-color: var(--corPrincipal);
+        color: var(--corTexto)
     }
 
     .modal-footer{
-        border-top: 1px solid #008000
+        border-top: 1px solid var(--corPrincipalBorda)
     }
      .modal-footer .btn{
         transition: 0.1s;
     }
     .modal-footer .btn-primary{
-        background-color: #008000;
-        border: 1px solid #008000;
+        background-color: var(--corPrincipalBorda);
+        border: 1px solid var(--corPrincipalBorda);
     }
     .modal-footer .btn-primary:hover{
         filter: brightness(110%);
@@ -277,7 +283,7 @@ input[type="color"]:hover{
         border: 1px solid #4b004b
     }
     .modal-footer .btn-primary:active{
-        background-color: #008000;
+        background-color: var(--corPrincipalBorda);
     }
 </style>
 
