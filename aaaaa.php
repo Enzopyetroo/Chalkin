@@ -25,7 +25,6 @@ if (empty($_SESSION["nome"])){
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
     
     <script>
-          
         var fotos = [
             "moço.png",
             "moçofeliz.png",
@@ -89,22 +88,7 @@ if (empty($_SESSION["nome"])){
             xmlhttp.open("GET", `functions.php?action=mudarCorNome&param=${cor}`, true);
             xmlhttp.send();
         }
-        
-        /* function inputToURL(inputElement){
-            var file = document.querySelector('input[type=file]')['files'][0];
-            let reader = new FileReader();
 
-            reader.onload = function () {
-                base64String = reader.result.replace("data:", "")
-                    .replace(/^.+,/, "");
-
-                imageBase64Stringsep = base64String;
-
-                // alert(imageBase64Stringsep);
-                document.getElementById("pfp").src = 'data:image/png;base64,'+base64String//window.URL.createObjectURL(file)
-            }
-            reader.readAsDataURL(file);
-        } */
     </script>
 </head>
 <body id="body">
@@ -119,12 +103,8 @@ if (empty($_SESSION["nome"])){
             
         </div>
         <br>
-        
-        <!--<br><br><label>Definir foto</label>
-        <br><input type="file" id="myfile" name="myfile" onchange="inputToURL(this)">
-        <button onclick="document.getElementById('pfp').src = 'Imagens/moço.png'">Remover foto</button>-->
+
         </div>
-     
         
         <div id="mensagens"></div>
     </main>
@@ -137,6 +117,12 @@ if (empty($_SESSION["nome"])){
         </div>
         </form>
     </footer>
+
+<div id="loading">
+    <div>
+        <img alt="Carregando" src="Imagens/loading.svg"> 
+    </div>
+</div>
 
 <script>
    
@@ -192,6 +178,7 @@ if (empty($_SESSION["nome"])){
     }
 
     var ultimaData = null;
+    var executarChecagemTema = true;
     function mostrarMensagens(){
 
         document.documentElement.style.scrollBehavior = "auto"
@@ -218,11 +205,16 @@ if (empty($_SESSION["nome"])){
                     var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
                     hours[date.getHours()]+":"+minutes
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
+
+                    if (datarray[i].idusuario == <?php echo $_SESSION["id"];?> && executarChecagemTema == true){
+                        temaCustom(datarray[i])
+                    }
                 }
 
                 document.getElementById('logado').innerHTML = "Atualmente logado como: <br>"+'<?php echo $_SESSION["nome"];?>'
                 document.getElementById('logado').style.display = "block"
                 window.scrollTo(0, document.body.scrollHeight);
+                document.getElementById('loading').style.display = "none"
             }
             
         };
@@ -234,6 +226,15 @@ if (empty($_SESSION["nome"])){
             console.log("Enviando sem data")
         }
         ultimaData = data.getTime()
+    }
+
+    function temaCustom(data){
+        executarChecagemTema = false
+        
+        document.documentElement.style.setProperty("--corPrincipal", `#${data.cor1}`);
+        document.documentElement.style.setProperty("--corPrincipalBorda", `#${data.cor2}`);
+        document.documentElement.style.setProperty("--corFundo", `#${data.cor3}`);
+        document.documentElement.style.setProperty("--corTexto", `#${data.cor4}`);
     }
 
     var qtdMensagens = 0

@@ -233,6 +233,12 @@ input[type="color"]:hover{
 
         <br><br>
 
+        <button type="button" data-bs-toggle="modal" data-bs-target="#temaModal" class="buttonHeader">
+            Mudar tema
+        </button>
+
+        <br><br>
+
         <button class="btnLogout buttonHeader" onclick="Logoff()">
             Deslogar da conta
         </button>
@@ -312,9 +318,8 @@ input[type="color"]:hover{
     </div>
   </div>
 </div>
-
 <script>
-document.getElementById("numeroPfps").innerText = "0 / " + (fotos.length -1);
+    document.getElementById("numeroPfps").innerText = "0 / " + (fotos.length -1);
 var fotoAtual = 0
     function leftPfp(){
         if(fotoAtual == 0){
@@ -343,7 +348,83 @@ var fotoAtual = 0
         xhttp.open("GET", `functions.php?action=mudarFoto&param=${fotoAtual}`, true);
         xhttp.send();
     }
+</script>
+<div class="modal fade" id="temaModal" tabindex="-1" aria-labelledby="PfpModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="PfpModalLabel">Escolha um tema</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
 
+        <select id="temaSelect">
+
+        </select>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+        onclick="salvarTema()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+var Temas = [
+    {
+        Tema: "Normal",
+        cor1: "90ee90",
+        cor2: "008000",
+        cor3: "a9a9a9",
+        cor4: "000000"
+    },
+
+    {   
+        Tema: "Escuro",
+        cor1: "2d2868",
+        cor2: "0a062b",
+        cor3: "1e1e1e",
+        cor4: "ffffff"
+    },
+    {   
+        Tema: "Customizar",
+    },
+]
+var html = ""
+for (i = 0; i < Temas.length; i++) {
+    html += `<option>`
+    html+=Temas[i].Tema
+    html+="</option>"
+}
+var temp = document.createElement('div');
+temp.innerHTML = html;
+document.getElementById("temaSelect").append(temp)
+
+function salvarTema(){
+    var tema = document.getElementById("temaSelect").value
+    
+    if (tema != "Customizar"){
+        for (i = 0; i < Temas.length; i++) {
+            if (Temas[i].Tema == tema){
+                document.documentElement.style.setProperty("--corPrincipal", `#${Temas[i].cor1}`);
+                document.documentElement.style.setProperty("--corPrincipalBorda", `#${Temas[i].cor2}`);
+                document.documentElement.style.setProperty("--corFundo", `#${Temas[i].cor3}`);
+                document.documentElement.style.setProperty("--corTexto", `#${Temas[i].cor4}`);
+
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    mostrarMensagens()
+                }
+                xhttp.open("GET", `mudarTema.php?cor1=${Temas[i].cor1}&cor2=${Temas[i].cor2}&cor3=${Temas[i].cor3}&cor4=${Temas[i].cor4}`, true);
+                xhttp.send();
+            }
+        }
+    }
+
+}
 
 var path = window.location.pathname;
 var page = path.split("/").pop();

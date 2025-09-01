@@ -4,9 +4,9 @@
 }
 
 :root{
-    --corPrincipal: #90ee90;
-    --corPrincipalBorda: #008000;
-    --corFundo: #a9a9a9;
+    --corPrincipal: #000000;
+    --corPrincipalBorda: #000000;
+    --corFundo: #000000;
     --corTexto: #000000;
 }
 
@@ -18,6 +18,34 @@ hr{
     width: 100%;
     color: var(--corTexto);
 }
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#loading{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 1);
+    z-index: 9999;
+}
+#loading>div{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+#loading>div>img{
+    width: 10%;
+    animation: spin 2s linear infinite
+}
+
 .bannerSite{
     width: 600px;
     margin-top: 20px;

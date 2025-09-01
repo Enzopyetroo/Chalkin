@@ -12,7 +12,6 @@ $sql = "SELECT
         FROM tb_mensagens
 
         INNER JOIN tb_usuarios_tb_config ON tb_mensagens.idusuario = tb_usuarios_tb_config.id
-        LEFT JOIN tb_imagens ON tb_usuarios_tb_config.id_img = tb_imagens.id 
          
         ORDER BY tb_mensagens.datamensagem;
 ";

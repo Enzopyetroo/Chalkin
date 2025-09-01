@@ -105,7 +105,6 @@ switch ($action) {
         case 'mudarFoto':
             mudarFoto($param);
         break;
-
         
 
     default:
