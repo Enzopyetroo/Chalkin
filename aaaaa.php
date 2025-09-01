@@ -112,10 +112,12 @@ if (empty($_SESSION["nome"])){
     <footer class="barrafundo" id="footer" onsubmit="return false">
         <div id="msgarea">
             <form id="form" method="post">
-            <input type="text" id="escrevermsg" name="escrevermsg" placeholder="Enviar mensagem..." maxlength="2000" minlength="1" autocomplete="off">
-            <input type="image" src="Imagens/enviar.png" id="enviarmsg" value="Enviar" onclick="EnviouMsg(this.form)">
+                <div class="footerFlex">
+                    <input type="text" id="escrevermsg" name="escrevermsg" placeholder="Enviar mensagem..." maxlength="2000" minlength="1" autocomplete="off">
+                    <input type="image" src="Imagens/enviar.png" id="enviarmsg" value="Enviar" onclick="EnviouMsg(this.form)">
+                <div>
+            </form>
         </div>
-        </form>
     </footer>
 
 <div id="loading">
@@ -125,8 +127,22 @@ if (empty($_SESSION["nome"])){
 </div>
 
 <script>
-   
-    const month = ["01","02","03","04","05","06","07","08","09","10","11","12"];
+   function fixhr(val){
+    
+        if (val <= 9){
+            return "0"+val
+        }else{
+            return val
+        }
+    }
+    function fixmt(val){
+        if (val+1 <= 9){
+            return "0"+(val+1)
+        }else{
+            return val
+        }
+    }
+
     const hours = ["00", "01","02","03","04","05","06","07","08","09","10","11","12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
     var nome = '<?php echo $_SESSION["nome"];?>'
 
@@ -143,11 +159,9 @@ if (empty($_SESSION["nome"])){
             if (podeEnviar == true){
                 var date = new Date()
                 var minutes = date.getMinutes()
-                if (minutes <= 9){
-                    minutes = "0"+minutes
-                }
-                var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
-                hours[date.getHours()]+":"+minutes
+
+                var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
+                fixhr(date.getHours())+":"+fixhr(minutes)
                 var podeEnviar = false
                 mensagem(inputValue, datanamensagem, nome)
                 document.getElementById("form").reset(); 
@@ -162,11 +176,9 @@ if (empty($_SESSION["nome"])){
         }else{
                 var date = new Date()
                 var minutes = date.getMinutes()
-                if (minutes <= 9){
-                    minutes = "0"+minutes
-                }
-                var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
-                hours[date.getHours()]+":"+minutes
+
+                var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
+                fixhr(date.getHours())+":"+fixhr(minutes)
 
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function(){
@@ -199,11 +211,10 @@ if (empty($_SESSION["nome"])){
 
                     var date = new Date(datarray[i].datamensagem.toString())
                     var minutes = date.getMinutes()
-                    if (minutes <= 9){
-                        minutes = "0"+minutes
-                    }
-                    var datanamensagem = date.getDate()+"/"+month[date.getMonth()]+" | "+
-                    hours[date.getHours()]+":"+minutes
+
+                    console.log(fixhr(minutes))
+                    var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
+                    fixhr(date.getHours())+":"+fixhr(minutes)
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
 
                     if (datarray[i].idusuario == <?php echo $_SESSION["id"];?> && executarChecagemTema == true){
@@ -226,6 +237,7 @@ if (empty($_SESSION["nome"])){
             console.log("Enviando sem data")
         }
         ultimaData = data.getTime()
+        console.log("")
     }
 
     function temaCustom(data){

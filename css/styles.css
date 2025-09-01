@@ -4,9 +4,9 @@
 }
 
 :root{
-    --corPrincipal: #000000;
-    --corPrincipalBorda: #000000;
-    --corFundo: #000000;
+    --corPrincipal: #90ee90;
+    --corPrincipalBorda: #008000;
+    --corFundo: #a9a9a9;
     --corTexto: #000000;
 }
 
@@ -33,7 +33,7 @@ hr{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 1);
-    z-index: 9999;
+    z-index: 5;
 }
 #loading>div{
     display: flex;
@@ -135,6 +135,12 @@ body{
     border: 0.2rem solid black;
     position: fixed;
     font-size: 20px;
+}
+.footerFlex{
+    border: none !important;
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 #escrevermsg{
