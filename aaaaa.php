@@ -262,7 +262,7 @@ if (empty($_SESSION["id"])){
             window.scrollTo(0, document.body.scrollHeight);
         }else{
             scroll = true
-            setTimeout(function(){ scrl(idprim); }, 100);
+            setTimeout(function(){ scrl(idprim); }, 200);
         }
     }
     function scrl(id){  
