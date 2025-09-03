@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (empty($_SESSION["nome"])){
+if (empty($_SESSION["id"])){
     header("Location: index.php");
 }
 ?>
@@ -15,6 +15,8 @@ if (empty($_SESSION["nome"])){
     <meta name="description" content="The place for talkin'">
     <meta name="keywords" content="Chat, Text, Talk, Chalkin">
     <meta name="author" content="Enzo">
+    <meta property="og:image" content="https://chalkin.ct.ws/Imagens/chalkinbanner.png">
+    <meta property="og:url" content="https://chalkin.ct.ws">
 
     <title>Chalkin</title>
 
@@ -25,6 +27,9 @@ if (empty($_SESSION["nome"])){
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
     
     <script>
+        var nome, corDoNome, numeroImg
+        var numMensagens = 50
+
         var fotos = [
             "moço.png",
             "moçofeliz.png",
@@ -106,7 +111,10 @@ if (empty($_SESSION["nome"])){
 
         </div>
         
-        <div id="mensagens"></div>
+        <div id="mensagens">
+            <!--Todas as mensagens do site aparecem aqui!-->
+        </div>
+
     </main>
 
     <footer class="barrafundo" id="footer" onsubmit="return false">
@@ -143,9 +151,6 @@ if (empty($_SESSION["nome"])){
         }
     }
 
-    const hours = ["00", "01","02","03","04","05","06","07","08","09","10","11","12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"];
-    var nome = '<?php echo $_SESSION["nome"];?>'
-
     function EnviouMsg(form, figurinhaConteudo){
         document.documentElement.style.scrollBehavior = "smooth"
         if (!figurinhaConteudo){
@@ -163,7 +168,7 @@ if (empty($_SESSION["nome"])){
                 var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                 fixhr(date.getHours())+":"+fixhr(minutes)
                 var podeEnviar = false
-                mensagem(inputValue, datanamensagem, nome)
+                mensagem(inputValue, datanamensagem, nome, 0, corDoNome, 0, numeroImg)
                 document.getElementById("form").reset(); 
 
                 const xhttp = new XMLHttpRequest();
@@ -188,10 +193,26 @@ if (empty($_SESSION["nome"])){
                 xhttp.send();
         }
     }
+    var ScrollarProFundo = true
+    var IdPrimeiraMensagem = 0
+    window.addEventListener('scroll', () => {
 
-    var ultimaData = null;
+        const currentScrollY = window.scrollY;
+        if (currentScrollY <= 0){
+
+            numMensagens += 50
+            ScrollarProFundo = false
+            var mensagens = document.getElementById('mensagens'),
+            IdPrimeiraMensagem = document.getElementById('mensagens').getElementsByTagName('div')[0].id
+            mostrarMensagens(ScrollarProFundo, IdPrimeiraMensagem)
+        } 
+    });
+
     var executarChecagemTema = true;
-    function mostrarMensagens(){
+    function mostrarMensagens(scroll, idprim){
+        if (scroll == undefined){
+            scroll = true
+        }
 
         document.documentElement.style.scrollBehavior = "auto"
         console.log("mostrando mensagens")
@@ -205,41 +226,50 @@ if (empty($_SESSION["nome"])){
 
                 var datarray = JSON.parse(httpc.responseText)
                 //console.log(datarray)
-                document.getElementById('mensagens').innerHTML = ""
+                document.getElementById('mensagens').innerHTML = "<p>carregando mais mensagens...</p>"
 
                 for (var i = 0; i < datarray.length; i++){
 
                     var date = new Date(datarray[i].datamensagem.toString())
                     var minutes = date.getMinutes()
 
-                    console.log(fixhr(minutes))
                     var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                     fixhr(date.getHours())+":"+fixhr(minutes)
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
 
-                    if (datarray[i].idusuario == <?php echo $_SESSION["id"];?> && executarChecagemTema == true){
-                        temaCustom(datarray[i])
+                    if (datarray[i].idusuario == <?php echo $_SESSION["id"];?>){
+
+                        nome = datarray[i].nome
+                        corDoNome = datarray[i].cor_nome
+                        numeroImg = datarray[i].numImg
+
+                        if (executarChecagemTema == true){
+                            temaCustom(datarray[i])
+                        }
                     }
                 }
 
-                document.getElementById('logado').innerHTML = "Atualmente logado como: <br>"+'<?php echo $_SESSION["nome"];?>'
+                document.getElementById('logado').innerHTML = `Atualmente logado como: <br>${nome}`
                 document.getElementById('logado').style.display = "block"
-                window.scrollTo(0, document.body.scrollHeight);
                 document.getElementById('loading').style.display = "none"
             }
             
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        if (ultimaData != null){
-            httpc.send("data="+ultimaData);
+        httpc.send("numMensagens="+numMensagens);
+        
+        if (scroll == true){
+            window.scrollTo(0, document.body.scrollHeight);
         }else{
-            httpc.send();
-            console.log("Enviando sem data")
+            scroll = true
+            setTimeout(function(){ scrl(idprim); }, 100);
         }
-        ultimaData = data.getTime()
-        console.log("")
     }
-
+    function scrl(id){  
+        console.log(document.getElementById(id))
+        document.getElementById(id).scrollIntoView({ behavior: "instant"});
+        scroll(0, window.scrollY-100)
+    }
     function temaCustom(data){
         executarChecagemTema = false
         
@@ -270,8 +300,6 @@ if (empty($_SESSION["nome"])){
     ChecarMensagens()
 
     setInterval(ChecarMensagens, 1000);
-
-    //setInterval(mostrarMensagens, 5000);
 </script>
 </body>
 </html>

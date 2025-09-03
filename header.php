@@ -302,7 +302,6 @@ input[type="color"]:hover{
       </div>
       <div class="modal-body">
     
-        
         <div class="divPfpModal">
             <button class="buttonPfpModal" onclick="leftPfp()"><</button>
             <img style="width: 200px;" src="Imagens/moço.png" id="pfpModal" alt="Pfp">

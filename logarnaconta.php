@@ -38,7 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nome = $array["nome"];
             $_SESSION["id"] = "$id";
             $_SESSION["admin"] = "$adm";
-            $_SESSION["nome"] = "$nome";
             //header("Location: index.php");
             echo "Login successful";
         }else{
@@ -88,7 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $nome = $array["nome"];
             $_SESSION["id"] = "$id";
             $_SESSION["admin"] = "$adm";
-            $_SESSION["nome"] = "$nome";
             //header("Location: index.php");
             echo "Login successful";
         }else{

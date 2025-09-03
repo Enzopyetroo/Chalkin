@@ -6,7 +6,7 @@ $max_id = 0;
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
-
+$numMensagens = $_POST["numMensagens"];
 
 $sql = "SELECT 
         MAX(id_msg) AS max_id
@@ -23,7 +23,7 @@ $sql2 = "SELECT
         FROM tb_mensagens
 
         INNER JOIN tb_usuarios_tb_config ON tb_mensagens.idusuario = tb_usuarios_tb_config.id
-        WHERE tb_mensagens.id_msg < $max_id AND tb_mensagens.id_msg > $max_id-50
+        WHERE tb_mensagens.id_msg < $max_id+1 AND tb_mensagens.id_msg > $max_id-$numMensagens
         ORDER BY tb_mensagens.datamensagem;
 ";
 $result = $conn->query($sql2);
