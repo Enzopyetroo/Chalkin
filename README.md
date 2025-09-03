@@ -1,5 +1,5 @@
 # Chalkin
-!!!!
+como coisar o coiso:
 
 1. Baixa o git e o xampp
 2. Inicia o xampp e ativa o apache e o mysql
