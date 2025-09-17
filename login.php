@@ -12,9 +12,6 @@
     body, html {
       height: 100%;
       margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 25px;
     }
 
@@ -99,6 +96,27 @@
         }
     }
 
+    .MainFlex{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.LoginFlex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.barratopo{
+  position: relative !important;
+}
+
   </style>
 </head>
 <body>
@@ -143,7 +161,12 @@
 <div class="containerCheckers">
   <div class="slidingBgCheckers"></div>
 </div>
+
+<div class="MainFlex">
+
 <?php include 'header.php'?>
+
+<div class="LoginFlex">
 
 <div class="login-container">
     <div class="Coisa">
@@ -162,5 +185,10 @@
             </form>
     </div>
 </div>
+</div>
+
+  </div>
+
+
 </body>
 </html>

@@ -101,9 +101,6 @@
     body, html {
       height: 100%;
       margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-size: 25px;
     }
 
@@ -190,6 +187,66 @@
         }
     }
 
+    .MainFlex{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.RegisterFlex{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.barratopo{
+  position: relative !important;
+}
+
+@media (max-width: 1500px) {
+    .login-container{
+        width: 500px;
+        font-size: 22px;
+    }
+    .input{
+        height: 35px
+    }
+}
+
+@media (max-width: 600px) {
+    .login-container{
+        width: 400px;
+        font-size: 20px;
+    }
+    .input{
+        height: 30px
+    }
+}
+
+@media (max-width: 350px) {
+    .login-container{
+        width: 300px;
+    }
+    .input{
+        height: 30px
+    }
+}
+
+@media (max-width: 300px) {
+    .login-container{
+        width: 200px;
+        font-size: 15px;
+    }
+    .input{
+        height: 30px;
+    }
+}
+
   </style>
 </head>
 <body>
@@ -198,30 +255,37 @@
   <div class="slidingBgCheckers"></div>
 </div>
 
+<div class="MainFlex">
+
     <?php include 'header.php';?>
+
+    <div class="RegisterFlex">
+
   <div class="login-container">
         <form action="criarconta.php" method="post">
             <label for="fnome">Nome<span>*</span>:</label>
-            <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="checarnome(this)">
+            <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="checarnome(this)" class="input">
             <p class="erro" id="jatem"> </p>
 
             <label for="nomexib">Apelido:</label>
-            <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)">
+            <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)" class="input">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)" >
+            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)" class="input">
             <p class="erro" id="jatememail"> </p>
 
             <label for="senha">Senha<span>*</span>:</label>
-            <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa2(this)">
-
+            <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa2(this)" class="input">
+        
             <label for="confirmsenha">Confirmar Senha<span>*</span>:</label>
-            <input type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa(this)">
+            <input type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa(this)" class="input">
             <p class="erro" id="senhas"> </p>
 
-            <input type="submit" value="Enviar" id="submit">
+            <input type="submit" value="Cadastrar" id="submit" class="">
         </form>
   </div>
+  </div>
 
+</div>
 </body>
 </html>
