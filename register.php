@@ -208,14 +208,12 @@
   position: relative !important;
 }
 
-@media (max-width: 1500px) {
-    .login-container{
-        width: 500px;
-        font-size: 22px;
-    }
-    .input{
-        height: 35px
-    }
+.login-container{
+    width: 500px;
+    font-size: 22px;
+}
+.input{
+    height: 35px
 }
 
 @media (max-width: 600px) {
