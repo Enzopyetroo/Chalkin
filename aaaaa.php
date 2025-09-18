@@ -99,6 +99,37 @@ if (empty($_SESSION["id"])){
 <body id="body">
     <?php include 'header.php' ?>
     <main id="main">
+    <style>
+        #containerGif {
+            overflow: hidden;
+            position: fixed;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0.5;
+        }
+
+        #slidingBgGif {
+            background: "";
+            height: 100vh;
+            width: 300%;
+            animation: slide 60s linear infinite;
+        }
+
+        @keyframes slide{
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-100vw, 0, 0);
+            }
+        }
+    </style>
+    <div id="containerGif">
+        <div id="slidingBgGif"></div>
+    </div>
+
         <div class="mensagem" id="msgplaceholder" data-userid="0">
             <img alt="Pfp" src="Imagens/moço.png" id="pfp"> 
             <div id="usuario">       
@@ -277,6 +308,12 @@ if (empty($_SESSION["id"])){
         document.documentElement.style.setProperty("--corPrincipalBorda", `#${data.cor2}`);
         document.documentElement.style.setProperty("--corFundo", `#${data.cor3}`);
         document.documentElement.style.setProperty("--corTexto", `#${data.cor4}`);
+        document.getElementById("slidingBgGif").style.backgroundImage = "url("+data.gifbg+")"
+
+        document.getElementById("cor1Input").value = "#"+data.cor1
+        document.getElementById("cor2Input").value = "#"+data.cor2
+        document.getElementById("cor3Input").value = "#"+data.cor3
+        document.getElementById("cor4Input").value = "#"+data.cor4
     }
 
     var qtdMensagens = 0

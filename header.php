@@ -357,9 +357,28 @@ var fotoAtual = 0
       </div>
       <div class="modal-body">
 
-        <select id="temaSelect">
+        <select id="temaSelect" onchange="Selecionado(this)">
 
         </select>
+
+        <div id="Customizar">
+            <hr>
+
+            <label for="cor1">Cor Principal</label>
+            <input name="cor1" type="color" id="cor1Input">
+            <br>
+
+            <label for="cor2">Cor da Borda</label>
+            <input name="cor2" type="color" id="cor2Input">
+            <br>
+
+            <label for="cor3">Cor do Fundo</label>
+            <input name="cor3" type="color" id="cor3Input">
+            <br>
+
+            <label for="cor4">Cor do Texto</label>
+            <input name="cor4" type="color" id="cor4Input">
+        </div>
 
       </div>
       <div class="modal-footer">
@@ -372,6 +391,17 @@ var fotoAtual = 0
 </div>
 
 <script>
+document.getElementById("Customizar").style.display = "none"
+
+function Selecionado(coisa){
+    if (coisa.value == "Customizar"){
+        console.log(coisa.value)
+        document.getElementById("Customizar").style.display = "block"
+    }else{
+        document.getElementById("Customizar").style.display = "none"
+    }
+}
+
 var Temas = [
     {
         Tema: "Normal",
@@ -387,6 +417,15 @@ var Temas = [
         cor2: "0a062b",
         cor3: "1e1e1e",
         cor4: "ffffff"
+    },
+
+    {   
+        Tema: "EVIL",
+        cor1: "640404",
+        cor2: "3d0000",
+        cor3: "180202",
+        cor4: "ed4444",
+        bg: "https://i.pinimg.com/originals/b7/21/34/b72134112b54864e4948865375ecbb11.gif"
     },
     {   
         Tema: "Customizar",
@@ -405,23 +444,55 @@ document.getElementById("temaSelect").append(temp)
 function salvarTema(){
     var tema = document.getElementById("temaSelect").value
     
+    var cor1 = "90ee90"
+    var cor2 = "008000"
+    var cor3 = "a9a9a9"
+    var cor4 = "000000"
     if (tema != "Customizar"){
         for (i = 0; i < Temas.length; i++) {
             if (Temas[i].Tema == tema){
-                document.documentElement.style.setProperty("--corPrincipal", `#${Temas[i].cor1}`);
-                document.documentElement.style.setProperty("--corPrincipalBorda", `#${Temas[i].cor2}`);
-                document.documentElement.style.setProperty("--corFundo", `#${Temas[i].cor3}`);
-                document.documentElement.style.setProperty("--corTexto", `#${Temas[i].cor4}`);
+                cor1 = Temas[i].cor1
+                cor2 = Temas[i].cor2
+                cor3 = Temas[i].cor3
+                cor4 = Temas[i].cor4
 
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function(){
-                    mostrarMensagens()
+                if (Temas[i].bg){
+                    var bg = Temas[i].bg
+                    document.getElementById("slidingBgGif").style.backgroundImage = "url("+Temas[i].bg+")"
+                }else{
+                    document.getElementById("slidingBgGif").style.backgroundImage = ""
                 }
-                xhttp.open("GET", `mudarTema.php?cor1=${Temas[i].cor1}&cor2=${Temas[i].cor2}&cor3=${Temas[i].cor3}&cor4=${Temas[i].cor4}`, true);
-                xhttp.send();
             }
         }
+    }else{
+        var cor1 = (document.getElementById("cor1Input").value).slice(1)
+        var cor2 = (document.getElementById("cor2Input").value).slice(1)
+        var cor3 = (document.getElementById("cor3Input").value).slice(1)
+        var cor4 = (document.getElementById("cor4Input").value).slice(1)
     }
+
+    document.documentElement.style.setProperty("--corPrincipal", `#${cor1}`);
+    document.documentElement.style.setProperty("--corPrincipalBorda", `#${cor2}`);
+    document.documentElement.style.setProperty("--corFundo", `#${cor3}`);
+    document.documentElement.style.setProperty("--corTexto", `#${cor4}`);
+
+    document.getElementById("cor1Input").value = "#"+cor1
+    document.getElementById("cor2Input").value = "#"+cor2
+    document.getElementById("cor3Input").value = "#"+cor3
+    document.getElementById("cor4Input").value = "#"+cor4
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function(){
+        mostrarMensagens()
+    }
+
+    if (tema != "Customizar"){
+        xhttp.open("GET", `mudarTema.php?cor1=${cor1}&cor2=${cor2}&cor3=${cor3}&cor4=${cor4}&bg=${bg}`, true);
+    }else{
+        xhttp.open("GET", `mudarTema.php?cor1=${cor1}&cor2=${cor2}&cor3=${cor3}&cor4=${cor4}`, true);
+    }
+    
+    xhttp.send();
 
 }
 
