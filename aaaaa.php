@@ -136,11 +136,11 @@ if (empty($_SESSION["id"])){
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="PerfilModalLabel"></h5>
+        <h5 class="modal-title" id="PerfilModalLabel">Ta carregando eu acho</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="bodyPerfil">
-
+            Tenta esperar
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -153,7 +153,7 @@ if (empty($_SESSION["id"])){
 <script>
     function VerPerfil(ts){
         var httpc = new XMLHttpRequest();
-        httpc.open("POST", "pegar_dados.php", true);
+        httpc.open("POST", "pegar_dados_usuarios.php", true);
 
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
@@ -161,7 +161,7 @@ if (empty($_SESSION["id"])){
                 var datarray = JSON.parse(httpc.responseText)
 
                 for (var i = 0; i < datarray.length; i++){
-                    if (datarray[i].idusuario == ts.dataset.userid){
+                    if (datarray[i].id == ts.dataset.userid){
                         document.getElementById("PerfilModalLabel").innerText = datarray[i].nome_exib+" ("+datarray[i].nome.toLowerCase()+")"
                         document.getElementById("PerfilModalLabel").innerHTML = `<img src=${ts.src} width='30'>  ` + document.getElementById("PerfilModalLabel").innerText
                         
@@ -178,7 +178,7 @@ if (empty($_SESSION["id"])){
             }
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        httpc.send("numMensagens="+10000);
+        httpc.send();
     }
 </script>
 

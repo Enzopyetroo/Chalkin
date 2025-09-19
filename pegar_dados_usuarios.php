@@ -1,0 +1,25 @@
+<?php
+include "config.php";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+$max_id = 0;
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT 
+        *
+        FROM tb_usuarios_tb_config
+";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  while($row = $result->fetch_array(MYSQLI_ASSOC)) {
+    $data[] = $row;
+  }
+  echo json_encode($data);
+} else {
+  echo "0 resultados";
+}
+$conn->close();
+?>

@@ -21,7 +21,7 @@
     function checarnome(form){
         form.value = form.value.trim()
         var httpc = new XMLHttpRequest();
-        var url = "pegar_dados.php";
+        var url = "pegar_dados_usuarios.php";
         httpc.open("POST", url, true);
 
         httpc.onreadystatechange = function() {
@@ -45,12 +45,12 @@
             }
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        httpc.send("numMensagens="+10000);
+        httpc.send();
     }
     function checarmail(form){
         form.value = form.value.trim()
         var httpc = new XMLHttpRequest();
-        var url = "pegar_dados.php";
+        var url = "pegar_dados_usuarios.php";
         httpc.open("POST", url, true);
 
         httpc.onreadystatechange = function() {
