@@ -437,9 +437,8 @@ for (i = 0; i < Temas.length; i++) {
     html+=Temas[i].Tema
     html+="</option>"
 }
-var temp = document.createElement('div');
-temp.innerHTML = html;
-document.getElementById("temaSelect").append(temp)
+
+document.getElementById("temaSelect").innerHTML = html
 
 function salvarTema(){
     var tema = document.getElementById("temaSelect").value
