@@ -51,7 +51,7 @@ if (empty($_SESSION["id"])){
             const clone = node.cloneNode(true)
             clone.style.display = "flex"
             clone.id = "mensagem"+id
-            clone.setAttribute("data-userid", userId); 
+            clone.childNodes[1].setAttribute("data-userid", userId); 
             if (admin == 1){
                 clone.childNodes[3].childNodes[3].innerHTML = msg
             }else{
@@ -130,8 +130,60 @@ if (empty($_SESSION["id"])){
         <div id="slidingBgGif"></div>
     </div>
 
-        <div class="mensagem" id="msgplaceholder" data-userid="0">
-            <img alt="Pfp" src="Imagens/moço.png" id="pfp"> 
+
+
+    <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="PerfilModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="PerfilModalLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="bodyPerfil">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+    function VerPerfil(ts){
+        var httpc = new XMLHttpRequest();
+        httpc.open("POST", "pegar_dados.php", true);
+
+        httpc.onreadystatechange = function() {
+            if(httpc.readyState == 4 && httpc.status == 200) {
+
+                var datarray = JSON.parse(httpc.responseText)
+
+                for (var i = 0; i < datarray.length; i++){
+                    if (datarray[i].idusuario == ts.dataset.userid){
+                        document.getElementById("PerfilModalLabel").innerText = datarray[i].nome_exib+" ("+datarray[i].nome.toLowerCase()+")"
+                        document.getElementById("PerfilModalLabel").innerHTML = `<img src=${ts.src} width='30'>  ` + document.getElementById("PerfilModalLabel").innerText
+                        
+                        if (datarray[i].admin == 1){
+                            document.getElementById("bodyPerfil").innerHTML = datarray[i].descri
+                        }else{
+                            document.getElementById("bodyPerfil").innerText = datarray[i].descri
+                        }
+                        
+                        return
+                    }
+                }
+
+            }
+        };
+        httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpc.send("numMensagens="+10000);
+    }
+</script>
+
+        <div class="mensagem" id="msgplaceholder">
+            <img alt="Pfp" src="Imagens/moço.png" id="pfp"  data-bs-toggle="modal" data-bs-target="#perfilModal" onclick="VerPerfil(this)" data-userid="0"> 
             <div id="usuario">       
                 <p id="nomenamensagem">Moço</p>      
                 <p id="conteudomensagem">teste teste teste teste teste teste teste teste teste </p>
@@ -325,7 +377,7 @@ if (empty($_SESSION["id"])){
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
                 console.log("check")
-                if (httpc.responseText > qtdMensagens){
+                if (httpc.responseText != qtdMensagens){
                     mostrarMensagens()
                 }
                 qtdMensagens = httpc.responseText

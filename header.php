@@ -420,6 +420,14 @@ var Temas = [
     },
 
     {   
+        Tema: "Ourple",
+        cor1: "572970",
+        cor2: "2d133a",
+        cor3: "331c3f",
+        cor4: "ffffff"
+    },
+
+    {   
         Tema: "EVIL",
         cor1: "640404",
         cor2: "3d0000",

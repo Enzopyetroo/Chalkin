@@ -27,10 +27,11 @@
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
                 var datarray = JSON.parse(httpc.responseText)
-                console.log(datarray)
+ 
                 for (var i = 0; i < datarray.length; i++){
                     nome = datarray[i].nome
-                    if (nome == form.value){
+                    
+                    if (nome.toLowerCase() == form.value.toLowerCase()){
                         document.getElementById("jatem").innerHTML = "Já tem uma conta com esse nome"
                         document.getElementById("submit").disabled = true;
                         return
@@ -43,7 +44,8 @@
                 window.scrollTo(0, 99999);
             }
         };
-        httpc.send();
+        httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpc.send("numMensagens="+10000);
     }
     function checarmail(form){
         form.value = form.value.trim()

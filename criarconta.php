@@ -13,7 +13,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 if ($email != null){
-    $sql = "INSERT INTO tb_usuarios_tb_config (nome, nome_exib, email, senha)
+    $sql = "INSERT INTO tb_usuarios_tb_config (LOWER(nome), nome_exib, email, senha)
     VALUES ('$nome', '$nomexib', '$email', '$senha')";        
 }
 
