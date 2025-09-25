@@ -8,4 +8,3 @@ como coisar o coiso:
 5. escreve "git clone https://github.com/Enzopyetroo/Chalkin/" no cmd
 6. escreve localhost/Chalkin no seu navegador
 7. pron to
-
