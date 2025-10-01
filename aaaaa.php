@@ -323,6 +323,7 @@ if (empty($_SESSION["id"])){
                     if (datarray[i].idusuario == <?php echo $_SESSION["id"];?>){
 
                         nome = datarray[i].nome
+                        nomexib = datarray[i].nome_exib
                         corDoNome = datarray[i].cor_nome
                         numeroImg = datarray[i].numImg
 
@@ -332,7 +333,7 @@ if (empty($_SESSION["id"])){
                     }
                 }
 
-                document.getElementById('logado').innerHTML = `Atualmente logado como: <br>${nome}`
+                document.getElementById('logado').innerHTML = `Atualmente logado como: <br>${nomexib} (${nome.toLowerCase()})`
                 document.getElementById('logado').style.display = "block"
                 document.getElementById('loading').style.display = "none"
             }

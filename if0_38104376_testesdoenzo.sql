@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: sql101.infinityfree.com
--- Tempo de geração: 14/08/2025 às 09:54
+-- Tempo de geração: 01/10/2025 às 10:54
 -- Versão do servidor: 11.4.7-MariaDB
 -- Versão do PHP: 7.2.22
 
@@ -21,17 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `if0_38104376_testesdoenzo`
 --
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `tb_imagens`
---
-
-CREATE TABLE `tb_imagens` (
-  `id` int(11) NOT NULL,
-  `base64` mediumblob DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -1079,7 +1068,85 @@ INSERT INTO `tb_mensagens` (`id_img`, `id_msg`, `datamensagem`, `conteudo`, `idu
 (NULL, 1429, '2025-07-19 02:15:10', 'would you bury me', 7),
 (NULL, 1430, '2025-07-19 02:15:15', 'would you carry me', 7),
 (NULL, 1431, '2025-07-19 02:15:19', 'TO THE EEEEEEEEEEEEEEEEEEEENDDDDDDDDDDDDDDDDDD', 7),
-(NULL, 1432, '2025-08-06 11:48:42', 'ok gerard way', 4);
+(NULL, 1432, '2025-08-06 11:48:42', 'ok gerard way', 4),
+(NULL, 1433, '2025-08-19 16:13:22', 'gerard wat[', 7),
+(NULL, 1434, '2025-08-26 20:07:37', 'https://drive.google.com/file/d/1TSELiFzeSiuvxs8urDhrv0Ck3h1lqSoK/view?usp=sharing', 4),
+(NULL, 1435, '2025-08-26 20:08:29', 'zfdgfd', 4),
+(NULL, 1436, '2025-08-26 20:15:12', 'https://drive.google.com/drive/folders/1DCowJbe2Uwil42uJrqy4Oni1Ou7mSffN?usp=drive_link', 4),
+(NULL, 1437, '2025-09-01 14:01:41', 'bom dia, lembrar do erro ao logar', 61),
+(NULL, 1438, '2025-09-01 14:03:31', 'ok', 4),
+(NULL, 1439, '2025-09-01 14:36:58', 'Lembrado', 7),
+(NULL, 1440, '2025-09-01 14:37:09', 'oi vicvaporub', 4),
+(NULL, 1441, '2025-09-01 14:37:21', 'olha as config', 4),
+(NULL, 1442, '2025-09-01 14:37:53', 'Erro de logar, vocÃª serÃ¡ lembrad9', 7),
+(NULL, 1443, '2025-09-01 14:38:01', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 4),
+(NULL, 1444, '2025-09-01 14:38:13', 'Meu crlular trava MUITO com o chalkin', 7),
+(NULL, 1445, '2025-09-01 14:38:27', 'eu posso deletar todas as mensagens', 4),
+(NULL, 1446, '2025-09-01 14:38:32', 'do banco', 4),
+(NULL, 1447, '2025-09-01 14:39:20', 'Nao precisa eu Ã cho', 7),
+(NULL, 1448, '2025-09-01 14:39:33', 'um dia eu vou otimizar ele ok', 4),
+(NULL, 1449, '2025-09-01 14:39:39', 'cade o chalkin negro', 7),
+(NULL, 1450, '2025-09-01 14:39:46', 'nas config', 4),
+(NULL, 1451, '2025-09-01 15:31:57', 'ELE T AMUITO RAPIDO', 7),
+(NULL, 1452, '2025-09-01 15:31:59', 'EBA', 7),
+(NULL, 1453, '2025-09-01 15:32:39', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1454, '2025-09-01 15:32:39', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1455, '2025-09-01 15:32:40', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1456, '2025-09-01 15:32:40', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1457, '2025-09-01 15:32:40', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1458, '2025-09-01 15:32:40', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1459, '2025-09-01 15:32:41', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1460, '2025-09-05 21:01:42', 'Oi', 62),
+(NULL, 1461, '2025-09-05 21:05:18', 'o i', 7),
+(NULL, 1462, '2025-09-12 11:46:41', 'oi', 63),
+(NULL, 1463, '2025-09-18 14:36:55', 'chalkin', 4),
+(NULL, 1464, '2025-09-18 14:50:30', 'Oi', 29),
+(NULL, 1465, '2025-09-18 14:50:43', 'Yesss meu nome', 29),
+(NULL, 1466, '2025-09-18 14:52:25', 'Chalkin nation rise up!', 29),
+(NULL, 1467, '2025-09-18 15:11:32', 'Pikmin', 29),
+(NULL, 1468, '2025-09-18 15:12:03', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 29),
+(NULL, 1469, '2025-09-18 15:12:46', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 29),
+(NULL, 1470, '2025-09-18 15:15:08', 'pimi', 4),
+(NULL, 1471, '2025-09-18 15:15:17', 'Pimin', 29),
+(NULL, 1472, '2025-09-18 15:18:04', 'EVIL CHALKIN', 29),
+(NULL, 1473, '2025-09-18 15:18:13', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 29),
+(NULL, 1474, '2025-09-18 15:20:52', 'evil', 4),
+(NULL, 1475, '2025-09-18 15:22:27', 'eu acho', 4),
+(NULL, 1476, '2025-09-18 15:24:58', 'Evalkin', 29),
+(NULL, 1477, '2025-09-18 15:25:15', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 29),
+(NULL, 1478, '2025-09-19 11:09:55', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 4),
+(NULL, 1479, '2025-09-19 13:19:07', 'oi', 64),
+(NULL, 1480, '2025-09-19 13:19:13', 'oi', 4),
+(NULL, 1481, '2025-09-19 13:19:22', 'olÃ¡', 4),
+(NULL, 1482, '2025-09-19 13:19:25', 'oi', 64),
+(NULL, 1483, '2025-09-19 13:24:13', 'Hdhf', 67),
+(NULL, 1484, '2025-09-19 13:40:39', 'yeah', 4),
+(NULL, 1485, '2025-09-19 15:07:22', 'Chali', 29),
+(NULL, 1486, '2025-09-19 15:08:29', 'Chalikn', 29),
+(NULL, 1487, '2025-09-19 15:09:50', 'oi', 64),
+(NULL, 1488, '2025-09-19 17:18:37', 'oi gente eu sou o vitoo e to no pc da escola vou testar as coisa do chal          kin', 7),
+(NULL, 1489, '2025-09-19 17:18:42', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 7),
+(NULL, 1490, '2025-09-19 17:49:23', '<h1>ENZO SOCORRO COMO COLOCA DESCRIÃ‡ÃƒO DO PERFILLLLL<h1>', 7),
+(NULL, 1491, '2025-09-19 17:49:34', 'por que que o html nÃ£o foi', 7),
+(NULL, 1492, '2025-09-20 02:05:54', 'EU FALEI QUE SO EU CONSIGO COLOCAR DESCRIÃ‡AO', 4),
+(NULL, 1493, '2025-09-25 19:16:28', 'oi gente eu sou o gustavo', 19),
+(NULL, 1494, '2025-09-25 19:16:32', 'oi gustavo', 4),
+(NULL, 1495, '2025-09-25 19:16:41', 'oi gustavo eu sou o gente', 19),
+(NULL, 1496, '2025-09-25 19:16:44', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 4),
+(NULL, 1497, '2025-09-25 19:19:47', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 19),
+(NULL, 1498, '2025-09-25 19:19:47', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 19),
+(NULL, 1499, '2025-09-25 19:19:51', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 4),
+(NULL, 1500, '2025-09-25 19:20:15', '<marquee>eu amo chalkin</marquee>', 4),
+(NULL, 1501, '2025-09-25 19:21:02', '<button>chalk</button>', 4),
+(NULL, 1502, '2025-09-25 19:21:10', '~llk', 4),
+(NULL, 1503, '2025-09-25 19:21:43', '<p style=\"animation: jump infinite\">EU AMO O CHALKIN</p>', 4),
+(NULL, 1504, '2025-09-25 19:22:23', '<p style=\"animation: jump 1s linear infinite\">EU AMO O CHALKIN</p>', 4),
+(NULL, 1517, '2025-09-25 19:45:53', '<img src=Imagens/pikmin.gif width=`300` height=`300`>', 19),
+(NULL, 1509, '2025-09-25 19:25:36', 'agr sim o site ta bom', 19),
+(NULL, 1511, '2025-09-25 19:25:40', 'to amando', 19),
+(NULL, 1513, '2025-09-25 19:26:38', 'AGR SIM TA BOM', 19),
+(NULL, 1514, '2025-09-25 19:26:41', 'CONTINUAAAAAAAA', 19),
+(NULL, 1518, '2025-10-01 14:49:34', 'arrumei o site', 4);
 
 -- --------------------------------------------------------
 
@@ -1094,74 +1161,78 @@ CREATE TABLE `tb_usuarios_tb_config` (
   `email` varchar(254) NOT NULL,
   `senha` varchar(100) NOT NULL,
   `admin` tinyint(1) DEFAULT 0,
-  `descri` varchar(200) DEFAULT NULL,
-  `modo_escuro` tinyint(1) DEFAULT NULL,
+  `descri` varchar(1000) NOT NULL DEFAULT '(sem descrição)',
   `cor_nome` varchar(20) DEFAULT '#00000',
-  `id_img` int(11) DEFAULT NULL,
-  `numImg` int(11) DEFAULT 0
+  `numImg` int(11) DEFAULT 0,
+  `cor1` varchar(6) NOT NULL DEFAULT '90ee90',
+  `cor2` varchar(6) NOT NULL DEFAULT '008000',
+  `cor3` varchar(6) NOT NULL DEFAULT 'a9a9a9',
+  `cor4` varchar(6) NOT NULL DEFAULT '000000',
+  `gifbg` varchar(100) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Despejando dados para a tabela `tb_usuarios_tb_config`
 --
 
-INSERT INTO `tb_usuarios_tb_config` (`nome_exib`, `nome`, `id`, `email`, `senha`, `admin`, `descri`, `modo_escuro`, `cor_nome`, `id_img`, `numImg`) VALUES
-('mim', 'eu', 33, 'eu@gmail.com', 'dc89c900da650ab81f94d6be6006c51a', 0, NULL, NULL, '#00000', NULL, 0),
-('null', 'Enzo', 4, 'moco@gmail.com', 'f510dffbd832007d7b7db8004a6444c1', 1, NULL, NULL, '#ff9efc', NULL, 1),
-('merdola', 'merda', 5, 'popo@gmail.com', '3b2285b348e95774cb556cb36e583106', 0, NULL, NULL, '#00000', NULL, 0),
-('vii', 'vii', 6, 'vii@gmail.com', '44b7ed6c8297b6f269c8b872b0fd6266', 1, NULL, NULL, '#6c009e', NULL, 0),
-('Vitoo', 'Vitoo', 7, 'victoremerich@gmail.com', 'c76d2c069d732070a52134af11e1dba4', 1, NULL, NULL, '#b80000', NULL, 12),
-('ðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”ž', 'teste', 49, 'teste@gmail.com', 'aa1bf4646de67fd9086cf6c79007026c', 0, NULL, NULL, '#ffffff00', NULL, 6),
-('sigmadabahia', 'akita', 8, 'hoshisaga87@gmail.com', '3d96924af14211ccc337f25a70334536', 1, NULL, NULL, '#ffcc04', NULL, 8),
-('Jota', 'Jot', 32, 'jota@hotmail.com', '85ad902286ae933575ca51ab45f60399', 0, NULL, NULL, '#00000', NULL, 0),
-('Omega', 'Omega', 11, 'Omega@omega.com', '2147483647', 0, NULL, NULL, '#00000', NULL, 0),
-('AndrÃ©', 'AndrÃ©', 30, 'kahshsjscsksj@gmail.com', '7c791c8f137d85bdcfa78f1b1ecd7dd0', 0, NULL, NULL, '#00000', NULL, 0),
-('Atkvan', 'attackvan', 14, 'attackwacky+1@gmail.com', '215a8c32391e4ad0aa4a2228b460db5f', 1, NULL, NULL, '#00000', NULL, 0),
-('Atkvan', 'attackvan', 15, 'attackwacky@gmail.com', '215a8c32391e4ad0aa4a2228b460db5f', 1, NULL, NULL, '#78dea9', NULL, 0),
-('<style>\r\n    @keyframes jump {\r\n   0% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n   50% {\r\n     transform: translate(0, -150%) scale(1, 1);\r\n   }\r\n   55% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   60% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   65% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   70% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   100% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n }\r\n </style>\r\n <p style=\"animation: jump 1s linear infinite;\">rede ðŸ˜º</p>', 'rede', 29, 'redonho82@gmail.com', '64a9911096308bef4c480345fd2c7108', 1, NULL, NULL, '#7c00f7', NULL, 7),
-('gugu', 'The Chaos Group', 19, 'squarez.trolled@gmail.com', '1a36591bceec49c832079e270d7e8b73', 0, NULL, NULL, '#00000', NULL, 0),
-('Soann', 'Soann', 21, 'peakemail@abc', '900150983', 0, NULL, NULL, '#ff4040', NULL, 0),
-('<style>\r\n    @keyframes jump {\r\n   0% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n   50% {\r\n     transform: translate(0, -150%) scale(1, 1);\r\n   }\r\n   55% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   60% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   65% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   70% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   100% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);', 'rede', 31, 'redonho82@gmail.com', '73e299ce883f287db8e16b2d672b4cdf', 0, NULL, NULL, '#00000', NULL, 7),
-('attackvan', 'nomemuitolegal', 24, 'issoedefinivamentereal@gmail.com', '215a8c32391e4ad0aa4a2228b460db5f', 0, NULL, NULL, '#00000', NULL, 0),
-('Duda', 'Maria', 25, 'dudagames2102@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, NULL, NULL, '#1e88de', NULL, 0),
-('apelido1', 'nome1', 26, 'apelido@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, NULL, NULL, '#00000', NULL, 0),
-('Maru', 'Marusagi', 27, 'marusagi.uwu@gmail.com', '1583981ce28aa0bbd133ac7a1e7e9eda', 0, NULL, NULL, '#00000', NULL, 0),
-('MarcoVeios', 'MarcoVeio', 34, 'marco@veio.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, NULL, NULL, '#00000', NULL, 0),
-('Teste', 'mateus', 45, 'mateus@gmail.com', 'd2c030f05acd15449a8205b6edd85cf0', 0, NULL, NULL, '#7eff4700', NULL, 0),
-('xpssssss', 'maria', 35, 'mdsavassini@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, NULL, NULL, '#00000', NULL, 0),
-('tttttttt', 'gabriel', 36, 'menoncx@gmail.com', 'dad44b682eabfef18d6974581f0a9cf3', 0, NULL, NULL, '#e01010', NULL, 0),
-('euaquitambem', 'euaqui', 37, 'eumesmo@gmail.com', '4829322d03d1606fb09ae9af59a271d3', 0, NULL, NULL, '#f67aff', NULL, 0),
-('nego', 'alexandnre', 38, 'alexandremendesreis@gmail.com', '5c3ae4503275ef86e27b0dd48ca84449', 0, NULL, NULL, '#ff0000', NULL, 0),
-('Omega', 'OmegaBl4ck', 39, 'rosizeartes@gmail.com', '5b336627960a4f8626446af2308e94d5', 0, NULL, NULL, '#00000', NULL, 0),
-('Omega', 'Omega', 40, 'omegabl4ck172@gmail.com', '5b336627960a4f8626446af2308e94d5', 0, NULL, NULL, '#00000', NULL, 0),
-('Omega', 'Omega', 41, 'omegabl4ck172@gmail.com', '5b336627960a4f8626446af2308e94d5', 0, NULL, NULL, '#00000', NULL, 0),
-('Ana', 'Ana', 42, 'Apmalianca1@gmail.com', '5390489da3971cbbcd22c159d54d24da', 0, NULL, NULL, '#e300ff', NULL, 1),
-('Professor', 'Jean', 43, 'jeanpratas@gmail.com', '672b5163f78100b2f9b30ba3f7ca40be', 0, NULL, NULL, '#00000', NULL, 0),
-('Drowned', 'Drowned14', 44, 'arthurbosmatto09@gmail.com', 'e119aab0ba412c305b2503b2ac7f470e', 0, NULL, NULL, '#00ffff', NULL, 0),
-('jvmcruz', 'JoÃ£o', 46, 'jjjvvvmmmccc@gmail.com', 'f093e60a554749efbab0ea534ba6f238', 0, NULL, NULL, '#00000', NULL, 0),
-('velasco', 'pablo', 47, 'aokubovendas@gmail.com', '8fd4392e7fc7c17ac082ed6a3d378c67', 0, NULL, NULL, '#00000', NULL, 0),
-('Enzo', 'Enzoo', 48, 'enzo@enzo.com', 'bca236048835bcf1f95e761e2e442393', 0, NULL, NULL, '#00000', NULL, 0),
-('vinizao', 'VinÃ­cius', 50, 'vinicius.paula.moraes@escola.pr.gov.br', '8318a65015bcf56f96fd519bbdc0e247', 0, NULL, NULL, '#00000', NULL, 0),
-('vini', 'vinicius', 51, 'vinicius.paula.moraes@escola.pr.gov.br', '8f84ff3b2d2442da8a4e4fd0f770dcb2', 0, NULL, NULL, '#000000', NULL, 6),
-('Enzotestar', 'Enzoteste', 52, 'email100%realok@gmail.com', '08b034d4f2f5170f95b94a1d34d46c40', 0, NULL, NULL, '#8a14ff', NULL, 4),
-('nigaldino', 'bubble', 53, 'matheusetec244@gmail.com', 'df5ea29924d39c3be8785734f13169c6', 0, NULL, NULL, '', NULL, 0),
-('teste', 'TESTE', 54, 'teste@gmail.com', 'aa1bf4646de67fd9086cf6c79007026c', 0, NULL, NULL, '#00000', NULL, 0),
-('raposo', 'raposo', 55, 'bifeca6674@ethsms.com', 'b4102161d9ab011766f0702c60a0872c', 0, NULL, NULL, '#00000', NULL, 0),
-('Enzo', 'Teste2222', 56, 'teste@gmail.com', '8e6f6f815b50f474cf0dc22d4f400725', 0, NULL, NULL, '#ff0000', NULL, 0),
-('Dapennes', 'Guilherme', 57, 'dakathdono@gmail.com', '4ecefb28ea1f0e5048f3de51543e783d', 0, NULL, NULL, '#b007ed', NULL, 0),
-('eu da silva', 'Aluno1', 58, 'felipemk2008@gmail.com', 'e55a2926ee0131104fd1d91395225cd4', 0, NULL, NULL, '#ff0000', NULL, 0),
-('Aa', 'Aa', 59, 'kohlerhenrique@hotmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, NULL, NULL, '#00000', NULL, 0),
-('1234', '1234', 60, '1234@1234.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, NULL, NULL, '#00000', NULL, 0);
+INSERT INTO `tb_usuarios_tb_config` (`nome_exib`, `nome`, `id`, `email`, `senha`, `admin`, `descri`, `cor_nome`, `numImg`, `cor1`, `cor2`, `cor3`, `cor4`, `gifbg`) VALUES
+('mim', 'eu', 33, 'eu@gmail.com', 'dc89c900da650ab81f94d6be6006c51a', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Enzo', 'Enzo', 4, 'moco@gmail.com', 'f510dffbd832007d7b7db8004a6444c1', 1, '<p style=\"animation: jump 1s linear infinite;\">oi gente eu sou o chalkin</p>  yeah', '#ff9efc', 1, '2d2868', '0a062b', '1e1e1e', 'ffffff', 'undefined'),
+('merdola', 'merda', 5, 'popo@gmail.com', '3b2285b348e95774cb556cb36e583106', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('vii', 'vii', 6, 'vii@gmail.com', '44b7ed6c8297b6f269c8b872b0fd6266', 1, '', '#6c009e', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Vitoo', 'Vitoo', 7, 'victoremerich@gmail.com', 'c76d2c069d732070a52134af11e1dba4', 1, '<h1>oi</h1> <h6>ok</h6> <img src=\"Imagens/pikmin.gif\" width=\"`300`\" height=\"`300`\">', '#b80000', 12, '71331e', '23151b', '402631', 'e7dfdf', 'undefined'),
+('ðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”žðŸ”ž', 'teste', 49, 'teste@gmail.com', 'aa1bf4646de67fd9086cf6c79007026c', 0, '', '#ffffff00', 6, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('sigmadabahia', 'akita', 8, 'hoshisaga87@gmail.com', '3d96924af14211ccc337f25a70334536', 1, '', '#ffcc04', 8, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Jota', 'Jot', 32, 'jota@hotmail.com', '85ad902286ae933575ca51ab45f60399', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Omega', 'Omega', 11, 'Omega@omega.com', '2147483647', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('AndrÃ©', 'AndrÃ©', 30, 'kahshsjscsksj@gmail.com', '7c791c8f137d85bdcfa78f1b1ecd7dd0', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Atkvan', 'attackvan', 14, 'attackwacky+1@gmail.com', '215a8c32391e4ad0aa4a2228b460db5f', 1, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Atkvan', 'attackvan', 15, 'attackwacky@gmail.com', '215a8c32391e4ad0aa4a2228b460db5f', 1, '', '#78dea9', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('<style>\r\n    @keyframes jump {\r\n   0% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n   50% {\r\n     transform: translate(0, -150%) scale(1, 1);\r\n   }\r\n   55% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   60% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   65% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   70% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   100% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n }\r\n </style>\r\n <p style=\"animation: jump 1s linear infinite;\">rede</p>', 'rede', 29, 'redonho82@gmail.com', '64a9911096308bef4c480345fd2c7108', 1, '<img style=\"animation: jump 1s linear infinite;\" src=\"Imagens/pikmin.gif\" width=\"`300`\" height=\"`300`\">', '#7c00f7', 11, '572970', '2d133a', '331c3f', 'ffffff', 'undefined'),
+('GustavoCTMz', 'The Chaos Group', 19, 'squarez.trolled@gmail.com', 'e596f5bbe66ff623e603b5cf96b3d2eb', 1, '', '#0011ff', 10, '2d2868', '0a062b', '1e1e1e', 'ffffff', 'undefined'),
+('Soann', 'Soann', 21, 'peakemail@abc', '900150983', 0, '', '#ff4040', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('<style>\r\n    @keyframes jump {\r\n   0% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n   50% {\r\n     transform: translate(0, -150%) scale(1, 1);\r\n   }\r\n   55% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   60% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   65% {\r\n     transform: translate(0, -150%) rotate(15deg);\r\n   }\r\n   70% {\r\n     transform: translate(0, -150%) rotate(-15deg);\r\n   }\r\n   100% {\r\n     transform: translate(0, 0) scale(1.25, 0.75);\r\n   }\r\n }\r\n </style>\r\n <p style=\"animation: jump 1s linear infinite;\">rede</p>', 'rede', 31, 'redonho82@gmail.com', '73e299ce883f287db8e16b2d672b4cdf', 0, '<img style=\"animation: jump 1s linear infinite;\" src=\"Imagens/pikmin.gif\" width=\"`300`\" height=\"`300`\">', '#00000', 7, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('attackvan', 'nomemuitolegal', 24, 'issoedefinivamentereal@gmail.com', '215a8c32391e4ad0aa4a2228b460db5f', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Duda', 'Maria', 25, 'dudagames2102@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 0, '', '#1e88de', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('apelido1', 'nome1', 26, 'apelido@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 1, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Maru', 'Marusagi', 27, 'marusagi.uwu@gmail.com', '1583981ce28aa0bbd133ac7a1e7e9eda', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('MarcoVeios', 'MarcoVeio', 34, 'marco@veio.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Teste', 'mateus', 45, 'mateus@gmail.com', 'd2c030f05acd15449a8205b6edd85cf0', 0, '', '#7eff4700', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('xpssssss', 'maria', 35, 'mdsavassini@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('tttttttt', 'gabriel', 36, 'menoncx@gmail.com', 'dad44b682eabfef18d6974581f0a9cf3', 0, '', '#e01010', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('euaquitambem', 'euaqui', 37, 'eumesmo@gmail.com', '4829322d03d1606fb09ae9af59a271d3', 0, '', '#f67aff', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('nego', 'alexandnre', 38, 'alexandremendesreis@gmail.com', '5c3ae4503275ef86e27b0dd48ca84449', 0, '', '#ff0000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Omega', 'OmegaBl4ck', 39, 'rosizeartes@gmail.com', '5b336627960a4f8626446af2308e94d5', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Omega', 'Omega', 40, 'omegabl4ck172@gmail.com', '5b336627960a4f8626446af2308e94d5', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Omega', 'Omega', 41, 'omegabl4ck172@gmail.com', '5b336627960a4f8626446af2308e94d5', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Ana', 'Ana', 42, 'Apmalianca1@gmail.com', '5390489da3971cbbcd22c159d54d24da', 0, '', '#e300ff', 1, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Professor', 'Jean', 43, 'jeanpratas@gmail.com', '672b5163f78100b2f9b30ba3f7ca40be', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Drowned', 'Drowned14', 44, 'arthurbosmatto09@gmail.com', 'e119aab0ba412c305b2503b2ac7f470e', 0, '', '#00ffff', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('jvmcruz', 'JoÃ£o', 46, 'jjjvvvmmmccc@gmail.com', 'f093e60a554749efbab0ea534ba6f238', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('velasco', 'pablo', 47, 'aokubovendas@gmail.com', '8fd4392e7fc7c17ac082ed6a3d378c67', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Enzo', 'Enzoo', 48, 'enzo@enzo.com', 'bca236048835bcf1f95e761e2e442393', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('vinizao', 'VinÃ­cius', 50, 'vinicius.paula.moraes@escola.pr.gov.br', '8318a65015bcf56f96fd519bbdc0e247', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('vini', 'vinicius', 51, 'vinicius.paula.moraes@escola.pr.gov.br', '8f84ff3b2d2442da8a4e4fd0f770dcb2', 0, '', '#000000', 6, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Enzotestar', 'Enzoteste', 52, 'email100%realok@gmail.com', '08b034d4f2f5170f95b94a1d34d46c40', 0, '', '#8a14ff', 4, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('nigaldino', 'bubble', 53, 'matheusetec244@gmail.com', 'df5ea29924d39c3be8785734f13169c6', 0, '', '', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('teste', 'TESTE', 54, 'teste@gmail.com', 'aa1bf4646de67fd9086cf6c79007026c', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('raposo', 'raposo', 55, 'bifeca6674@ethsms.com', 'b4102161d9ab011766f0702c60a0872c', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Enzo', 'Teste2222', 56, 'teste@gmail.com', '8e6f6f815b50f474cf0dc22d4f400725', 0, '', '#ff0000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Dapennes', 'Guilherme', 57, 'dakathdono@gmail.com', '4ecefb28ea1f0e5048f3de51543e783d', 0, '', '#b007ed', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('eu da silva', 'Aluno1', 58, 'felipemk2008@gmail.com', 'e55a2926ee0131104fd1d91395225cd4', 0, '', '#ff0000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Aa', 'Aa', 59, 'kohlerhenrique@hotmail.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('1234', '1234', 60, '1234@1234.com', '81dc9bdb52d04dc20036dbd8313ed055', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Dina', 'Maria', 61, 'mdsavassini@yahoo.com', '5a797094271bc68296bbaeefb24af3c7', 0, '', '#6539a7', 11, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('oxjayl', 'colm', 62, 'jaylcoltox@gmail.com', '95194a8720cfe96618b1ab42ceb97908', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Marcio AS', 'marcio alves', 63, 'cpmarcio@gmail.com', '202cb962ac59075b964b07152d234b70', 0, '', '#00000', 12, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('contadeteste', 'contadeteste', 64, 'teste@gmail.com', '698dc19d489c4e4db73e28a713eab07b', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Lucas', 'Lucas', 65, 'lucas.@escola.pr.gov.br', 'dc53fc4f621c80bdc2fa0329a6123708', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Lucas', 'Lucas', 66, 'lucas.@escola.pr.gov.br', 'dc53fc4f621c80bdc2fa0329a6123708', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', ''),
+('Lucas', 'Lucas', 67, 'lucas.s@escola.pr.gov.br', '827ccb0eea8a706c4c34a16891f84e7b', 0, '', '#00000', 0, '90ee90', '008000', 'a9a9a9', '000000', '');
 
 --
 -- Índices de tabelas apagadas
 --
-
---
--- Índices de tabela `tb_imagens`
---
-ALTER TABLE `tb_imagens`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices de tabela `tb_mensagens`
@@ -1175,30 +1246,23 @@ ALTER TABLE `tb_mensagens`
 -- Índices de tabela `tb_usuarios_tb_config`
 --
 ALTER TABLE `tb_usuarios_tb_config`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_img` (`id_img`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de tabelas apagadas
 --
 
 --
--- AUTO_INCREMENT de tabela `tb_imagens`
---
-ALTER TABLE `tb_imagens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
-
---
 -- AUTO_INCREMENT de tabela `tb_mensagens`
 --
 ALTER TABLE `tb_mensagens`
-  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1433;
+  MODIFY `id_msg` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1519;
 
 --
 -- AUTO_INCREMENT de tabela `tb_usuarios_tb_config`
 --
 ALTER TABLE `tb_usuarios_tb_config`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
