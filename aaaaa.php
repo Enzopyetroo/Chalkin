@@ -308,7 +308,6 @@ if (empty($_SESSION["id"])){
             if(httpc.readyState == 4 && httpc.status == 200) {
 
                 var datarray = JSON.parse(httpc.responseText)
-                //console.log(datarray)
                 document.getElementById('mensagens').innerHTML = "<p>carregando mais mensagens...</p>"
 
                 for (var i = 0; i < datarray.length; i++){
@@ -319,29 +318,45 @@ if (empty($_SESSION["id"])){
                     var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                     fixhr(date.getHours())+":"+fixhr(minutes)
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
-
-                    if (datarray[i].idusuario == <?php echo $_SESSION["id"];?>){
-
-                        nome = datarray[i].nome
-                        nomexib = datarray[i].nome_exib
-                        corDoNome = datarray[i].cor_nome
-                        numeroImg = datarray[i].numImg
-
-                        if (executarChecagemTema == true){
-                            temaCustom(datarray[i])
-                        }
-                    }
                 }
 
-                document.getElementById('logado').innerHTML = `Atualmente logado como: <br>${nomexib} (${nome.toLowerCase()})`
-                document.getElementById('logado').style.display = "block"
-                document.getElementById('loading').style.display = "none"
             }
             
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpc.send("numMensagens="+numMensagens);
         
+
+        var httpc2 = new XMLHttpRequest();
+        httpc2.open("POST", "pegar_dados_usuarios.php", true);
+                
+        httpc2.onreadystatechange = function() {
+            if(httpc2.readyState == 4 && httpc2.status == 200) {
+
+                var datarrayusuario = JSON.parse(httpc2.responseText)
+                for (var i = 0; i < datarrayusuario.length; i++){
+                    
+                    if (datarrayusuario[i].id == <?php echo $_SESSION["id"];?>){
+
+                        nome = datarrayusuario[i].nome
+                        nomexib = datarrayusuario[i].nome_exib
+                        corDoNome = datarrayusuario[i].cor_nome
+                        numeroImg = datarrayusuario[i].numImg
+
+                        if (executarChecagemTema == true){
+                            temaCustom(datarrayusuario[i])
+                        }
+                    }
+                }
+                document.getElementById('logado').innerHTML = `Atualmente logado como: <br>${nomexib} (${nome.toLowerCase()})`
+                document.getElementById('logado').style.display = "block"
+                document.getElementById('loading').style.display = "none"
+            }
+        }
+        httpc2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpc2.send();
+
+
         if (scroll == true){
             window.scrollTo(0, document.body.scrollHeight);
         }else{
@@ -350,7 +365,6 @@ if (empty($_SESSION["id"])){
         }
     }
     function scrl(id){  
-        console.log(document.getElementById(id))
         document.getElementById(id).scrollIntoView({ behavior: "instant"});
         scroll(0, window.scrollY-100)
     }
