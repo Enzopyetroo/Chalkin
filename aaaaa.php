@@ -227,10 +227,10 @@ if (empty($_SESSION["id"])){
         }
     }
     function fixmt(val){
-        if (val+1 <= 9){
-            return "0"+(val+1)
+        if (val+1 >= 10){
+            return val+1
         }else{
-            return val
+            return "0"+(val+1)
         }
     }
 
@@ -311,22 +311,32 @@ if (empty($_SESSION["id"])){
                 document.getElementById('mensagens').innerHTML = "<p>carregando mais mensagens...</p>"
 
                 for (var i = 0; i < datarray.length; i++){
-
+                    
                     var date = new Date(datarray[i].datamensagem.toString())
                     var minutes = date.getMinutes()
-
+                    
                     var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                     fixhr(date.getHours())+":"+fixhr(minutes)
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
                 }
-
+                httpc.abort()
+                setTimeout(nomExib)
             }
             
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpc.send("numMensagens="+numMensagens);
-        
 
+
+        if (scroll == true){
+            window.scrollTo(0, document.body.scrollHeight);
+        }else{
+            scroll = true
+            setTimeout(function(){ scrl(idprim); }, 200);
+        }
+    }
+
+    function nomExib(){
         var httpc2 = new XMLHttpRequest();
         httpc2.open("POST", "pegar_dados_usuarios.php", true);
                 
@@ -355,15 +365,8 @@ if (empty($_SESSION["id"])){
         }
         httpc2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpc2.send();
-
-
-        if (scroll == true){
-            window.scrollTo(0, document.body.scrollHeight);
-        }else{
-            scroll = true
-            setTimeout(function(){ scrl(idprim); }, 200);
-        }
     }
+
     function scrl(id){  
         document.getElementById(id).scrollIntoView({ behavior: "instant"});
         scroll(0, window.scrollY-100)
