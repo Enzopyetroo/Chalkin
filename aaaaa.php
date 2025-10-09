@@ -46,7 +46,10 @@ if (empty($_SESSION["id"])){
             "moco_way.png",
         ]
 
-        function mensagem(msg, data, nome, id, corNome, admin, numImg, userId){
+        function mensagem(msg, data, nome, id, corNome, admin, numImg, userId, MostrandoMaisMensagens){
+            if (MostrandoMaisMensagens == undefined){
+                MostrandoMaisMensagens = false
+            }
             const node = document.getElementById("msgplaceholder")
             const clone = node.cloneNode(true)
             clone.style.display = "flex"
@@ -63,10 +66,15 @@ if (empty($_SESSION["id"])){
             }
 
             clone.childNodes[1].src = "Imagens/"+fotos[numImg]
-            clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+nome+"</u></strong> "+data
+            clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+id+"</u></strong> "+data
             clone.childNodes[3].childNodes[1].style.color = corNome
-            document.getElementById("mensagens").appendChild(clone)
-            window.scrollTo(0, document.body.scrollHeight);
+            if (!MostrandoMaisMensagens){
+                document.getElementById("mensagens").appendChild(clone)
+                window.scrollTo(0, document.body.scrollHeight);
+            }else{
+                document.getElementById("mensagens").prepend(clone)
+            }
+            
         }
 
         function mudarNome(){
@@ -149,7 +157,11 @@ if (empty($_SESSION["id"])){
   </div>
 </div>
 
-
+<style>
+    .semDesc{
+        color: gray
+    }
+</style>
 <script>
     function VerPerfil(ts){
         var httpc = new XMLHttpRequest();
@@ -165,10 +177,23 @@ if (empty($_SESSION["id"])){
                         document.getElementById("PerfilModalLabel").innerText = datarray[i].nome_exib+" ("+datarray[i].nome.toLowerCase()+")"
                         document.getElementById("PerfilModalLabel").innerHTML = `<img src=${ts.src} width='30'>  ` + document.getElementById("PerfilModalLabel").innerText
                         
-                        if (datarray[i].admin == 1){
-                            document.getElementById("bodyPerfil").innerHTML = datarray[i].descri
+                        var descri
+                        if (datarray[i].descri == ""){
+                            descri = "<p class='semDesc'>(sem descrição)</p>"
                         }else{
-                            document.getElementById("bodyPerfil").innerText = datarray[i].descri
+                            descri = datarray[i].descri
+                        }
+                        
+                        if (datarray[i].admin == 1){
+                            document.getElementById("bodyPerfil").innerHTML = descri
+                        }else{
+                            
+                            if (descri != "<p class='semDesc'>(sem descrição)</p>"){
+                                document.getElementById("bodyPerfil").innerText = descri
+                            }else{
+                                document.getElementById("bodyPerfil").innerHTML = descri
+                            }
+
                         }
                         
                         return
@@ -251,7 +276,7 @@ if (empty($_SESSION["id"])){
                 var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                 fixhr(date.getHours())+":"+fixhr(minutes)
                 var podeEnviar = false
-                mensagem(inputValue, datanamensagem, nome, 0, corDoNome, 0, numeroImg)
+                mensagem(inputValue, datanamensagem, nome, 0, corDoNome, 0, numeroImg, false)
                 document.getElementById("form").reset(); 
 
                 const xhttp = new XMLHttpRequest();
@@ -291,6 +316,8 @@ if (empty($_SESSION["id"])){
         } 
     });
 
+    var primeiraChecagem = true
+    var earliestID = "undefined"
     var executarChecagemTema = true;
     function mostrarMensagens(scroll, idprim){
         if (scroll == undefined){
@@ -308,31 +335,40 @@ if (empty($_SESSION["id"])){
             if(httpc.readyState == 4 && httpc.status == 200) {
 
                 var datarray = JSON.parse(httpc.responseText)
-                document.getElementById('mensagens').innerHTML = "<p>carregando mais mensagens...</p>"
+                //document.getElementById('mensagens').innerHTML = "<p>carregando mais mensagens...</p>"
+                
+                if (!primeiraChecagem){
+                    datarray.reverse();
+                }
 
                 for (var i = 0; i < datarray.length; i++){
                     
                     var date = new Date(datarray[i].datamensagem.toString())
                     var minutes = date.getMinutes()
-                    
+                        
                     var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                     fixhr(date.getHours())+":"+fixhr(minutes)
-                    mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario)
+                    mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario, !primeiraChecagem)
                 }
+                
                 httpc.abort()
+                primeiraChecagem = false
+
+                earliestID = Number((document.getElementById('mensagens').querySelector(':nth-child(1)').id).replace("mensagem", ""))
+
                 setTimeout(nomExib)
             }
             
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        httpc.send("numMensagens="+numMensagens);
+        httpc.send("earliestID="+earliestID);
 
 
         if (scroll == true){
-            window.scrollTo(0, document.body.scrollHeight);
+            //window.scrollTo(0, document.body.scrollHeight);
         }else{
             scroll = true
-            setTimeout(function(){ scrl(idprim); }, 200);
+            //setTimeout(function(){ scrl(idprim); }, 500);
         }
     }
 
