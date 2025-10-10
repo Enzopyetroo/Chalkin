@@ -28,7 +28,6 @@ if (empty($_SESSION["id"])){
     
     <script>
         var nome, corDoNome, numeroImg
-        var numMensagens = 50
 
         var fotos = [
             "moço.png",
@@ -66,7 +65,7 @@ if (empty($_SESSION["id"])){
             }
 
             clone.childNodes[1].src = "Imagens/"+fotos[numImg]
-            clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+id+"</u></strong> "+data
+            clone.childNodes[3].childNodes[1].innerHTML = "<strong><u>"+nome+"</u></strong> "+data
             clone.childNodes[3].childNodes[1].style.color = corNome
             if (!MostrandoMaisMensagens){
                 document.getElementById("mensagens").appendChild(clone)
@@ -308,7 +307,6 @@ if (empty($_SESSION["id"])){
         const currentScrollY = window.scrollY;
         if (currentScrollY <= 0){
 
-            numMensagens += 50
             ScrollarProFundo = false
             var mensagens = document.getElementById('mensagens'),
             IdPrimeiraMensagem = document.getElementById('mensagens').getElementsByTagName('div')[0].id
@@ -364,11 +362,10 @@ if (empty($_SESSION["id"])){
         httpc.send("earliestID="+earliestID);
 
 
-        if (scroll == true){
-            //window.scrollTo(0, document.body.scrollHeight);
-        }else{
+        if (!scroll){
+            console.log("scroll")
             scroll = true
-            //setTimeout(function(){ scrl(idprim); }, 500);
+            setTimeout(function(){ scrl(idprim); });
         }
     }
 
@@ -407,6 +404,7 @@ if (empty($_SESSION["id"])){
         document.getElementById(id).scrollIntoView({ behavior: "instant"});
         scroll(0, window.scrollY-100)
     }
+
     function temaCustom(data){
         executarChecagemTema = false
         
@@ -432,7 +430,10 @@ if (empty($_SESSION["id"])){
             if(httpc.readyState == 4 && httpc.status == 200) {
                 console.log("check")
                 if (httpc.responseText != qtdMensagens){
-                    mostrarMensagens()
+                    document.getElementById('mensagens').innerHTML = ""
+                    primeiraChecagem = true
+                    earliestID = "undefined"
+                    mostrarMensagens(undefined, true)
                 }
                 qtdMensagens = httpc.responseText
             }
