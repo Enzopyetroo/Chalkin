@@ -28,7 +28,7 @@ $sql2 = "SELECT
         FROM tb_mensagens
 
         INNER JOIN tb_usuarios_tb_config ON tb_mensagens.idusuario = tb_usuarios_tb_config.id
-        WHERE tb_mensagens.id_msg < $earliestID AND tb_mensagens.id_msg > $earliestID-50
+        WHERE tb_mensagens.id_msg < $earliestID+1 AND tb_mensagens.id_msg > $earliestID-50
         ORDER BY tb_mensagens.datamensagem;
 ";
 $result = $conn->query($sql2);
