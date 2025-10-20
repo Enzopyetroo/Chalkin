@@ -229,7 +229,7 @@ if (empty($_SESSION["id"])){
 
     <footer class="barrafundo" id="footer" onsubmit="return false">
         <div id="msgarea">
-            <form id="form" method="post">
+            <form id="formFooter" method="post">
                 <div class="footerFlex">
                     <img id="sticker" src="Imagens/pikmin.gif" onclick="EnviouMsg(null, '<img src=Imagens/pikmin.gif width=`300` height=`300`>' )"  width="30" height="30">
                     <input type="text" id="escrevermsg" name="escrevermsg" placeholder="Enviar mensagem..." maxlength="2000" minlength="1" autocomplete="off">

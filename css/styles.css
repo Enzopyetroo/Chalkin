@@ -131,10 +131,15 @@ body{
     bottom: 0%
 }
 
-#form>*{
+#formFooter>*{
     border: 0.2rem solid black;
     position: fixed;
     font-size: 20px;
+}
+#formFooter{
+    display: flex;
+    height: 100%;
+    align-items: center;
 }
 .footerFlex{
     border: none !important;
@@ -145,9 +150,7 @@ body{
 }
 
 #escrevermsg{
-    height: 5%;
     min-height: 10px;
-    margin-top: 7px;
     width: 90%;
     background-color: #4e4e4e;
     border-radius: 10px;
@@ -195,9 +198,8 @@ main{
 }
 
 #msgarea{
-    justify-content: center;
     width: 100%;
-    margin-top: 7px;
+    height: 100%;
 }
 
 .mensagem{
