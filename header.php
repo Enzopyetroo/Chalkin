@@ -163,6 +163,10 @@ input[type="color"]:hover{
         font-size: 8px;
     }
 }
+
+#sticker{
+    opacity: 0;
+}
 </style>
 
 <nav class="navbar fixed-top navbar-light barratopo" id="header">
@@ -171,7 +175,7 @@ input[type="color"]:hover{
         <img src="Imagens/settings.svg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" disabled id="imgConfig">
     </div>
 
-    <div class="pikmin" id="sticker">
+    <div class="pikmin" id="sticker" disabled>
         <img onclick="EnviouMsg(null, '<img src=Imagens/pikmin.gif width=`300` height=`300`>' )" src="Imagens/pikmin.gif" width="30" height="30">
     </div>
 
@@ -516,6 +520,9 @@ if (page == "aaaaa.php"){
     document.getElementById("botaoConfig").style.opacity = "1";
     document.getElementById("imgConfig").disabled = false;
     document.getElementById("imgConfig").style.cursor = "pointer";
+
+    document.getElementById("sticker").style.opacity = "1";
+    document.getElementById("sticker").disabled = false;
 }
 
 </script>
