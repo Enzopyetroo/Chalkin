@@ -27,6 +27,7 @@
     height: 40px;
     cursor:initial;
     transition: 0.1s;
+    filter: blur(1000px)
 }
 #imgConfig:hover{
     scale: 1.1;
@@ -487,6 +488,12 @@ function salvarTema(){
     document.getElementById("cor2Input").value = "#"+cor2
     document.getElementById("cor3Input").value = "#"+cor3
     document.getElementById("cor4Input").value = "#"+cor4
+
+    if (cor4 == "ffffff"){
+        document.getElementById("imgConfig").style.filter = 'none'
+    }else{
+        document.getElementById("imgConfig").style.filter = 'invert(100%)'
+    }
 
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function(){

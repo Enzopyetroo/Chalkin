@@ -422,6 +422,13 @@ if (empty($_SESSION["id"])){
         document.getElementById("cor2Input").value = "#"+data.cor2
         document.getElementById("cor3Input").value = "#"+data.cor3
         document.getElementById("cor4Input").value = "#"+data.cor4
+
+        if (data.cor4 == "ffffff"){
+            document.getElementById("imgConfig").style.filter = 'none'
+        }else{
+            document.getElementById("imgConfig").style.filter = 'invert(100%)'
+        }
+        
     }
 
     var qtdMensagens = 0
