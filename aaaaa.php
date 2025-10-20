@@ -11,7 +11,7 @@ if (empty($_SESSION["id"])){
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="The place for talkin'">
     <meta name="keywords" content="Chat, Text, Talk, Chalkin">
     <meta name="author" content="Enzo">
@@ -44,7 +44,7 @@ if (empty($_SESSION["id"])){
             "pikmin.gif",
             "moco_way.png",
         ]
-
+        var qtdMensagens = 0
         function mensagem(msg, data, nome, id, corNome, admin, numImg, userId, MostrandoMaisMensagens){
             if (MostrandoMaisMensagens == undefined){
                 MostrandoMaisMensagens = false
@@ -383,6 +383,42 @@ if (empty($_SESSION["id"])){
         }
     }
 
+    function mostrarNovaMensagem(){
+        document.documentElement.style.scrollBehavior = "auto"
+        console.log("mostrando nova mensagem")
+        var httpc = new XMLHttpRequest();
+        httpc.open("POST", "pegar_dados.php", true);
+
+        var data = new Date();
+
+        httpc.onreadystatechange = function() {
+            if(httpc.readyState == 4 && httpc.status == 200) {
+
+                var datarray = JSON.parse(httpc.responseText)
+
+                for (var i = 0; i < datarray.length; i++){
+                    
+                    var date = new Date(datarray[i].datamensagem.toString())
+                    var minutes = date.getMinutes()
+                        
+                    var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
+                    fixhr(date.getHours())+":"+fixhr(minutes)
+                    mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario, false)
+                }
+            }
+            
+        };
+        httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        httpc.send("earliestID="+earliestID);
+
+
+        if (!scroll){
+            console.log("scroll")
+            scroll = true
+            setTimeout(function(){ scrl(idprim); });
+        }
+    }
+
     function nomExib(){
         var httpc2 = new XMLHttpRequest();
         httpc2.open("POST", "pegar_dados_usuarios.php", true);
@@ -442,7 +478,6 @@ if (empty($_SESSION["id"])){
         
     }
 
-    var qtdMensagens = 0
     function ChecarMensagens(){
         var httpc = new XMLHttpRequest();
         var url = "checarMensagens.php";
@@ -450,12 +485,23 @@ if (empty($_SESSION["id"])){
 
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
-                console.log("check")
+                console.log(httpc.responseText, qtdMensagens)
                 if (httpc.responseText != qtdMensagens){
                     document.getElementById('mensagens').innerHTML = ""
                     primeiraChecagem = true
                     earliestID = "undefined"
-                    mostrarMensagens(undefined, true)
+
+                    if (qtdMensagens != 0){
+                        if(httpc.responseText > qtdMensagens){
+                            mostrarNovaMensagem()
+                        }else if(httpc.responseText < qtdMensagens){
+                            mostrarMensagens(undefined, true)
+                        }
+                    }else{
+                        mostrarMensagens(undefined, true)
+                    }
+                    
+                    
                 }
                 qtdMensagens = httpc.responseText
             }
