@@ -287,7 +287,7 @@ if (empty($_SESSION["id"])){
                 fixhr(date.getHours())+":"+fixhr(minutes)
                 var podeEnviar = false
                 mensagem(inputValue, datanamensagem, nome, 0, corDoNome, 0, numeroImg, false)
-                document.getElementById("form").reset(); 
+                document.getElementById("formFooter").reset(); 
 
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function(){
