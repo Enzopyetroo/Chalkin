@@ -160,6 +160,7 @@ if (empty($_SESSION["id"])){
     .semDesc{
         color: gray
     }
+
 </style>
 <script>
     function VerPerfil(ts){
@@ -189,11 +190,13 @@ if (empty($_SESSION["id"])){
                             
                             if (descri != "<p class='semDesc'>(sem descrição)</p>"){
                                 document.getElementById("bodyPerfil").innerText = descri
+                                
                             }else{
                                 document.getElementById("bodyPerfil").innerHTML = descri
                             }
-
                         }
+                        const Modal = new bootstrap.Modal(document.getElementById('perfilModal'));
+                        Modal.show();      
                         
                         return
                     }
@@ -207,7 +210,7 @@ if (empty($_SESSION["id"])){
 </script>
 
         <div class="mensagem" id="msgplaceholder">
-            <img alt="Pfp" src="Imagens/moço.png" id="pfp"  data-bs-toggle="modal" data-bs-target="#perfilModal" onclick="VerPerfil(this)" data-userid="0"> 
+            <img alt="Pfp" src="Imagens/moço.png" id="pfp" onclick="VerPerfil(this)" data-userid="0"> 
             <div id="usuario">       
                 <p id="nomenamensagem">Moço</p>      
                 <p id="conteudomensagem">teste teste teste teste teste teste teste teste teste </p>
@@ -228,12 +231,20 @@ if (empty($_SESSION["id"])){
         <div id="msgarea">
             <form id="form" method="post">
                 <div class="footerFlex">
+                    <img id="sticker" src="Imagens/pikmin.gif" onclick="EnviouMsg(null, '<img src=Imagens/pikmin.gif width=`300` height=`300`>' )"  width="30" height="30">
                     <input type="text" id="escrevermsg" name="escrevermsg" placeholder="Enviar mensagem..." maxlength="2000" minlength="1" autocomplete="off">
                     <input type="image" src="Imagens/enviar.png" id="enviarmsg" value="Enviar" onclick="EnviouMsg(this.form)">
                 <div>
             </form>
         </div>
     </footer>
+
+<script>
+    var adm = '<?php echo $_SESSION["admin"];?>';
+    if (adm && adm == 1){
+        document.getElementById("sticker").style.display = "block"
+    }
+</script>
 
 <div id="loading">
     <div>

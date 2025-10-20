@@ -140,16 +140,15 @@ body{
     border: none !important;
     display: flex;
     width: 100%;
-    justify-content: center;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
 #escrevermsg{
-    margin-left: 1%;
     height: 5%;
     min-height: 10px;
     margin-top: 7px;
-    width: 93%;
-    left: 0;
+    width: 90%;
     background-color: #4e4e4e;
     border-radius: 10px;
     padding: 5px 10px;
@@ -161,9 +160,23 @@ body{
     right: 0;
     width: 60px;
     height: auto;
-    margin-right: 0.8%;
     border-radius: 10px;
-    min-height: 20px
+    min-height: 20px;
+    transition: 0.1s
+}
+
+#enviarmsg:hover{
+    scale: 1.05;
+}
+
+#sticker{
+    display: none;
+    transition: 0.1s
+}
+
+#sticker:hover{
+    scale: 1.1;
+    cursor: pointer;
 }
 
 marquee{

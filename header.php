@@ -110,11 +110,7 @@ input[type="color"]:hover{
     justify-content: space-evenly;
     align-items: center;
 }
-.pikmin{
-    bottom: 0;
-    display: none;
-    position: absolute;
-}
+
 .btnLogout{
     background-color: #ff4d4d;
     color: white;
@@ -163,20 +159,12 @@ input[type="color"]:hover{
         font-size: 8px;
     }
 }
-
-#sticker{
-    opacity: 0;
-}
 </style>
 
 <nav class="navbar fixed-top navbar-light barratopo" id="header">
 
     <div class="flexCoisa" id="botaoConfig">
         <img src="Imagens/settings.svg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" disabled id="imgConfig">
-    </div>
-
-    <div class="pikmin" id="sticker" disabled>
-        <img onclick="EnviouMsg(null, '<img src=Imagens/pikmin.gif width=`300` height=`300`>' )" src="Imagens/pikmin.gif" width="30" height="30">
     </div>
 
     <div class="flexCoisa Chalkin">
@@ -192,17 +180,6 @@ input[type="color"]:hover{
         <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
     </div>
 </nav>
-
-
-
-
-<script>
-
-    var adm = '<?php echo $_SESSION["admin"];?>';
-    if (adm && adm == 1){
-        document.getElementById("sticker").style.display = "block"
-    }
-    </script>
 
 <!--Sidebar-->
 <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
@@ -520,9 +497,6 @@ if (page == "aaaaa.php"){
     document.getElementById("botaoConfig").style.opacity = "1";
     document.getElementById("imgConfig").disabled = false;
     document.getElementById("imgConfig").style.cursor = "pointer";
-
-    document.getElementById("sticker").style.opacity = "1";
-    document.getElementById("sticker").disabled = false;
 }
 
 </script>

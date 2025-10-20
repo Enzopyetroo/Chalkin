@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (empty($_SESSION["nome"])==false){
+if (empty($_SESSION["id"])==false){
     header("Location: aaaaa.php");
 }
 //error_reporting(E_ALL);
