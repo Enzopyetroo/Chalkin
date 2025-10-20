@@ -222,7 +222,7 @@ if (empty($_SESSION["id"])){
         </div>
         
         <div id="mensagens">
-            <!--Todas as mensagens do site aparecem aqui!-->
+            <!--Todas as mensagens do site aparecem aqui! :D-->
         </div>
 
     </main>
