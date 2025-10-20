@@ -302,15 +302,18 @@ if (empty($_SESSION["id"])){
     }
     var ScrollarProFundo = true
     var IdPrimeiraMensagem = 0
+    var podeScrollar = true
     window.addEventListener('scroll', () => {
 
         const currentScrollY = window.scrollY;
         if (currentScrollY <= 0){
-
-            ScrollarProFundo = false
-            var mensagens = document.getElementById('mensagens'),
-            IdPrimeiraMensagem = document.getElementById('mensagens').getElementsByTagName('div')[0].id
-            mostrarMensagens(ScrollarProFundo, IdPrimeiraMensagem)
+            if (podeScrollar){
+                podeScrollar = false
+                ScrollarProFundo = false
+                var mensagens = document.getElementById('mensagens'),
+                IdPrimeiraMensagem = document.getElementById('mensagens').getElementsByTagName('div')[0].id
+                mostrarMensagens(ScrollarProFundo, IdPrimeiraMensagem)
+            }
         } 
     });
 
@@ -400,9 +403,10 @@ if (empty($_SESSION["id"])){
         httpc2.send();
     }
 
-    function scrl(id){  
+    function scrl(id){ 
         document.getElementById(id).scrollIntoView({ behavior: "instant"});
         scroll(0, window.scrollY-100)
+        podeScrollar = true
     }
 
     function temaCustom(data){

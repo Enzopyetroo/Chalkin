@@ -140,12 +140,13 @@
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
                 var coisa = httpc.responseText.trim()
-                console.log(coisa)
+                var logou = false
                 if(coisa == "Login successful"){
+                    logou = true
                     document.getElementById("falhou").style.display = "none"
                     window.location.replace("aaaaa.php")
                 }
-                if (coisa = "Login failed"){
+                if (coisa = "Login failed" && logou == false){
                     document.getElementById("falhou").style.display = "block"
                 }
             }
