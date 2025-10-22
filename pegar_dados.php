@@ -19,7 +19,7 @@ if ($result->num_rows > 0) {
 }
 $earliestID = $_POST["earliestID"];
 
-if ($earliestID == "undefined"){
+if ($earliestID == "undefined" || $earliestID == -1){
   $earliestID = $max_id;
 }
 

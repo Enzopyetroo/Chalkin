@@ -43,6 +43,18 @@ if (empty($_SESSION["id"])){
             "oçom.png",
             "pikmin.gif",
             "moco_way.png",
+            "moçozoiudo.png",
+            "moçosofrido.png",
+            "moçotintas.png",
+            "moçosus.png",
+            "moçowo.png",
+            "moçoading.png",
+            "moço2d.png",
+            "moçobobão.png",
+            "cadeele.png",
+            "moçodave.png",
+            "moçoretro.png",
+            "moçotuff.png"
         ]
         var qtdMensagens = 0
         function mensagem(msg, data, nome, id, corNome, admin, numImg, userId, MostrandoMaisMensagens){
@@ -291,7 +303,7 @@ if (empty($_SESSION["id"])){
 
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function(){
-                    setTimeout(mostrarMensagens, 1000);
+                    //setTimeout(mostrarMensagens, 1000);
                 }
                 xhttp.open("GET", `functions.php?action=enviarMsg&param=${inputValue}`, true);
                 xhttp.send();
@@ -332,6 +344,7 @@ if (empty($_SESSION["id"])){
     var earliestID = "undefined"
     var executarChecagemTema = true;
     function mostrarMensagens(scroll, idprim){
+        console.trace()
         if (scroll == undefined){
             scroll = true
         }
@@ -394,29 +407,24 @@ if (empty($_SESSION["id"])){
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
 
-                var datarray = JSON.parse(httpc.responseText)
+                    var datarray = JSON.parse(httpc.responseText)
+                    var newestMsg = datarray[datarray.length-1]
 
-                for (var i = 0; i < datarray.length; i++){
-                    
-                    var date = new Date(datarray[i].datamensagem.toString())
-                    var minutes = date.getMinutes()
+                    if (newestMsg.idusuario != <?php echo $_SESSION["id"];?>){
                         
-                    var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
-                    fixhr(date.getHours())+":"+fixhr(minutes)
-                    mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario, false)
-                }
+                        var date = new Date(newestMsg.datamensagem.toString())
+                        var minutes = date.getMinutes()
+                        
+                        var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
+                        fixhr(date.getHours())+":"+fixhr(minutes)
+                        mensagem(newestMsg.conteudo, datanamensagem, newestMsg.nome_exib, newestMsg.id_msg, newestMsg.cor_nome, newestMsg.admin, newestMsg.numImg, newestMsg.idusuario, false)
+                    }
+
             }
             
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        httpc.send("earliestID="+earliestID);
-
-
-        if (!scroll){
-            console.log("scroll")
-            scroll = true
-            setTimeout(function(){ scrl(idprim); });
-        }
+        httpc.send("earliestID=-1");
     }
 
     function nomExib(){
@@ -479,34 +487,34 @@ if (empty($_SESSION["id"])){
     }
 
     function ChecarMensagens(){
-        var httpc = new XMLHttpRequest();
+        var httpch = new XMLHttpRequest();
         var url = "checarMensagens.php";
-        httpc.open("POST", url, true);
+        httpch.open("POST", url, true);
 
-        httpc.onreadystatechange = function() {
-            if(httpc.readyState == 4 && httpc.status == 200) {
-                console.log(httpc.responseText, qtdMensagens)
-                if (httpc.responseText != qtdMensagens){
-                    document.getElementById('mensagens').innerHTML = ""
-                    primeiraChecagem = true
-                    earliestID = "undefined"
+        httpch.onreadystatechange = function() {
+            if(httpch.readyState == 4 && httpch.status == 200) {
+                if (httpch.responseText != qtdMensagens){
+                    debugger
+                    //earliestID = "undefined"
 
                     if (qtdMensagens != 0){
-                        if(httpc.responseText > qtdMensagens){
+                        if(httpch.responseText > qtdMensagens){
                             mostrarNovaMensagem()
-                        }else if(httpc.responseText < qtdMensagens){
+                        }else if(httpch.responseText < qtdMensagens){
+                            document.getElementById('mensagens').innerHTML = ""
                             mostrarMensagens(undefined, true)
                         }
                     }else{
+                        primeiraChecagem = true
                         mostrarMensagens(undefined, true)
                     }
                     
                     
                 }
-                qtdMensagens = httpc.responseText
+                qtdMensagens = httpch.responseText
             }
         };
-        httpc.send();
+        httpch.send();
     }
 
     ChecarMensagens()

@@ -173,11 +173,18 @@ input[type="color"]:hover{
                 <span>Chalkin</span>
         </a>
     </div>
+    
+    <div id="coisosdelogin">
 
-    <div id="coisosdelogin" class="flexCoisa">
-        <a href="register.php"><button id="register" class="botoesLogineRegister">Criar conta</button></a>
-        <a href="login.php"><button id="login" class="botoesLogineRegister">Login</button></a>
-        <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
+        <div>
+            <a href="register.php"><button id="register" class="botoesLogineRegister">Criar conta</button></a>
+            <a href="login.php"><button id="login" class="botoesLogineRegister">Login</button></a>
+        </div>
+
+        <div style="display: grid">
+            <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
+        </div>
+
     </div>
 </nav>
 
@@ -324,7 +331,10 @@ var fotoAtual = 0
     function salvarPfp(){
         const xhttp = new XMLHttpRequest();
         xhttp.onload = function(){
-            mostrarMensagens()
+            document.getElementById('mensagens').innerHTML = ""
+            earliestID = "undefined"
+            primeiraChecagem = true
+            mostrarMensagens(undefined, true, -1)
         }
         xhttp.open("GET", `functions.php?action=mudarFoto&param=${fotoAtual}`, true);
         xhttp.send();
