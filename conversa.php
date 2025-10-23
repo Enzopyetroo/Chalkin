@@ -179,7 +179,13 @@ if (empty($_SESSION["id"])){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="bodyPerfil">
-            <p id="descPerfil">Tenta esperar</p>
+            <p id="descPerfil">
+                <div id="loadingPerfil">
+                    <div>
+                        <img alt="Carregando" src="Imagens/loading.svg"> 
+                    </div>
+                </div>
+            </p>
             <button data-bs-dismiss="modal" id="editarDesc" style="display:none" onclick='mudarDesc()'>Editar</button>
       </div>
       <div class="modal-footer">
@@ -217,6 +223,8 @@ if (empty($_SESSION["id"])){
     var useridPerfil, userpfpPerfil
 
     function VerPerfil(ts){
+        document.getElementById("descPerfil").innerHTML = ""
+        document.getElementById("loadingPerfil").style.display = "flex"
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados_usuarios.php", true);
 
@@ -227,6 +235,12 @@ if (empty($_SESSION["id"])){
 
                 for (var i = 0; i < datarray.length; i++){
                     if (datarray[i].id == ts.dataset.userid){
+                        document.getElementById("loadingPerfil").style.display = "none"
+                        document.getElementById("editarDesc").style.display = "none"
+                        
+                        //const Modal = new bootstrap.Modal(document.getElementById('perfilModal'));
+                        //Modal.show();
+
                         useridPerfil = ts.dataset.userid
                         userpfpPerfil = ts.src
 
@@ -236,8 +250,6 @@ if (empty($_SESSION["id"])){
                         if (ts.dataset.userid == '<?php echo $_SESSION["id"];?>'){
                             document.getElementById("PerfilModalLabel").innerHTML += " <span id='voce'>(você)</span>"
                             document.getElementById("editarDesc").style.display = "inline"
-                        }else{
-                            document.getElementById("editarDesc").style.display = "none"
                         }
                         
                         var descri
@@ -258,9 +270,7 @@ if (empty($_SESSION["id"])){
                             }else{
                                 document.getElementById("descPerfil").innerHTML = descri
                             }
-                        }
-                        const Modal = new bootstrap.Modal(document.getElementById('perfilModal'));
-                        Modal.show();      
+                        }      
                         
                         return
                     }
@@ -290,7 +300,7 @@ if (empty($_SESSION["id"])){
 </script>
 
         <div class="mensagem" id="msgplaceholder">
-            <img alt="Pfp" src="Imagens/moço.png" id="pfp" onclick="VerPerfil(this)" data-userid="0"> 
+            <img alt="Pfp" src="Imagens/moço.png" id="pfp" onclick="VerPerfil(this)" data-userid="0" data-bs-toggle="modal" data-bs-target="#PerfilModal"> 
             <div id="usuario">       
                 <p id="nomenamensagem">Moço</p>      
                 <p id="conteudomensagem">teste teste teste teste teste teste teste teste teste </p>
@@ -565,8 +575,7 @@ if (empty($_SESSION["id"])){
                         if(httpch.responseText > qtdMensagens){
                             mostrarNovaMensagem()
                         }else if(httpch.responseText < qtdMensagens){
-                            document.getElementById('mensagens').innerHTML = ""
-                            mostrarMensagens(undefined, true)
+                            window.location.reload();
                         }
                     }else{
                         primeiraChecagem = true

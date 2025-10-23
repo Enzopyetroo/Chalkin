@@ -149,7 +149,7 @@
                 if(coisa == "Login successful"){
                     logou = true
                     document.getElementById("falhou").style.display = "none"
-                    window.location.replace("aaaaa.php")
+                    window.location.replace("conversa.php")
                 }
                 if (coisa = "Login failed" && logou == false){
                     document.getElementById("falhou").style.display = "block"

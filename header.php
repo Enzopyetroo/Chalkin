@@ -165,7 +165,7 @@ input[type="color"]:hover{
 <nav class="navbar fixed-top navbar-light barratopo" id="header">
 
     <div class="flexCoisa" id="botaoConfig">
-        <img src="Imagens/settings1.png" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" disabled id="imgConfig">
+        <img src="Imagens/settings1.png" data-bs-toggle="offcanvas" data-bs-target="#Sidebar" disabled id="imgConfig">
     </div>
 
     <div class="flexCoisa Chalkin">
@@ -190,10 +190,10 @@ input[type="color"]:hover{
 </nav>
 
 <!--Sidebar-->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+<div class="offcanvas offcanvas-start" tabindex="-1" id="Sidebar" aria-labelledby="SidebarLabel">
 
   <div class="offcanvas-header">
-    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Configurações</h5>
+    <h5 class="offcanvas-title" id="SidebarLabel">Configurações</h5>
     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
 
