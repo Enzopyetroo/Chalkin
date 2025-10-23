@@ -31,11 +31,10 @@
 }
 #imgConfig:hover{
     scale: 1.1;
-    filter: brightness(200%);
+    content: url("Imagens/settings2.gif");
 }
 
 #coisosdelogin{
-    margin-top: 15px;
     margin-right: 10px;
     flex: 1;
     text-align: right;
@@ -164,7 +163,7 @@ input[type="color"]:hover{
 <nav class="navbar fixed-top navbar-light barratopo" id="header">
 
     <div class="flexCoisa" id="botaoConfig">
-        <img src="Imagens/settings.svg" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" disabled id="imgConfig">
+        <img src="Imagens/settings1.png" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" disabled id="imgConfig">
     </div>
 
     <div class="flexCoisa Chalkin">
@@ -210,8 +209,8 @@ input[type="color"]:hover{
 
         <label for="Cor">Mudar cor do nome</label><br>
         <input id="color" type="color" name="Cor" style="margin-right: 10px; padding: 5px;">
-            <button onclick="corDoNome()" class="buttonHeader">
-                enviar
+            <button onclick="mudarCorDoNome()" class="buttonHeader">
+                Enviar
             </button> 
             
         <br><br>
@@ -280,11 +279,17 @@ input[type="color"]:hover{
     .modal-footer .btn-primary:active{
         background-color: var(--corPrincipalBorda);
     }
+
+    #PreviewPfpModal{
+        border: 3px solid black;
+        border-radius: 50%;
+        background-color: black
+    }
 </style>
 
 <div class="modal fade" id="PfpModal" tabindex="-1" aria-labelledby="PfpModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="modal-content" id="modalPfpContent">
       <div class="modal-header">
         <h5 class="modal-title" id="PfpModalLabel">Escolha sua foto</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -293,7 +298,7 @@ input[type="color"]:hover{
     
         <div class="divPfpModal">
             <button class="buttonPfpModal" onclick="leftPfp()"><</button>
-            <img style="width: 200px;" src="Imagens/moço.png" id="pfpModal" alt="Pfp">
+            <img style="width: 200px;" src="Imagens/moço.png" id="PreviewPfpModal" alt="Pfp">
             <button class="buttonPfpModal" onclick="rightPfp()">></button>
         </div>
         <p id="numeroPfps">0 / 0</p>
@@ -315,7 +320,7 @@ var fotoAtual = 0
         }else{
             fotoAtual -= 1
         }
-        document.getElementById("pfpModal").src = "Imagens/"+fotos[fotoAtual];
+        document.getElementById("PreviewPfpModal").src = "Imagens/"+fotos[fotoAtual];
         document.getElementById("numeroPfps").innerText = fotoAtual + " / " + (fotos.length -1) ;
     }
     function rightPfp(){
@@ -324,7 +329,7 @@ var fotoAtual = 0
         }else{
             fotoAtual += 1
         }
-        document.getElementById("pfpModal").src = "Imagens/"+fotos[fotoAtual];
+        document.getElementById("PreviewPfpModal").src = "Imagens/"+fotos[fotoAtual];
         document.getElementById("numeroPfps").innerText = fotoAtual + " / " + (fotos.length -1);
     }
 

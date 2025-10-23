@@ -108,7 +108,7 @@
 
     .login-container {
       background-color: #90ee90;
-      padding: 40px;
+      padding: 28px 40px;
       border: 4px solid #102e10;
       width: 500px;
       border-radius: 8px;

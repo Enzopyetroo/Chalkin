@@ -7,6 +7,10 @@ $nomexib = $_POST['nomexib'];
 $email = $_POST['email'];
 $senha = md5($_POST['senha']);
 
+if (empty($nomexib)){
+    $nomexib = $nome;
+}
+
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 if ($conn->connect_error) {
