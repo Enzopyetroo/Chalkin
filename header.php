@@ -419,7 +419,7 @@ var Temas = [
     },
 
     {   
-        Tema: "Ourple",
+        Tema: "Purp",
         cor1: "572970",
         cor2: "2d133a",
         cor3: "331c3f",
@@ -510,7 +510,7 @@ function salvarTema(){
 
 var path = window.location.pathname;
 var page = path.split("/").pop();
-if (page == "aaaaa.php"){
+if (page == "conversa.php"){
     document.getElementById("botaoConfig").style.opacity = "1";
     document.getElementById("imgConfig").disabled = false;
     document.getElementById("imgConfig").style.cursor = "pointer";

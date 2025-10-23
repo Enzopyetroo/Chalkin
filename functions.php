@@ -81,9 +81,28 @@ function mudarFoto($foto) {
     $conn->close();
 }
 
+function mudarDesc($texto) {
+    include "config.php";
+    $id = $_SESSION["id"];
+    $conn = new mysqli($servername, $username, $password, $dbname);
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $sql = "UPDATE tb_usuarios_tb_config
+        SET descri = '$texto'
+        WHERE id = $id";
+
+    if ($conn->query($sql) === FALSE) {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+    $conn->close();
+}
+
 $action = $_GET['action'] ?? 'default';
 $param = $_GET['param'] ?? 'default';
-$para2 = $_GET['param'] ?? 'default';
+//$para2 = $_GET['param'] ?? 'default';
 
 switch ($action) {
     case 'default':
@@ -105,6 +124,10 @@ switch ($action) {
 
         case 'mudarFoto':
             mudarFoto($param);
+        break;
+
+        case 'mudarDesc':
+            mudarDesc($param);
         break;
         
 

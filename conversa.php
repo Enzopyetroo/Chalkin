@@ -28,10 +28,10 @@ if (empty($_SESSION["id"])){
     
     <link rel="preload" href="Imagens/settings2.gif" as="image">
     <link rel="preload" href="Imagens/enviar2.gif" as="image">
-
+    
     <script>
         var nome, corDoNome, numeroImg
-
+        
         var fotos = [
             "moço.png",
             "moçofeliz.png",
@@ -58,16 +58,18 @@ if (empty($_SESSION["id"])){
             "moçodave.png",
             "moçoretro.png",
             "moçotuff.png"
-        ]
-
-        for (var i = 0; i < fotos.length; i++) {
-            var preloadPfp=new Image();
-            preloadPfp.src="Imagens/"+fotos[i];
-        }
-        
-        var qtdMensagens = 0
+            ]
+            
+            for (var i = 0; i < fotos.length; i++) {
+                var preloadPfp=new Image();
+                preloadPfp.src="Imagens/"+fotos[i];
+            }
+            
+            var qtdMensagens = 0
+            var podeScrollar, carregado = false
         function mensagem(msg, data, nome, id, corNome, admin, numImg, userId, MostrandoMaisMensagens){
-            if ( document.getElementById("mensagem"+id) ){
+            
+            if ( document.getElementById("mensagem"+id) && id != 0 ){
                 return
             }
             if (MostrandoMaisMensagens == undefined){
@@ -177,7 +179,8 @@ if (empty($_SESSION["id"])){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="bodyPerfil">
-            Tenta esperar
+            <p id="descPerfil">Tenta esperar</p>
+            <button data-bs-dismiss="modal" id="editarDesc" style="display:none" onclick='mudarDesc()'>Editar</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -199,8 +202,20 @@ if (empty($_SESSION["id"])){
         scale: 2;
         border: 1px solid white;
     }
+    #voce{
+        color: black;
+        background-color: rgba(255, 255, 255, 0.5);
+        padding: 3px;
+        border-radius: 10px;
+        border: 1px solid black
+    }
+    #editarDesc{
+        margin-top: 30px
+    }
 </style>
 <script>
+    var useridPerfil, userpfpPerfil
+
     function VerPerfil(ts){
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados_usuarios.php", true);
@@ -212,8 +227,18 @@ if (empty($_SESSION["id"])){
 
                 for (var i = 0; i < datarray.length; i++){
                     if (datarray[i].id == ts.dataset.userid){
+                        useridPerfil = ts.dataset.userid
+                        userpfpPerfil = ts.src
+
                         document.getElementById("PerfilModalLabel").innerText = datarray[i].nome_exib+" ("+datarray[i].nome.toLowerCase()+")"
-                        document.getElementById("PerfilModalLabel").innerHTML = `<img src=${ts.src} id='perfilPfp' width='50'>  ` + document.getElementById("PerfilModalLabel").innerText
+                        document.getElementById("PerfilModalLabel").innerHTML = `<img src=${userpfpPerfil} id='perfilPfp' width='50'>  ` + document.getElementById("PerfilModalLabel").innerText
+
+                        if (ts.dataset.userid == '<?php echo $_SESSION["id"];?>'){
+                            document.getElementById("PerfilModalLabel").innerHTML += " <span id='voce'>(você)</span>"
+                            document.getElementById("editarDesc").style.display = "inline"
+                        }else{
+                            document.getElementById("editarDesc").style.display = "none"
+                        }
                         
                         var descri
                         if (datarray[i].descri == ""){
@@ -223,14 +248,15 @@ if (empty($_SESSION["id"])){
                         }
                         
                         if (datarray[i].admin == 1){
-                            document.getElementById("bodyPerfil").innerHTML = descri
+                            document.getElementById("descPerfil").innerHTML = descri
                         }else{
-                            
+                            document.getElementById("descPerfil").innerHTML = ""
                             if (descri != "<p class='semDesc'>(sem descrição)</p>"){
-                                document.getElementById("bodyPerfil").innerText = descri
+
+                                document.getElementById("descPerfil").innerText += descri
                                 
                             }else{
-                                document.getElementById("bodyPerfil").innerHTML = descri
+                                document.getElementById("descPerfil").innerHTML = descri
                             }
                         }
                         const Modal = new bootstrap.Modal(document.getElementById('perfilModal'));
@@ -244,6 +270,22 @@ if (empty($_SESSION["id"])){
         };
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpc.send();
+    }
+
+    function mudarDesc(){
+        if (useridPerfil != <?php echo $_SESSION["id"];?>){
+            return
+        }
+        var descricao = window.prompt('Escreva sua nova descrição (deixe vazio para remover)')
+            if (descricao != null){
+                const xhttp = new XMLHttpRequest();
+                xhttp.onload = function(){
+                    var ts = {dataset: {userid: useridPerfil}, src: userpfpPerfil};
+                    VerPerfil(ts)
+                }
+                xhttp.open("GET", `functions.php?action=mudarDesc&param=${descricao}`, true);
+                xhttp.send();
+            }
     }
 </script>
 
@@ -310,23 +352,33 @@ if (empty($_SESSION["id"])){
     }
 
     function EnviouMsg(figurinhaConteudo){
+        debugger
         document.documentElement.style.scrollBehavior = "smooth"
-        if (!figurinhaConteudo){
-            
-            var inputValue = document.getElementById("escrevermsg").value
+
+            var inputValue, admin
+            if (figurinhaConteudo){
+                inputValue = figurinhaConteudo
+                admin = 1
+            }else{
+                inputValue = document.getElementById("escrevermsg").value
+                admin = 0
+            }
+
             for (var i = 0; i < inputValue.length; i++) {
             if (inputValue.charAt(i) != " "){
                 podeEnviar = true
-            } 
+            }
+            
             }
             if (podeEnviar == true){
+                
+                var podeEnviar = false
                 var date = new Date()
                 var minutes = date.getMinutes()
-
                 var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                 fixhr(date.getHours())+":"+fixhr(minutes)
-                var podeEnviar = false
-                mensagem(inputValue, datanamensagem, nomexib, 0, corDoNome, 0, numeroImg, <?php echo $_SESSION["id"];?>)
+
+                mensagem(inputValue, datanamensagem, nomexib, 0, corDoNome, admin, numeroImg, <?php echo $_SESSION["id"];?>)
                 document.getElementById("formFooter").reset(); 
 
                 const xhttp = new XMLHttpRequest();
@@ -336,29 +388,13 @@ if (empty($_SESSION["id"])){
                 xhttp.open("GET", `functions.php?action=enviarMsg&param=${inputValue}`, true);
                 xhttp.send();
             }
-        }else{
-                var date = new Date()
-                var minutes = date.getMinutes()
-
-                var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
-                fixhr(date.getHours())+":"+fixhr(minutes)
-
-                const xhttp = new XMLHttpRequest();
-                xhttp.onload = function(){
-                    mostrarMensagens()
-                }
-                xhttp.open("GET", `functions.php?action=enviarMsg&param=${figurinhaConteudo}`, true);
-                xhttp.send();
-        }
     }
     var ScrollarProFundo = true
     var IdPrimeiraMensagem = 0
-    var podeScrollar = true
     window.addEventListener('scroll', () => {
 
-        const currentScrollY = window.scrollY;
-        if (currentScrollY <= 0){
-            if (podeScrollar){
+        if (window.scrollY <= 0){
+            if (carregado){
                 podeScrollar = false
                 ScrollarProFundo = false
                 var mensagens = document.getElementById('mensagens'),
@@ -480,6 +516,7 @@ if (empty($_SESSION["id"])){
                 document.getElementById('logado').innerHTML = `Atualmente logado como: <br>${nomexib} (${nome.toLowerCase()})`
                 document.getElementById('logado').style.display = "block"
                 document.getElementById('loading').style.display = "none"
+                carregado = true
             }
         }
         httpc2.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
