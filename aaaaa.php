@@ -56,6 +56,11 @@ if (empty($_SESSION["id"])){
             "moçoretro.png",
             "moçotuff.png"
         ]
+
+        for (var i = 0; i < fotos.length; i++) {
+            var preloadPfp=new Image();
+            preloadPfp.src="Imagens/"+fotos[i];
+        }
         var qtdMensagens = 0
         function mensagem(msg, data, nome, id, corNome, admin, numImg, userId, MostrandoMaisMensagens){
             if (MostrandoMaisMensagens == undefined){
@@ -93,7 +98,10 @@ if (empty($_SESSION["id"])){
             if (nomepessoa != "" && nomepessoa != null){
                 const xhttp = new XMLHttpRequest();
                 xhttp.onload = function(){
-                    mostrarMensagens()
+                    document.getElementById('mensagens').innerHTML = ""
+                    earliestID = "undefined"
+                    primeiraChecagem = true
+                    mostrarMensagens(undefined, true, -1)
                 }
                 xhttp.open("GET", `functions.php?action=mudarNome&param=${nomepessoa}`, true);
                 xhttp.send();
@@ -101,12 +109,15 @@ if (empty($_SESSION["id"])){
 
         }
 
-        function corDoNome(){
+        function mudarCorDoNome(){
             cor = (document.getElementById("color").value).slice(1)
             
             var xmlhttp = new XMLHttpRequest();
             xmlhttp.onload = function(){
-                mostrarMensagens()
+                document.getElementById('mensagens').innerHTML = ""
+                earliestID = "undefined"
+                primeiraChecagem = true
+                mostrarMensagens(undefined, true, -1)
             }
 
             xmlhttp.open("GET", `functions.php?action=mudarCorNome&param=${cor}`, true);
@@ -172,7 +183,15 @@ if (empty($_SESSION["id"])){
     .semDesc{
         color: gray
     }
-
+    #perfilPfp{
+        transition: 0.2s;
+        border-radius: 50%;
+        border: 1px solid black
+    }
+    #perfilPfp:hover{
+        scale: 2;
+        border: 1px solid white;
+    }
 </style>
 <script>
     function VerPerfil(ts){
@@ -187,7 +206,7 @@ if (empty($_SESSION["id"])){
                 for (var i = 0; i < datarray.length; i++){
                     if (datarray[i].id == ts.dataset.userid){
                         document.getElementById("PerfilModalLabel").innerText = datarray[i].nome_exib+" ("+datarray[i].nome.toLowerCase()+")"
-                        document.getElementById("PerfilModalLabel").innerHTML = `<img src=${ts.src} width='30'>  ` + document.getElementById("PerfilModalLabel").innerText
+                        document.getElementById("PerfilModalLabel").innerHTML = `<img src=${ts.src} id='perfilPfp' width='50'>  ` + document.getElementById("PerfilModalLabel").innerText
                         
                         var descri
                         if (datarray[i].descri == ""){
@@ -243,10 +262,12 @@ if (empty($_SESSION["id"])){
         <div id="msgarea">
             <form id="formFooter" method="post">
                 <div class="footerFlex">
-                    <img id="sticker" src="Imagens/pikmin.gif" onclick="EnviouMsg(null, '<img src=Imagens/pikmin.gif width=`300` height=`300`>' )"  width="30" height="30">
+                    <img id="sticker" src="Imagens/pikmin.gif" onclick="EnviouMsg('<img src=Imagens/pikmin.gif width=`300` height=`300`>' )"  width="30" height="30">
                     <input type="text" id="escrevermsg" name="escrevermsg" placeholder="Enviar mensagem..." maxlength="2000" minlength="1" autocomplete="off">
-                    <input type="image" src="Imagens/enviar.png" id="enviarmsg" value="Enviar" onclick="EnviouMsg(this.form)">
-                <div>
+                    <img src="Imagens/enviar1.png" id="enviarmsg" value="Enviar" onclick="EnviouMsg()">
+
+                    <input type="submit" style="display: none" onclick="EnviouMsg()"> <!--isso só existe pro enter funcionar-->
+                </div>
             </form>
         </div>
     </footer>
@@ -281,11 +302,11 @@ if (empty($_SESSION["id"])){
         }
     }
 
-    function EnviouMsg(form, figurinhaConteudo){
+    function EnviouMsg(figurinhaConteudo){
         document.documentElement.style.scrollBehavior = "smooth"
         if (!figurinhaConteudo){
             
-            var inputValue = form.escrevermsg.value;
+            var inputValue = document.getElementById("escrevermsg").value
             for (var i = 0; i < inputValue.length; i++) {
             if (inputValue.charAt(i) != " "){
                 podeEnviar = true
@@ -298,7 +319,7 @@ if (empty($_SESSION["id"])){
                 var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                 fixhr(date.getHours())+":"+fixhr(minutes)
                 var podeEnviar = false
-                mensagem(inputValue, datanamensagem, nome, 0, corDoNome, 0, numeroImg, false)
+                mensagem(inputValue, datanamensagem, nomexib, 0, corDoNome, 0, numeroImg, <?php echo $_SESSION["id"];?>)
                 document.getElementById("formFooter").reset(); 
 
                 const xhttp = new XMLHttpRequest();
@@ -344,7 +365,7 @@ if (empty($_SESSION["id"])){
     var earliestID = "undefined"
     var executarChecagemTema = true;
     function mostrarMensagens(scroll, idprim){
-        console.trace()
+
         if (scroll == undefined){
             scroll = true
         }
@@ -494,7 +515,6 @@ if (empty($_SESSION["id"])){
         httpch.onreadystatechange = function() {
             if(httpch.readyState == 4 && httpch.status == 200) {
                 if (httpch.responseText != qtdMensagens){
-                    debugger
                     //earliestID = "undefined"
 
                     if (qtdMensagens != 0){
