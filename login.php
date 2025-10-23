@@ -15,6 +15,11 @@
       font-size: 25px;
     }
 
+    ::placeholder {
+      color: #CCC;
+      opacity: 1;
+    }
+
     .login-container {
       background-color: #90ee90;
       padding: 40px;
@@ -128,7 +133,7 @@
     }
 
     function trimfunc(form){
-        form.value = form.value.trim()
+      form.value = form.value.replaceAll(" ", "");
     }
 
     function submitform(){
@@ -174,11 +179,11 @@
         <br>
             <form action="" method="post">
                 <label for="fnome">Nome/Email:</label>
-                <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="trimfunc(this)">
+                <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onchange="trimfunc(this)" onkeydown="trimfunc(this)" onkeyup="trimfunc(this)">
                 <br>
 
                 <label for="senha" minlength="6">Senha:</label>
-                <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="trimfunc(this)"><br>
+                <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onchange="trimfunc(this)" onkeydown="trimfunc(this)" onkeyup="trimfunc(this)"><br>
 
                 <!--<input type="checkbox"><label style="font-size: 20px;"> Me manter logado</label><br><br>-->
                 <input class="botoes" type="button" value="Logar" id="submit" onclick="submitform()"><br>

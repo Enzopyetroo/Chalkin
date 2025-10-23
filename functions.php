@@ -83,6 +83,7 @@ function mudarFoto($foto) {
 
 $action = $_GET['action'] ?? 'default';
 $param = $_GET['param'] ?? 'default';
+$para2 = $_GET['param'] ?? 'default';
 
 switch ($action) {
     case 'default':

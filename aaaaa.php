@@ -26,6 +26,9 @@ if (empty($_SESSION["id"])){
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
     
+    <link rel="preload" href="Imagens/settings2.gif" as="image">
+    <link rel="preload" href="Imagens/enviar2.gif" as="image">
+
     <script>
         var nome, corDoNome, numeroImg
 
@@ -61,8 +64,12 @@ if (empty($_SESSION["id"])){
             var preloadPfp=new Image();
             preloadPfp.src="Imagens/"+fotos[i];
         }
+        
         var qtdMensagens = 0
         function mensagem(msg, data, nome, id, corNome, admin, numImg, userId, MostrandoMaisMensagens){
+            if ( document.getElementById("mensagem"+id) ){
+                return
+            }
             if (MostrandoMaisMensagens == undefined){
                 MostrandoMaisMensagens = false
             }

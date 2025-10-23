@@ -19,7 +19,7 @@
         form.value = form.value.trim()
     }
     function checarnome(form){
-        form.value = form.value.trim()
+        form.value = form.value.replaceAll(" ", "");
         var httpc = new XMLHttpRequest();
         var url = "pegar_dados_usuarios.php";
         httpc.open("POST", url, true);
@@ -48,7 +48,7 @@
         httpc.send();
     }
     function checarmail(form){
-        form.value = form.value.trim()
+        form.value = form.value.replaceAll(" ", "");
         var httpc = new XMLHttpRequest();
         var url = "pegar_dados_usuarios.php";
         httpc.open("POST", url, true);
@@ -56,7 +56,7 @@
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
                 var datarray = JSON.parse(httpc.responseText)
-                console.log(datarray)
+
                 for (var i = 0; i < datarray.length; i++){
                     email = datarray[i].email
                     if (email == form.value){
@@ -75,7 +75,7 @@
         httpc.send();
     }
     function senhaa(form){
-        form.value = form.value.trim()
+        form.value = form.value.replaceAll(" ", "");
         if (form.value != document.getElementById('senha').value){
             document.getElementById("senhas").innerHTML = "As senhas não batem"
             document.getElementById("submit").disabled = true;
@@ -85,7 +85,7 @@
         }
     }
     function senhaa2(form){
-        form.value = form.value.trim()
+        form.value = form.value.replaceAll(" ", "");
         if (document.getElementById('senhas').innerHTML = "As senhas não batem"){
             if (form.value == document.getElementById('confirmsenha').value){
                 document.getElementById("senhas").innerHTML = ""
@@ -104,6 +104,11 @@
       height: 100%;
       margin: 0;
       font-size: 25px;
+    }
+
+    ::placeholder {
+        color: #CCC;
+        opacity: 1;
     }
 
     .login-container {
@@ -189,7 +194,7 @@
         }
     }
 
-    .MainFlex{
+.MainFlex{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -217,6 +222,7 @@
 .input{
     height: 35px
 }
+
 
 @media (max-width: 600px) {
     .login-container{
@@ -247,6 +253,10 @@
     }
 }
 
+#fnome{
+    text-transform: lowercase;
+}
+
   </style>
 </head>
 <body>
@@ -263,22 +273,22 @@
 
   <div class="login-container">
         <form action="criarconta.php" method="post">
-            <label for="fnome">Nome<span>*</span>:</label>
-            <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onkeyup="checarnome(this)" class="input">
+            <label for="fnome">Nome de usuário<span>*</span>:</label>
+            <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onchange="checarnome(this)" onkeypress="checarnome(this)" onkeyup="checarnome(this)" class="input">
             <p class="erro" id="jatem"> </p>
 
-            <label for="nomexib">Apelido:</label>
-            <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onkeyup="trimfunc(this)" class="input">
+            <label for="nomexib">Nome de exibição:</label>
+            <input type="text" id="nomexib" name="nomexib" placeholder="Enzo" onchange="trimfunc(this)" onkeydown="trimfunc(this)" onkeyup="trimfunc(this)" class="input">
 
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onkeyup="checarmail(this)" class="input">
+            <input type="email" id="email" name="email" placeholder="Email100%Real@gmail.com" required onchange="checarmail(this)" onkeydown="checarmail(this)" onkeyup="checarmail(this)" class="input">
             <p class="erro" id="jatememail"> </p>
 
             <label for="senha">Senha<span>*</span>:</label>
-            <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa2(this)" class="input">
+            <input type="password" id="senha" name="senha" placeholder="Senha100%segura123" required autocomplete="off" onchange="senhaa2(this)" onkeydown="senhaa2(this)" onkeyup="senhaa2(this)" class="input">
         
             <label for="confirmsenha">Confirmar Senha<span>*</span>:</label>
-            <input type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onkeyup="senhaa(this)" class="input">
+            <input type="password" id="confirmsenha" name="confirmar" placeholder="Senha100%segura123" required autocomplete="off" onchange="senhaa(this)" onkeydown="senhaa(this)" onkeyup="senhaa(this)" class="input">
             <p class="erro" id="senhas"> </p>
 
             <input type="submit" value="Cadastrar" id="submit" class="">

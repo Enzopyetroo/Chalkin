@@ -1,23 +1,24 @@
 @font-face {
     font-family: "ComicSans";
-    src: url("ComicSansMS3.ttf"); 
+    src: url("ComicSansMS3.ttf");
 }
 
-:root{
+:root {
     --corPrincipal: #90ee90;
     --corPrincipalBorda: #008000;
     --corFundo: #a9a9a9;
     --corTexto: #000000;
 }
 
-*{
+* {
     font-family: 'ComicSans', Arial;
 }
 
-hr{
+hr {
     width: 100%;
     color: var(--corTexto);
 }
+
 @keyframes spin {
     0% {
         transform: rotate(0deg);
@@ -26,7 +27,8 @@ hr{
         transform: rotate(360deg);
     }
 }
-#loading{
+
+#loading {
     position: fixed;
     top: 0;
     left: 0;
@@ -35,30 +37,35 @@ hr{
     background-color: rgba(0, 0, 0, 1);
     z-index: 999;
 }
-#loading>div{
+
+#loading>div {
     display: flex;
     justify-content: center;
     width: 100%;
     height: 100%;
 }
-#loading>div>img{
+
+#loading>div>img {
     width: 10%;
     animation: spin 2s linear infinite
 }
 
-.bannerSite{
+.bannerSite {
     width: 600px;
     margin-top: 20px;
     margin-bottom: 5px;
 }
-.textoBemVindo{
+
+.textoBemVindo {
     font-size: 4vh;
     margin-bottom: 5px;
 }
-.textoIntrodutorio{
+
+.textoIntrodutorio {
     font-size: 2vh;
 }
-.divQuotes{
+
+.divQuotes {
     width: 50%;
 }
 
@@ -66,35 +73,37 @@ hr{
     .bannerSite {
         width: 500px;
     }
-    .divQuotes{
+    .divQuotes {
         width: 70%;
     }
 }
+
 @media (max-width: 500px) {
     .bannerSite {
         width: 400px;
     }
-    .divQuotes{
+    .divQuotes {
         width: 90%;
     }
 }
+
 @media (max-width: 350px) {
     .bannerSite {
         width: 300px;
     }
-    .textoBemVindo{
+    .textoBemVindo {
         font-size: 3vh;
     }
-    
 }
 
-.quotePgInicial{
+.quotePgInicial {
     background-color: #a0a0a0;
     padding: 5px;
     border-radius: 10px;
     border: 2px solid black;
 }
-#mainContainer{
+
+#mainContainer {
     height: 100%;
     padding-left: 0;
     padding-right: 0;
@@ -103,7 +112,7 @@ hr{
     max-height: 100vh
 }
 
-body{
+body {
     font-size: 17px;
     text-align: center;
     background-color: var(--corFundo);
@@ -112,13 +121,13 @@ body{
     overflow-x: hidden;
 }
 
-.container{
+.container {
     display: flex;
     flex-direction: column;
     margin-bottom: 90px
 }
 
-.barrafundo{
+.barrafundo {
     background-color: var(--corPrincipal);
     overflow: hidden;
     border-top: 0.2rem solid var(--corPrincipalBorda);
@@ -126,22 +135,25 @@ body{
     height: 90px;
     min-height: 30px;
     justify-content: center;
-    position:fixed;
+    position: fixed;
     z-index: 10;
     bottom: 0%
 }
 
-#formFooter>*{
+#formFooter>* {
     border: 0.2rem solid black;
     position: fixed;
     font-size: 20px;
+    overflow: hidden;
 }
-#formFooter{
+
+#formFooter {
     display: flex;
     height: 100%;
     align-items: center;
 }
-.footerFlex{
+
+.footerFlex {
     border: none !important;
     display: flex;
     width: 100%;
@@ -149,7 +161,7 @@ body{
     align-items: center;
 }
 
-#escrevermsg{
+#escrevermsg {
     min-height: 10px;
     width: 90%;
     background-color: #4e4e4e;
@@ -158,7 +170,7 @@ body{
     color: white;
 }
 
-#enviarmsg{
+#enviarmsg {
     border: 0;
     right: 0;
     width: 60px;
@@ -168,27 +180,27 @@ body{
     transition: 0.1s
 }
 
-#enviarmsg:hover{
+#enviarmsg:hover {
     scale: 1.1;
     cursor: pointer;
     content: url("../Imagens/enviar2.gif");
 }
 
-#sticker{
+#sticker {
     display: none;
     transition: 0.1s
 }
 
-#sticker:hover{
+#sticker:hover {
     scale: 1.1;
     cursor: pointer;
 }
 
-marquee{
+marquee {
     font-size: 50px;
 }
 
-main{
+main {
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -199,12 +211,12 @@ main{
     overflow-x: hidden
 }
 
-#msgarea{
+#msgarea {
     width: 100%;
     height: 100%;
 }
 
-.mensagem{
+.mensagem {
     text-align: left;
     display: none;
     flex-wrap: nowrap;
@@ -213,48 +225,50 @@ main{
     margin-top: 20px;
     width: 100%;
 }
-::placeholder{
+
+::placeholder {
     color: #ffffff;
     opacity: 1;
 }
 
-#pfp{
+#pfp {
     width: 50px;
     height: 50px;
     margin-right: 5px;
-    border:2px solid black;
+    border: 2px solid black;
     border-radius: 500px;
     background-color: #7c7b7b;
-    cursor:pointer;
-}
-#nomenamensagem{
-    color: white;
-    padding: 0;
-    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000,-1px -1px 0 #000, 1px -1px 0 #000;
+    cursor: pointer;
 }
 
-#conteudomensagem{
+#nomenamensagem {
+    color: white;
+    padding: 0;
+    text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000;
+}
+
+#conteudomensagem {
     max-width: 600px;
     margin-top: 10px;
     /*line-break:anywhere;*/
-    word-wrap:break-word;
+    word-wrap: break-word;
     text-align: justify;
 }
 
-#conteudomensagem>p{
-    line-break:auto;
+#conteudomensagem>p {
+    line-break: auto;
 }
 
 ::-webkit-scrollbar {
     width: 20px;
 }
-  
+
 ::-webkit-scrollbar-track {
     border: 2px solid #363636;
     border-left: 2px solid #363636;
     background-color: #7c7b7b;
 }
-  
+
 ::-webkit-scrollbar-thumb {
     background: lightgrey;
     border-radius: 0px;
@@ -271,17 +285,17 @@ main{
     body {
         font-size: 14px;
     }
-
     #pfp {
         width: 40px;
         height: 40px;
     }
 }
 
-button{
+button {
     transition: 0.1s;
 }
-button:hover{
+
+button:hover {
     scale: 1.05;
     cursor: pointer
 }

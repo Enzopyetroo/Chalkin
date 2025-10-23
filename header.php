@@ -1,3 +1,5 @@
+<link rel="preload" href="Imagens/moçofeliz.png" as="image">
+
 <style>
 .barratopo{
     background-color: var(--corPrincipal);
@@ -75,7 +77,7 @@
 .offcanvas{
     z-index: 21;
     background-color: var(--corPrincipal);
-    color: var(--corTexto)
+    color: var(--corTexto);
     box-shadow: black -3px -1px 10px 1px;
 }
 
