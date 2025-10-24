@@ -118,10 +118,6 @@
   height: 100%;
 }
 
-.barratopo{
-  position: relative !important;
-}
-
   </style>
 </head>
 <body>

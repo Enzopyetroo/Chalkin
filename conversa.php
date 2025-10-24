@@ -218,6 +218,9 @@ if (empty($_SESSION["id"])){
     #editarDesc{
         margin-top: 30px
     }
+    #bodyPerfil{
+        overflow: auto
+    }
 </style>
 <script>
     var useridPerfil, userpfpPerfil
@@ -225,6 +228,8 @@ if (empty($_SESSION["id"])){
     function VerPerfil(ts){
         document.getElementById("descPerfil").innerHTML = ""
         document.getElementById("loadingPerfil").style.display = "flex"
+        document.getElementById("PerfilModalLabel").innerHTML = "<img src='Imagens/moço.png' id='perfilPfp' width='50'>"
+
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados_usuarios.php", true);
 
@@ -362,7 +367,7 @@ if (empty($_SESSION["id"])){
     }
 
     function EnviouMsg(figurinhaConteudo){
-        debugger
+
         document.documentElement.style.scrollBehavior = "smooth"
 
             var inputValue, admin
@@ -424,7 +429,7 @@ if (empty($_SESSION["id"])){
         }
 
         document.documentElement.style.scrollBehavior = "auto"
-        console.log("mostrando mensagens")
+
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados.php", true);
 
@@ -464,7 +469,7 @@ if (empty($_SESSION["id"])){
 
 
         if (!scroll){
-            console.log("scroll")
+
             scroll = true
             setTimeout(function(){ scrl(idprim); });
         }
@@ -472,7 +477,7 @@ if (empty($_SESSION["id"])){
 
     function mostrarNovaMensagem(){
         document.documentElement.style.scrollBehavior = "auto"
-        console.log("mostrando nova mensagem")
+
         var httpc = new XMLHttpRequest();
         httpc.open("POST", "pegar_dados.php", true);
 

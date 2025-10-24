@@ -18,6 +18,21 @@
     function trimfunc(form){
         form.value = form.value.trim()
     }
+
+    function validar(){
+        console.log(document.getElementById("jatem").innerHTML.trim())
+        console.log(document.getElementById("jatememail").innerHTML.trim())
+        console.log(document.getElementById("senhas").innerHTML.trim())
+
+        if (document.getElementById("jatem").innerHTML.trim() == "" && document.getElementById("jatememail").innerHTML.trim() == "" && document.getElementById("senhas").innerHTML.trim() == ""){
+            document.getElementById("submit").disabled = false;
+            document.getElementById("submit").style.filter = 'grayscale(0%)'
+        }else{
+            document.getElementById("submit").disabled = true;
+            document.getElementById("submit").style.filter = 'grayscale(100%)'
+        }
+    }
+
     function checarnome(form){
         form.value = form.value.replaceAll(" ", "");
         var httpc = new XMLHttpRequest();
@@ -30,16 +45,16 @@
  
                 for (var i = 0; i < datarray.length; i++){
                     nome = datarray[i].nome
-                    
                     if (nome.toLowerCase() == form.value.toLowerCase()){
                         document.getElementById("jatem").innerHTML = "Já tem uma conta com esse nome"
-                        document.getElementById("submit").disabled = true;
+                        validar()
                         return
                     }else{
                         document.getElementById("jatem").innerHTML = ""
-                        document.getElementById("submit").disabled = false;
+                        
                     }
                 }
+                validar()
                 //document.getElementById("logado").innerHTML = "Atualmente logado como: <br>"
                 window.scrollTo(0, 99999);
             }
@@ -58,16 +73,16 @@
                 var datarray = JSON.parse(httpc.responseText)
 
                 for (var i = 0; i < datarray.length; i++){
-                    email = datarray[i].email
+                    var email = datarray[i].email
                     if (email == form.value){
                         document.getElementById("jatememail").innerHTML = "Já tem uma conta com esse email"
-                        document.getElementById("submit").disabled = true;
+                        validar()
                         return
                     }else{
                         document.getElementById("jatememail").innerHTML = ""
-                        document.getElementById("submit").disabled = false;
                     }
                 }
+                validar()
                 //document.getElementById("logado").innerHTML = "Atualmente logado como: <br>"
                 window.scrollTo(0, 99999);
             }
@@ -78,22 +93,20 @@
         form.value = form.value.replaceAll(" ", "");
         if (form.value != document.getElementById('senha').value){
             document.getElementById("senhas").innerHTML = "As senhas não batem"
-            document.getElementById("submit").disabled = true;
+            validar()
         }else{
             document.getElementById("senhas").innerHTML = ""
-            document.getElementById("submit").disabled = false;
         }
     }
+    validar()
     function senhaa2(form){
         form.value = form.value.replaceAll(" ", "");
         if (document.getElementById('senhas').innerHTML = "As senhas não batem"){
             if (form.value == document.getElementById('confirmsenha').value){
                 document.getElementById("senhas").innerHTML = ""
-                document.getElementById("submit").disabled = false;
             }
         }else{
             document.getElementById("senhas").innerHTML = ""
-            document.getElementById("submit").disabled = false;
         }
     }
     </script>

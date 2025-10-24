@@ -394,7 +394,7 @@ document.getElementById("Customizar").style.display = "none"
 
 function Selecionado(coisa){
     if (coisa.value == "Customizar"){
-        console.log(coisa.value)
+
         document.getElementById("Customizar").style.display = "block"
     }else{
         document.getElementById("Customizar").style.display = "none"
