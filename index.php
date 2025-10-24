@@ -29,7 +29,7 @@ if (empty($_SESSION["id"])==false){
 <body>
 <?php include "header.php"?>
 
-    <main style="margin-top:100px">
+    <main style="margin-top:50px">
 
         <div class="d-flex flex-column align-items-center">
 

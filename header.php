@@ -1,6 +1,13 @@
+<div id="divHeader">
+
 <link rel="preload" href="Imagens/moçofeliz.png" as="image">
 
 <style>
+#divHeader{
+    width: 100%;
+    height: 100px
+}
+
 .barratopo{
     background-color: var(--corPrincipal);
     border-bottom: 0.2rem solid var(--corPrincipalBorda);
@@ -176,17 +183,18 @@ input[type="color"]:hover{
     </div>
     
     <div id="coisosdelogin">
-
         <div>
-            <a href="register.php"><button id="register" class="botoesLogineRegister">Criar conta</button></a>
-            <a href="login.php"><button id="login" class="botoesLogineRegister">Login</button></a>
-        </div>
+            <div>
+                <a href="register.php"><button id="register" class="botoesLogineRegister">Criar conta</button></a>
+                <a href="login.php"><button id="login" class="botoesLogineRegister">Login</button></a>
+            </div>
 
-        <div style="display: grid">
-            <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
+            <div style="display: grid">
+                <p id="logado" style="display: none">Atualmente logado como: <br>(SEU NOME)</p>
+            </div>
         </div>
-
     </div>
+
 </nav>
 
 <!--Sidebar-->
@@ -241,7 +249,7 @@ input[type="color"]:hover{
                         window.location.replace("index.php")
                     }
                 };
-                xmlhttp.open("GET", "functions.php?action=logoff", true);
+                xmlhttp.open("GET", "php/functions.php?action=logoff", true);
                 xmlhttp.send();
             }
         </script>
@@ -343,7 +351,7 @@ var fotoAtual = 0
             primeiraChecagem = true
             mostrarMensagens(undefined, true, -1)
         }
-        xhttp.open("GET", `functions.php?action=mudarFoto&param=${fotoAtual}`, true);
+        xhttp.open("GET", `php/functions.php?action=mudarFoto&param=${fotoAtual}`, true);
         xhttp.send();
     }
 </script>
@@ -499,21 +507,14 @@ function salvarTema(){
     }
 
     if (tema != "Customizar"){
-        xhttp.open("GET", `mudarTema.php?cor1=${cor1}&cor2=${cor2}&cor3=${cor3}&cor4=${cor4}&bg=${bg}`, true);
+        xhttp.open("GET", `php/mudarTema.php?cor1=${cor1}&cor2=${cor2}&cor3=${cor3}&cor4=${cor4}&bg=${bg}`, true);
     }else{
-        xhttp.open("GET", `mudarTema.php?cor1=${cor1}&cor2=${cor2}&cor3=${cor3}&cor4=${cor4}`, true);
+        xhttp.open("GET", `php/mudarTema.php?cor1=${cor1}&cor2=${cor2}&cor3=${cor3}&cor4=${cor4}`, true);
     }
     
     xhttp.send();
 
 }
 
-var path = window.location.pathname;
-var page = path.split("/").pop();
-if (page == "conversa.php"){
-    document.getElementById("botaoConfig").style.opacity = "1";
-    document.getElementById("imgConfig").disabled = false;
-    document.getElementById("imgConfig").style.cursor = "pointer";
-}
-
 </script>
+</div>

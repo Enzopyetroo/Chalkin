@@ -23,7 +23,7 @@ if ($email != null){
 }
 
 if ($conn->query($sql)) {
-    header("Location: login.php");
+    header("Location: ../login.php");
     exit();
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;

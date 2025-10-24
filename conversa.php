@@ -8,6 +8,7 @@ if (empty($_SESSION["id"])){
 
 <!DOCTYPE php>
 <html lang="pt-br">
+
 <head>
 
     <meta charset="UTF-8">
@@ -21,7 +22,7 @@ if (empty($_SESSION["id"])){
     <title>Chalkin</title>
 
     <link rel="stylesheet" href="css/CSSlegal.css">
-    <script src="jsManeiro.js" type="text/javascript"></script>
+    <script src="outros/jsManeiro.js" type="text/javascript"></script>
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="Imagens/moço.png">
@@ -112,7 +113,7 @@ if (empty($_SESSION["id"])){
                     primeiraChecagem = true
                     mostrarMensagens(undefined, true, -1)
                 }
-                xhttp.open("GET", `functions.php?action=mudarNome&param=${nomepessoa}`, true);
+                xhttp.open("GET", `php/functions.php?action=mudarNome&param=${nomepessoa}`, true);
                 xhttp.send();
             }
 
@@ -129,12 +130,13 @@ if (empty($_SESSION["id"])){
                 mostrarMensagens(undefined, true, -1)
             }
 
-            xmlhttp.open("GET", `functions.php?action=mudarCorNome&param=${cor}`, true);
+            xmlhttp.open("GET", `php/functions.php?action=mudarCorNome&param=${cor}`, true);
             xmlhttp.send();
         }
 
     </script>
 </head>
+
 <body id="body">
     <?php include 'header.php' ?>
     <main id="main">
@@ -165,12 +167,12 @@ if (empty($_SESSION["id"])){
             }
         }
     </style>
+
     <div id="containerGif">
         <div id="slidingBgGif"></div>
     </div>
 
-
-
+<!--Perfil-->
     <div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="PerfilModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -222,7 +224,12 @@ if (empty($_SESSION["id"])){
         overflow: auto
     }
 </style>
+
 <script>
+    document.getElementById("botaoConfig").style.opacity = "1";
+    document.getElementById("imgConfig").disabled = false;
+    document.getElementById("imgConfig").style.cursor = "pointer";
+
     var useridPerfil, userpfpPerfil
 
     function VerPerfil(ts){
@@ -231,7 +238,7 @@ if (empty($_SESSION["id"])){
         document.getElementById("PerfilModalLabel").innerHTML = "<img src='Imagens/moço.png' id='perfilPfp' width='50'>"
 
         var httpc = new XMLHttpRequest();
-        httpc.open("POST", "pegar_dados_usuarios.php", true);
+        httpc.open("POST", "php/pegar_dados_usuarios.php", true);
 
         httpc.onreadystatechange = function() {
             if(httpc.readyState == 4 && httpc.status == 200) {
@@ -298,11 +305,12 @@ if (empty($_SESSION["id"])){
                     var ts = {dataset: {userid: useridPerfil}, src: userpfpPerfil};
                     VerPerfil(ts)
                 }
-                xhttp.open("GET", `functions.php?action=mudarDesc&param=${descricao}`, true);
+                xhttp.open("GET", `php/functions.php?action=mudarDesc&param=${descricao}`, true);
                 xhttp.send();
             }
     }
 </script>
+<!--Fim Perfil-->
 
         <div class="mensagem" id="msgplaceholder">
             <img alt="Pfp" src="Imagens/moço.png" id="pfp" onclick="VerPerfil(this)" data-userid="0" data-bs-toggle="modal" data-bs-target="#PerfilModal"> 
@@ -310,10 +318,6 @@ if (empty($_SESSION["id"])){
                 <p id="nomenamensagem">Moço</p>      
                 <p id="conteudomensagem">teste teste teste teste teste teste teste teste teste </p>
             </div>
-            
-        </div>
-        <br>
-
         </div>
         
         <div id="mensagens">
@@ -336,13 +340,6 @@ if (empty($_SESSION["id"])){
         </div>
     </footer>
 
-<script>
-    var adm = '<?php echo $_SESSION["admin"];?>';
-    if (adm && adm == 1){
-        document.getElementById("sticker").style.display = "block"
-    }
-</script>
-
 <div id="loading">
     <div>
         <img alt="Carregando" src="Imagens/loading.svg"> 
@@ -350,6 +347,11 @@ if (empty($_SESSION["id"])){
 </div>
 
 <script>
+    var adm = '<?php echo $_SESSION["admin"];?>';
+    if (adm && adm == 1){
+        document.getElementById("sticker").style.display = "block"
+    }
+
    function fixhr(val){
     
         if (val <= 9){
@@ -390,6 +392,7 @@ if (empty($_SESSION["id"])){
                 var podeEnviar = false
                 var date = new Date()
                 var minutes = date.getMinutes()
+                var unix = Math.floor(date.getTime() / 1000)
                 var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                 fixhr(date.getHours())+":"+fixhr(minutes)
 
@@ -400,10 +403,11 @@ if (empty($_SESSION["id"])){
                 xhttp.onload = function(){
                     //setTimeout(mostrarMensagens, 1000);
                 }
-                xhttp.open("GET", `functions.php?action=enviarMsg&param=${inputValue}`, true);
+                xhttp.open("GET", `php/functions.php?action=enviarMsg&param=${inputValue}&param2=${unix}`, true);
                 xhttp.send();
             }
     }
+
     var ScrollarProFundo = true
     var IdPrimeiraMensagem = 0
     window.addEventListener('scroll', () => {
@@ -431,7 +435,7 @@ if (empty($_SESSION["id"])){
         document.documentElement.style.scrollBehavior = "auto"
 
         var httpc = new XMLHttpRequest();
-        httpc.open("POST", "pegar_dados.php", true);
+        httpc.open("POST", "php/pegar_dados.php", true);
 
         var data = new Date();
 
@@ -446,10 +450,17 @@ if (empty($_SESSION["id"])){
                 }
 
                 for (var i = 0; i < datarray.length; i++){
+                    var date
                     
-                    var date = new Date(datarray[i].datamensagem.toString())
-                    var minutes = date.getMinutes()
+                    var check = Number(datarray[i].datamensagem)
+                    if (!isNaN(check)){
+                        var dateUnix = datarray[i].datamensagem * 1000
+                        date = new Date(dateUnix)
+                    }else{
+                        date = new Date(datarray[i].datamensagem.toString())    
+                    }
                         
+                    minutes = date.getMinutes()
                     var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                     fixhr(date.getHours())+":"+fixhr(minutes)
                     mensagem(datarray[i].conteudo, datanamensagem, datarray[i].nome_exib, datarray[i].id_msg, datarray[i].cor_nome, datarray[i].admin, datarray[i].numImg, datarray[i].idusuario, !primeiraChecagem)
@@ -479,7 +490,7 @@ if (empty($_SESSION["id"])){
         document.documentElement.style.scrollBehavior = "auto"
 
         var httpc = new XMLHttpRequest();
-        httpc.open("POST", "pegar_dados.php", true);
+        httpc.open("POST", "php/pegar_dados.php", true);
 
         var data = new Date();
 
@@ -490,12 +501,18 @@ if (empty($_SESSION["id"])){
                     var newestMsg = datarray[datarray.length-1]
 
                     if (newestMsg.idusuario != <?php echo $_SESSION["id"];?>){
+                        var check = Number(datarray[i].datamensagem)
+                        if (!isNaN(check)){
+                            var dateUnix = datarray[i].datamensagem * 1000
+                            date = new Date(dateUnix)
+                        }else{
+                            date = new Date(datarray[i].datamensagem.toString())    
+                        }
                         
-                        var date = new Date(newestMsg.datamensagem.toString())
-                        var minutes = date.getMinutes()
-                        
+                        minutes = date.getMinutes()
                         var datanamensagem = fixhr(date.getDate())+"/"+fixmt(date.getMonth())+" | "+
                         fixhr(date.getHours())+":"+fixhr(minutes)
+                        
                         mensagem(newestMsg.conteudo, datanamensagem, newestMsg.nome_exib, newestMsg.id_msg, newestMsg.cor_nome, newestMsg.admin, newestMsg.numImg, newestMsg.idusuario, false)
                     }
 
@@ -508,7 +525,7 @@ if (empty($_SESSION["id"])){
 
     function nomExib(){
         var httpc2 = new XMLHttpRequest();
-        httpc2.open("POST", "pegar_dados_usuarios.php", true);
+        httpc2.open("POST", "php/pegar_dados_usuarios.php", true);
                 
         httpc2.onreadystatechange = function() {
             if(httpc2.readyState == 4 && httpc2.status == 200) {
@@ -568,7 +585,7 @@ if (empty($_SESSION["id"])){
 
     function ChecarMensagens(){
         var httpch = new XMLHttpRequest();
-        var url = "checarMensagens.php";
+        var url = "php/checarMensagens.php";
         httpch.open("POST", url, true);
 
         httpch.onreadystatechange = function() {

@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-function enviarMsg($msg) {
+function enviarMsg($msg, $unix) {
     include "config.php";
     $id = $_SESSION["id"];
+
     $conn = new mysqli($servername, $username, $password, $dbname);
 
     if ($conn->connect_error) {
@@ -11,7 +12,7 @@ function enviarMsg($msg) {
     }
 
     $sql = "INSERT INTO tb_mensagens (conteudo, datamensagem, idusuario)
-    VALUES ('$msg', CURRENT_TIMESTAMP(), $id)";
+    VALUES ('$msg', '$unix', $id)";
 
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -102,12 +103,12 @@ function mudarDesc($texto) {
 
 $action = $_GET['action'] ?? 'default';
 $param = $_GET['param'] ?? 'default';
-//$para2 = $_GET['param'] ?? 'default';
+$param2 = $_GET['param2'] ?? 'default';
 
 switch ($action) {
     case 'default':
         case 'enviarMsg':
-            enviarMsg($param);
+            enviarMsg($param, $param2);
         break;
 
         case 'logoff':

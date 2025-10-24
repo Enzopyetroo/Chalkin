@@ -23,7 +23,7 @@
         console.log(document.getElementById("jatem").innerHTML.trim())
         console.log(document.getElementById("jatememail").innerHTML.trim())
         console.log(document.getElementById("senhas").innerHTML.trim())
-
+        console.log("a")
         if (document.getElementById("jatem").innerHTML.trim() == "" && document.getElementById("jatememail").innerHTML.trim() == "" && document.getElementById("senhas").innerHTML.trim() == ""){
             document.getElementById("submit").disabled = false;
             document.getElementById("submit").style.filter = 'grayscale(0%)'
@@ -36,7 +36,7 @@
     function checarnome(form){
         form.value = form.value.replaceAll(" ", "");
         var httpc = new XMLHttpRequest();
-        var url = "pegar_dados_usuarios.php";
+        var url = "php/pegar_dados_usuarios.php";
         httpc.open("POST", url, true);
 
         httpc.onreadystatechange = function() {
@@ -65,7 +65,7 @@
     function checarmail(form){
         form.value = form.value.replaceAll(" ", "");
         var httpc = new XMLHttpRequest();
-        var url = "pegar_dados_usuarios.php";
+        var url = "php/pegar_dados_usuarios.php";
         httpc.open("POST", url, true);
 
         httpc.onreadystatechange = function() {
@@ -96,9 +96,9 @@
             validar()
         }else{
             document.getElementById("senhas").innerHTML = ""
+            validar()
         }
     }
-    validar()
     function senhaa2(form){
         form.value = form.value.replaceAll(" ", "");
         if (document.getElementById('senhas').innerHTML = "As senhas não batem"){
@@ -108,6 +108,7 @@
         }else{
             document.getElementById("senhas").innerHTML = ""
         }
+        validar()
     }
     </script>
 
@@ -285,7 +286,7 @@
     <div class="RegisterFlex">
 
   <div class="login-container">
-        <form action="criarconta.php" method="post">
+        <form action="php/criarconta.php" method="post">
             <label for="fnome">Nome de usuário<span>*</span>:</label>
             <input minlength="3" type="text" id="fnome" name="fnome" placeholder="enzoolegal" required onchange="checarnome(this)" onkeypress="checarnome(this)" onkeyup="checarnome(this)" class="input">
             <p class="erro" id="jatem"> </p>

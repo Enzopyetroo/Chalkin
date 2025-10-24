@@ -135,7 +135,7 @@
     function submitform(){
         document.getElementById("falhou").style.display = "none"
         var httpc = new XMLHttpRequest();
-        var url = "logarnaconta.php";
+        var url = "php/logarnaconta.php";
         httpc.open("POST", url, true);
 
         httpc.onreadystatechange = function() {
@@ -154,7 +154,7 @@
         }
         var nome = document.getElementById("fnome").value.toString()
         var senha = document.getElementById("senha").value.toString()
-        httpc.open("post", "logarnaconta.php", true);
+        httpc.open("post", "php/logarnaconta.php", true);
         httpc.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         httpc.send("fnome="+nome+"&senha="+senha);
     }
