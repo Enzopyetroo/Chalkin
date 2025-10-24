@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-function enviarMsg($msg, $unix) {
+function enviarMsg($msg, $unix, $chat) {
     include "config.php";
     $id = $_SESSION["id"];
 
@@ -11,8 +11,8 @@ function enviarMsg($msg, $unix) {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO tb_mensagens (conteudo, datamensagem, idusuario)
-    VALUES ('$msg', '$unix', $id)";
+    $sql = "INSERT INTO tb_mensagens (conteudo, datamensagem, idusuario, chat)
+    VALUES ('$msg', '$unix', $id, '$chat')";
 
     if ($conn->query($sql) === FALSE) {
         echo "Error: " . $sql . "<br>" . $conn->error;
@@ -102,13 +102,15 @@ function mudarDesc($texto) {
 }
 
 $action = $_GET['action'] ?? 'default';
+
 $param = $_GET['param'] ?? 'default';
 $param2 = $_GET['param2'] ?? 'default';
+$param3 = $_GET['param3'] ?? 'default';
 
 switch ($action) {
     case 'default':
         case 'enviarMsg':
-            enviarMsg($param, $param2);
+            enviarMsg($param, $param2, $param3);
         break;
 
         case 'logoff':

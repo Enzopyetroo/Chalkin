@@ -1,5 +1,6 @@
 <?php
 include "config.php";
+$chat = $_POST["chat"];
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 $max_id = 0;
@@ -10,6 +11,7 @@ if ($conn->connect_error) {
 $sql = "SELECT 
         MAX(id_msg) AS max_id
         FROM tb_mensagens
+        WHERE tb_mensagens.chat = '$chat'
 ";
 $result = $conn->query($sql);
 
@@ -22,13 +24,12 @@ $earliestID = $_POST["earliestID"];
 if ($earliestID == "undefined" || $earliestID == -1){
   $earliestID = $max_id;
 }
-
 $sql2 = "SELECT 
         *
         FROM tb_mensagens
 
         INNER JOIN tb_usuarios_tb_config ON tb_mensagens.idusuario = tb_usuarios_tb_config.id
-        WHERE tb_mensagens.id_msg < $earliestID+1 AND tb_mensagens.id_msg > $earliestID-50
+        WHERE tb_mensagens.id_msg < $earliestID+1 AND tb_mensagens.id_msg > $earliestID-50 AND tb_mensagens.chat = '$chat'
         ORDER BY tb_mensagens.id_msg;
 ";
 $result = $conn->query($sql2);

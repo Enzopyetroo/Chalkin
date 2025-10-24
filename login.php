@@ -118,6 +118,10 @@
   height: 100%;
 }
 
+#fnome{
+    text-transform: lowercase;
+}
+
   </style>
 </head>
 <body>

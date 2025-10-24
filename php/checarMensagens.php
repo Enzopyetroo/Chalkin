@@ -6,8 +6,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
+$chat = $_POST["chat"];
 
-$sql = "SELECT COUNT(*) FROM tb_mensagens;";
+$sql = "SELECT COUNT(*) FROM tb_mensagens WHERE tb_mensagens.chat = '$chat';";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
