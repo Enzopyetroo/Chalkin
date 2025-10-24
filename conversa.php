@@ -432,7 +432,6 @@ if (empty($_SESSION["id"])){
     var earliestID = "undefined"
     var executarChecagemTema = true;
     function mostrarMensagens(scroll, idprim){
-        console.log("A")
         if (scroll == undefined){
             scroll = true
         }
